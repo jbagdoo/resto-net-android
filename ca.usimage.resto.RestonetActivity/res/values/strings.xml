@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, RestonetActivity!</string>
+    <string name="app_name">Restonet</string>
+     <string name="searchlabel">Recherche</string>
+      <string name="searchhint">Recherchez un resto</string>
+      <string name="detailTitre">Détails de l\'infraction</string>
+      <string name="nomLabel">Nom de l\'établissement:</string>
+      <string name="proprietaireLabel">Propriétaire:</string>
+	
+	  <string name="adresseLabel">Adresse:</string>
+	  <string name="villeLabel">Ville:</string>
+	  <string name="date_infractionLabel">Date de l\'infraction:</string>
+	  <string name="categorieLabel">Catégorie:</string>
+	  <string name="descriptionLabel">Description de L\'infraction:</string>
+	  <string name="date_jugementLabel">Date du jugement:</string>
+	  <string name="montantLabel">Amende:</string>
+	  <string name="tab_recente">Dernières amendes</string>
+	  <string name="tab_plus">Le plus d\'amendes</string>
+	  <string name="tab_alpha">Ordre alphabetique</string>
+	  <string name="tab_fortes">Les plus fortes amendes</string>
+	  <string name="action_label_search">Recherche</string>
+
+</resources>
