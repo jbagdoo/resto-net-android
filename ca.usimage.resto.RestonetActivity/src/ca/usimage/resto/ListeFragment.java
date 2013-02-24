@@ -1,14 +1,12 @@
 package ca.usimage.resto;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 
 import android.app.Activity;
 import android.app.ListFragment;
 
-import android.app.ProgressDialog;
+
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
@@ -20,7 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import android.widget.ArrayAdapter;
+
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 
@@ -31,19 +29,6 @@ import android.widget.ListView;
 public class ListeFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>  {
 	private ListItemSelectListener listeSelectListener;
 
-	
-//	Cursor restos;
-//	private List<Entry> entries;
-//	 ArrayList<String> etablissements = new ArrayList<String>();
-//	 ProgressDialog dialog;
-
-	
-	
-//	
-//	  public ArrayList<String> menuArrayList;
-//
-//	  Cursor menuListe;
-	  
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -75,9 +60,11 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	
 	private SimpleCursorAdapter adapter;
 	
-	public void afficheList(int loader_id) {
+	public void afficheList(int loader_id, String query) {
 		Log.e ("Resto", "loader_id= "+loader_id);
-		getLoaderManager().restartLoader(loader_id, null, this);
+		Bundle mBundle = new Bundle();
+		mBundle.putString("search_query", query);
+		getLoaderManager().restartLoader(loader_id, mBundle, this);
 	}
 	
 	
@@ -87,7 +74,8 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB };
 	    int[] uiBindTo = { R.id.TextView01 };
-	//    getLoaderManager().initLoader(1, null, this);
+	    // default loader on startup is RECENT_LOADER
+	    getLoaderManager().initLoader(RESTO_RECENT_LOADER, null, this);
 	    adapter = new SimpleCursorAdapter(
 	            getActivity().getApplicationContext(), R.layout.row,
 	            null, uiBindFrom, uiBindTo,
@@ -99,25 +87,20 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB };
 	    switch (id){
 	    	case RESTO_RECENT_LOADER:
-	    	  
-
-	     	    return new CursorLoader(getActivity(),
+        	    return new CursorLoader(getActivity(),
 	    	            RestoProvider.CONTENT_URI, projection, null, null, "date_infraction DESC");
 	    		
 	    	case RESTO_ALPHA_LOADER:
-	    		
 	    		return new CursorLoader(getActivity(),
 	    	            CONTENT_URI_GROUPBY, projection, null, null,"etablissement ASC");
 	    		    
 	    	case RESTO_HIGH_LOADER:
-	    	   
-
 	    		return new CursorLoader(getActivity(),
 	    	            RestoProvider.CONTENT_URI, projection, null, null, "montant DESC");
 	    		
 	    	case RESTO_SEARCH_LOADER:
 	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, null, null, null);	
+	    	            RestoProvider.CONTENT_URI, projection, "etablissement like \"%" + args.getString("search_query") + "%\"", null, null);	
 	    		
 	    	default: return null;
 	    	
@@ -136,69 +119,5 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	public void onLoaderReset(Loader<Cursor> loader) {
 	    adapter.swapCursor(null);
 	}
-
-	
-	
-//	@Override
-//	public void onActivityCreated(Bundle savedInstanceState) {
-//		super.onActivityCreated(savedInstanceState);
-//	    DatabaseConnector databaseConnector = 
-//	    		new DatabaseConnector(getActivity().getApplicationContext());
-//	    databaseConnector.open();
-//	    restos = databaseConnector.lireResto();
-//	    String[] from = new String[] { "etablissement" };
-//	    int[] to = new int[] {R.id.TextView01};
-//	    CursorAdapter listAdapter = new SimpleCursorAdapter(getActivity().getApplicationContext(), R.layout.row, restos, from, to,0);
-//
-//		setListAdapter(listAdapter);
-////		listAdapter.changeCursor(restos);
-//		databaseConnector.close();
-//		
-	    
-//     	ArrayAdapter<String> adapter = 
-//     			new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.row,etablissements);
-//     		    this.setListAdapter(adapter);
-//     		    databaseConnector.open();
-//     		    restos = databaseConnector.lireResto();
-//     		    restos.moveToFirst();
-//     		    int i = restos.getColumnIndex("etablissement");
-//     	        while (restos.isAfterLast() == false) {
-//     	        	
-//     	        	Log.e ("Resto", restos.getString(i));
-//     	       etablissements.add(	restos.getString(i) );
-//     	       restos.moveToNext();
-//     	       }
-     	        
-     	        
-//     	       dialog = new ProgressDialog(getActivity().getApplicationContext());
-//     	        dialog.setCancelable(true);
-//     	        dialog.setMessage("Mise à jour des données en cours...");
-//     	        // set the progress to be horizontal
-//     	        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-//     	        // reset the bar to the default value of 0
-//     	        dialog.setProgress(0);
-//     	        
-//     	        
-//	}
-
-	public void afficheMenu( String nom){
-		
-		
-//		   DatabaseConnector databaseConnector = 
-//		            new DatabaseConnector(getActivity().getApplicationContext()); 
-//	    databaseConnector.open();
-//	    menuListe  = databaseConnector.lireMenu(nom);
-//	    String[] from = new String[] { "itemmenu" };
-//	    int[] to = new int[] {R.id.itemTextView};
-//	    CursorAdapter menuAdapter = new SimpleCursorAdapter(getActivity(), R.layout.menu_list_item, null, from, to);
-//
-//		setListAdapter(menuAdapter);
-//		
-//		menuAdapter.changeCursor(menuListe);
-//		databaseConnector.close();
-	}
-
-
-	
 
 }

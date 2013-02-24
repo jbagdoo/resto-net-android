@@ -1,49 +1,25 @@
 package ca.usimage.resto;
 
-
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
-
-
-
-
-
-
-
-
 
 import android.app.ActionBar;
-import android.app.ActionBar.TabListener;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.FragmentTransaction;
-import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-
 import android.database.Cursor;
-
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.ParseException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
-
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 
@@ -89,29 +65,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
           ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
       
 	
-//		ab.removeAllTabs();
- 
-  //      handleIntent(getIntent());
-//     	ArrayAdapter<String> adapter = 
-//     			new ArrayAdapter<String>(this, R.layout.row,etablissements);
-//     		    this.setListAdapter(adapter);
-//     		    databaseConnector.open();
-//     		    restos = databaseConnector.lireResto();
-//     		    restos.moveToFirst();
-//     		    int i = restos.getColumnIndex("etablissement");
-//     	        while (restos.isAfterLast() == false) {
-//     	        	
-//     	        	Log.e ("Resto", restos.getString(i));
-//     	       etablissements.add(	restos.getString(i) );
-//     	       restos.moveToNext();
-//      
-//        }
-//       
-//        
-//        
-//
-//
-//          
+  
 	  	dialog = new ProgressDialog(RestonetActivity.this);
         dialog.setCancelable(true);
         dialog.setMessage("Mise à jour des données en cours...");
@@ -119,35 +73,26 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // reset the bar to the default value of 0
         dialog.setProgress(0);
-//        
-//     
+   
 
    }
-//    @Override
-//    protected void onNewIntent(Intent intent) {
-//        setIntent(intent);
-//        handleIntent(intent);
-//    }
-//
-//    private void handleIntent(Intent intent) {
-//        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-//          String query = intent.getStringExtra(SearchManager.QUERY);
-//          Log.e("restonet",query);
-//          restos = databaseConnector.rechercheResto(query);
-//  	    restos.moveToFirst();
-//  	  etablissements.clear();
-//  	    int i = restos.getColumnIndex("etablissement");
-//          while (restos.isAfterLast() == false) {
-//          	
-//          	Log.e ("Resto", "Résultat= "+restos.getString(i));
-//         etablissements.add(	restos.getString(i) );
-//         restos.moveToNext();
-//          }
-//         
-//        }
-//    }
+    
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
 
-//	
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+          String query = intent.getStringExtra(SearchManager.QUERY);
+          Log.e("restonet",query);
+ 		 ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
+			 listeFrg.afficheList(RESTO_SEARCH_LOADER, query);
+        }
+    }
+
+
 	public void onItemSelected(int s, long rowId) {
 	
 		afficheDetailFragment(rowId, false);
@@ -316,13 +261,13 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         switch (position) {
     	case 0:
     	
-    		 listeFrg.afficheList(RESTO_RECENT_LOADER);
+    		 listeFrg.afficheList(RESTO_RECENT_LOADER, null);
     			break;
     	case 1: 
-    		 listeFrg.afficheList(RESTO_ALPHA_LOADER);
+    		 listeFrg.afficheList(RESTO_ALPHA_LOADER, null);
     		 break;
     	case 2:
-    		 listeFrg.afficheList(RESTO_HIGH_LOADER);
+    		 listeFrg.afficheList(RESTO_HIGH_LOADER, null);
     		 break;
         }
        
