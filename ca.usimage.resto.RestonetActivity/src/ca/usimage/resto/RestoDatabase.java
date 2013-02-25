@@ -14,6 +14,8 @@ public class RestoDatabase
     public static final String ID = "_id";
     public static final String COL_ETAB = "etablissement";
     public static final String COL_PROPRIO = "proprietaire";
+    public static final String COL_MONTANT = "montant";
+
     public RestoDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }

@@ -13,7 +13,7 @@ import android.database.Cursor;
 
 import android.app.LoaderManager;
 
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,10 +53,9 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	private static final int RESTO_ALPHA_LOADER = 0x02;
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
-	 private static final String AUTHORITY = "ca.usimage.resto.RestoProvider";
-	    private static final String RESTOS_BASE_PATH = "restos";
-	 public static final Uri CONTENT_URI_GROUPBY = Uri.parse("content://" + AUTHORITY
-	            + "/" + RESTOS_BASE_PATH + "/GROUPBY");
+//	 private static final String AUTHORITY = "ca.usimage.resto.RestoProvider";
+//	    private static final String RESTOS_BASE_PATH = "restos";
+	
 	
 	private SimpleCursorAdapter adapter;
 	
@@ -72,8 +71,8 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-	    String[] uiBindFrom = { RestoDatabase.COL_ETAB };
-	    int[] uiBindTo = { R.id.TextView01 };
+	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
+	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
 	    // default loader on startup is RECENT_LOADER
 	    getLoaderManager().initLoader(RESTO_RECENT_LOADER, null, this);
 	    adapter = new SimpleCursorAdapter(
@@ -84,7 +83,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	}
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB };
+		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
 	    switch (id){
 	    	case RESTO_RECENT_LOADER:
         	    return new CursorLoader(getActivity(),
@@ -92,7 +91,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	    		
 	    	case RESTO_ALPHA_LOADER:
 	    		return new CursorLoader(getActivity(),
-	    	            CONTENT_URI_GROUPBY, projection, null, null,"etablissement ASC");
+	    	            RestoProvider.CONTENT_URI_GROUPBY, projection, null, null,"etablissement ASC");
 	    		    
 	    	case RESTO_HIGH_LOADER:
 	    		return new CursorLoader(getActivity(),

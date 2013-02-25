@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -206,20 +207,33 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		protected String doInBackground(String... urls) {
 			getData();
 			  dialog.setMax(entries.size());
+		
+			  // erase table resto before inserting new data... null selection deletes all rows
+			  getContentResolver().delete(RestoProvider.CONTENT_URI, null, null);
 			  
+			    ContentValues ajout_resto = new ContentValues();
 
-			    databaseConnector.open();
-			    databaseConnector.clear();
-			  	
 	            int i=0;
 		    	for (Entry msg : entries){
-		    		databaseConnector.ajoutResto(msg);
+	    	      	
+		    	      			 ajout_resto.put("etablissement", msg.getEtablissement());
+		    	      			 ajout_resto.put("proprietaire", msg.getProprietaire());
+		    	      			 ajout_resto.put("ville", msg.getVille());
+		    	      			 ajout_resto.put("montant", msg.getMontant());
+		    	      			 ajout_resto.put("adresse", msg.getAdresse());
+		    	      			 ajout_resto.put("categorie", msg.getCategorie());
+		    	      			 ajout_resto.put("date_infraction", msg.getDate_infraction());
+		    	      			 ajout_resto.put("date_jugement", msg.getDate_jugement());
+		    	      			 ajout_resto.put("description", msg.getDescription());
+		    	      			 ajout_resto.put("id", msg.getId());
+		    	      		     getContentResolver().insert(RestoProvider.CONTENT_URI, ajout_resto);
+		    	              	    		
 		    	i++;
 		    		 
 		    		 publishProgress(i);	    		
 
 		    	}
-		    	databaseConnector.close();
+
  		
 			return "";
 		}

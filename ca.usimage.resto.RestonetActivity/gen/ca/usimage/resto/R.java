@@ -21,6 +21,7 @@ public final class R {
         public static final int search=0x7f020007;
     }
     public static final class id {
+        public static final int Montant=0x7f070015;
         public static final int TextView01=0x7f07000f;
         public static final int TextView02=0x7f07000b;
         public static final int TextView03=0x7f070011;
@@ -38,8 +39,8 @@ public final class R {
         public static final int TextViewProprietaire=0x7f070005;
         public static final int TextViewVille=0x7f070008;
         public static final int detailFragment=0x7f070000;
-        public static final int itemMAJ=0x7f070015;
-        public static final int itemRECH=0x7f070016;
+        public static final int itemMAJ=0x7f070016;
+        public static final int itemRECH=0x7f070017;
         public static final int itemTextView=0x7f070014;
         public static final int listeFragment=0x7f070013;
         public static final int textDetail=0x7f070001;

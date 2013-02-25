@@ -2,9 +2,11 @@ package ca.usimage.resto;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
@@ -20,6 +22,8 @@ public class RestoProvider extends ContentProvider {
     private static final String RESTOS_BASE_PATH = "restos";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
             + "/" + RESTOS_BASE_PATH);
+    public static final Uri CONTENT_URI_GROUPBY = Uri.parse("content://" + AUTHORITY
+            + "/" + RESTOS_BASE_PATH + "/GROUPBY");
     public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
             + "/mt-resto";
     public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE
@@ -61,6 +65,8 @@ public class RestoProvider extends ContentProvider {
         return cursor;
     }
     
+    
+    
     @Override
     public int delete(Uri uri,  String selection,
             String[] selectionArgs) {
@@ -81,14 +87,11 @@ public class RestoProvider extends ContentProvider {
         }
         getContext().getContentResolver().notifyChange(uri, null);
         return rowsAffected;
-        
-        
-        
-        
-        
-
     }
 
+   
+    
+    
 	@Override
 	public String getType(Uri uri) {
 		// TODO Auto-generated method stub
@@ -97,9 +100,39 @@ public class RestoProvider extends ContentProvider {
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		
+		  SQLiteDatabase sqlDB = mDB.getWritableDatabase();
+	       
+	        int uriType = sURIMatcher.match(uri);
+	        switch (uriType) {
+	        
+	        case RESTOS:
+	        	
+	        	break;
+	            // get database to insert records
+
+	            // insert record in user table and get the row number of recently inserted record
+	         
+//	            if (rowId > 0) {
+//	                Uri rowUri = ContentUris.appendId(MyUsers.User.CONTENT_URI.buildUpon(), rowId).build();
+//	                getContext().getContentResolver().notifyChange(rowUri, null);
+//	                return rowUri;
+//	            }
+	           
+	        
+	           
+	     
+	        default:
+	            throw new IllegalArgumentException("Unknown or Invalid URI " + uri);
+	        }
+	            long id =   sqlDB.insert(TABLE_RESTO, null, values); 
+	            getContext().getContentResolver().notifyChange(uri, null);
+	            return Uri.parse(CONTENT_URI + "/" + id);
+	        }
+	        
+	        
+	     
+	
 
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
