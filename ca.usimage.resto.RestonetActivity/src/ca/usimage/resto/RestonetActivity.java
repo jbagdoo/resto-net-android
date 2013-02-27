@@ -12,7 +12,6 @@ import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -28,7 +27,7 @@ import android.widget.Toast;
 
 
 public class RestonetActivity extends Activity implements ListItemSelectListener, ActionBar.TabListener{
-	Cursor restos;
+	
 	
     private boolean useLogo = false;
     private boolean showHomeUp = true;
@@ -40,8 +39,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private List<Entry> entries;
 	 ArrayList<String> etablissements = new ArrayList<String>();
 	 ProgressDialog dialog;
-	    DatabaseConnector databaseConnector = 
-     new DatabaseConnector(RestonetActivity.this); 
+	
 //	
     /** Called when the activity is first created. */
     @Override
@@ -101,24 +99,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	}
 	
 	public void afficheDetailFragment (long rowId, Boolean changeTab){
-		Cursor details;
-		String etabText, prop;
-	
 
-		 databaseConnector.open();
-		 details = databaseConnector.lireDetails(rowId);
-		 details.moveToFirst();
-			int etabIndex = details.getColumnIndex("etablissement");
-			int propIndex = details.getColumnIndex("proprietaire");
-
-			
-			etabText = details.getString(etabIndex);
-			prop = details.getString(propIndex);
-		 	
-      	Log.e ("Resto", "etab= "+etabText+" prop= "+prop);
-
-//		 row_id = rowId;
-//		
 //	
 //		//detecter si fragment Detailfragment se trouve dans cette activité		
 	DetailFragment  frg = 
@@ -128,20 +109,14 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	//			frg.effacerFragment();
 			} else {
 			Intent intention = new Intent(getApplicationContext(), DetailActivity.class);
-			intention.putExtra("etab", etabText);
-			intention.putExtra("prop", prop);
-////			intention.putExtra("cote", cote);
-////			intention.putExtra("rowId", rowId);
-////
+			intention.putExtra("rowid", rowId);
 			startActivity(intention);
 		}
 		}else{//fragment est dans cette activité
-////			frg.afficheResto(nomResto);
-////			frg.afficheNote(noteText);
-////			frg.afficheCote(cote);
-////			
+			frg.afficheDetails(rowId);
+	
 		}					
-//		databaseConnector.close();
+
 	}	
 	
     

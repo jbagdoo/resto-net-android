@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -134,13 +134,13 @@
         android:ems="10"
         android:text="@string/descriptionLabel"
         android:textSize="22sp" />
-<ScrollView android:layout_height="30dp"
+<ScrollView 
         android:layout_width="match_parent">
 <TextView 
     android:layout_width="match_parent"
     android:id="@+id/TextViewDescription"
-    android:layout_height="30dp"
-    android:textSize="16sp"
+    android:layout_height="wrap_content"
+    android:textSize="26sp"
   
     />
 </ScrollView>
