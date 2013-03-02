@@ -3,6 +3,7 @@ package ca.usimage.resto;
 
 
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ListFragment;
 
@@ -10,7 +11,6 @@ import android.app.ListFragment;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
-
 import android.app.LoaderManager;
 
 
@@ -21,7 +21,6 @@ import android.view.View;
 
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
-
 import android.widget.ListView;
 
 
@@ -80,7 +79,10 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	            null, uiBindFrom, uiBindTo,
 	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	    setListAdapter(adapter);	
+	   
 	}
+	
+	
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
@@ -99,7 +101,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	    		
 	    	case RESTO_SEARCH_LOADER:
 	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, "etablissement like \"%" + args.getString("search_query") + "%\"", null, null);	
+	    	            RestoProvider.CONTENT_URI, projection, "etablissement like \"%" + args.getString("search_query") + "%\"", null, "etablissement ASC");	
 	    		
 	    	default: return null;
 	    	
@@ -119,4 +121,6 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	    adapter.swapCursor(null);
 	}
 
+	
+	
 }

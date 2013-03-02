@@ -35,6 +35,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_ALPHA_LOADER = 0x02;
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
+	
 
 	private List<Entry> entries;
 	 ArrayList<String> etablissements = new ArrayList<String>();
@@ -49,14 +50,14 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     	setContentView(R.layout.liste);
     	
     	
-        final ActionBar ab = getActionBar();
+    	 final ActionBar ab = getActionBar();
      
       // set defaults for logo & home up
-      ab.setDisplayHomeAsUpEnabled(showHomeUp);
+//      ab.setDisplayHomeAsUpEnabled(showHomeUp);
      ab.setDisplayUseLogoEnabled(useLogo);
 		ab.setNavigationMode(2);
 		ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-
+		 ab.setDisplayShowHomeEnabled(false);
       // set up tabs nav
       
           ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
@@ -75,6 +76,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    
 
    }
+    
+    
     
     @Override
     protected void onNewIntent(Intent intent) {
@@ -128,7 +131,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	}
     
     public boolean onOptionsItemSelected(MenuItem item) {
-
+    	 final ActionBar ab = getActionBar();
 		switch (item.getItemId()) {
 		case R.id.itemMAJ:
 			   if (haveInternet(this)){
@@ -143,6 +146,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 			   
 		case R.id.itemRECH:
             	onSearchRequested(); 
+            	//force alpha order tab to be selected after a search
+            	ab.setSelectedNavigationItem(1);
             	return true;
 
 		}
@@ -246,6 +251,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		// TODO Auto-generated method stub
 		
         ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
+       
         int position = tab.getPosition();
         switch (position) {
     	case 0:
