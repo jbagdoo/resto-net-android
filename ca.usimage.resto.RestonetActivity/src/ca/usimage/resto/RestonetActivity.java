@@ -12,6 +12,7 @@ import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -35,6 +36,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_ALPHA_LOADER = 0x02;
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
+	private int tab_pos;
 	
 
 	private List<Entry> entries;
@@ -48,23 +50,28 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         super.onCreate(savedInstanceState);
     //    setContentView(R.layout.main);
     	setContentView(R.layout.liste);
-    	
-    	
     	 final ActionBar ab = getActionBar();
+    	if (savedInstanceState != null){
+    		 tab_pos = savedInstanceState.getInt("tabState");
+    	}
      
       // set defaults for logo & home up
 //      ab.setDisplayHomeAsUpEnabled(showHomeUp);
      ab.setDisplayUseLogoEnabled(useLogo);
-		ab.setNavigationMode(2);
-		ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+
+		
 		 ab.setDisplayShowHomeEnabled(false);
       // set up tabs nav
       
           ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
           ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
           ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
-      
-	
+         
+          ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+          ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+          ab.setSelectedNavigationItem(tab_pos);
+   	
+    	
   
 	  	dialog = new ProgressDialog(RestonetActivity.this);
         dialog.setCancelable(true);
@@ -273,7 +280,12 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+	    super.onSaveInstanceState(outState);
+	    outState.putInt("tabState", getActionBar().getSelectedTab().getPosition());
+	}
     
  }
     
