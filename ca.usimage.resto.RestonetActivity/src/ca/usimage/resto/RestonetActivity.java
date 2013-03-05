@@ -12,7 +12,6 @@ import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -48,31 +47,42 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    //    setContentView(R.layout.main);
+  ;
     	setContentView(R.layout.liste);
     	 final ActionBar ab = getActionBar();
-    	if (savedInstanceState != null){
-    		 tab_pos = savedInstanceState.getInt("tabState");
-    	}
+   
      
       // set defaults for logo & home up
 //      ab.setDisplayHomeAsUpEnabled(showHomeUp);
      ab.setDisplayUseLogoEnabled(useLogo);
 
 		
-		 ab.setDisplayShowHomeEnabled(false);
+		 ab.setDisplayShowHomeEnabled(true);
       // set up tabs nav
-      
-          ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
-          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
-          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
+		 
+	
+	   
+        
          
-          ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-          ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-          ab.setSelectedNavigationItem(tab_pos);
+     
    	
-    	
-  
+  	 	if (savedInstanceState != null){
+   		 tab_pos = savedInstanceState.getInt("tabState");
+   		 ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
+         ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
+         ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
+   	
+   		
+   		 
+   	} else { ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
+    ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
+    ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
+   	}
+  	
+        ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+        ab.setSelectedNavigationItem(tab_pos);
+ 	
 	  	dialog = new ProgressDialog(RestonetActivity.this);
         dialog.setCancelable(true);
         dialog.setMessage("Mise à jour des données en cours...");
@@ -192,7 +202,11 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 		@Override
 		protected String doInBackground(String... urls) {
+			// get data from web xml file and store in entries list
+		
 			getData();
+			
+			// prepare to store data into sqlite database
 			  dialog.setMax(entries.size());
 		
 			  // erase table resto before inserting new data... null selection deletes all rows
@@ -213,6 +227,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		    	      			 ajout_resto.put("date_jugement", msg.getDate_jugement());
 		    	      			 ajout_resto.put("description", msg.getDescription());
 		    	      			 ajout_resto.put("id", msg.getId());
+		    	      			 // insert each row into sql database
 		    	      		     getContentResolver().insert(RestoProvider.CONTENT_URI, ajout_resto);
 		    	              	    		
 		    	i++;
@@ -251,15 +266,19 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     	}
     }
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
+		
+		  // position cursor at top of list if user retaps a tab
+		 ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
+		 listeFrg.setSelection(0);	
 		
 	}
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
         ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
-       
+        
         int position = tab.getPosition();
+        Log.e ("resto", "pos= "+position);
         switch (position) {
     	case 0:
     	

@@ -86,6 +86,7 @@ public class Entry {
 		this.description = description;
 	}
 	public String getDate_infraction() {
+		// convert date from text to timestamp using french locale
 		
         SimpleDateFormat simpleDateFormat =         new SimpleDateFormat("dd MMMMMMM yyyy", Locale.FRENCH); 
         java.util.Date dateObj = null;
@@ -116,18 +117,23 @@ public class Entry {
 	public void setDate_jugement(String date_jugement) {
 		this.date_jugement = date_jugement;
 	}
-	public String getMontant() {
-		return montant;
+	public int getMontant() {
+		int valeur = 0;
+		// remove trailing $ sign
+		montant = montant.replace(" $","");
+		try {
+			// convert montant string to integer (from ordering purposes)
+		    valeur = Integer.parseInt(montant);
+		} catch(NumberFormatException nfe) {
+		   System.out.println("Could not parse " + nfe);
+		}
+		return valeur;
 	}
 	public void setMontant(String montant) {
 		this.montant = montant;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Contrevenant [categorie=" + categorie + ", date_infraction=" + date_infraction + ", proprietaire="
-//				+ proprietaire + "]";
-//	}
+
 	public Entry copy(){
 		Entry copy = new Entry();
 		copy.proprietaire = proprietaire;

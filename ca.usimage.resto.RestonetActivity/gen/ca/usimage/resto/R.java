@@ -39,8 +39,9 @@ public final class R {
         public static final int TextViewProprietaire=0x7f070004;
         public static final int TextViewVille=0x7f070007;
         public static final int detailFragment=0x7f070000;
-        public static final int itemMAJ=0x7f070015;
-        public static final int itemRECH=0x7f070016;
+        public static final int dollar=0x7f070015;
+        public static final int itemMAJ=0x7f070016;
+        public static final int itemRECH=0x7f070017;
         public static final int itemTextView=0x7f070013;
         public static final int listeFragment=0x7f070012;
         public static final int textNom=0x7f07000c;

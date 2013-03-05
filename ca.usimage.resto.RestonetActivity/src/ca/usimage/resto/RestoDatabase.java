@@ -23,7 +23,7 @@ public class RestoDatabase
     public void onCreate(SQLiteDatabase db) {
         String createQuery = "CREATE TABLE resto" +
                 "(_id integer primary key autoincrement," +
-                "id TEXT, proprietaire TEXT,  categorie TEXT , etablissement TEXT,  adresse TEXT, ville TEXT, description TEXT, date_infraction timestamp, date_jugement timestamp, montant TEXT  );";
+                "id TEXT, proprietaire TEXT,  categorie TEXT , etablissement TEXT,  adresse TEXT, ville TEXT, description TEXT, date_infraction timestamp, date_jugement timestamp, montant INTEGER  );";
     
              db.execSQL(createQuery);
     }

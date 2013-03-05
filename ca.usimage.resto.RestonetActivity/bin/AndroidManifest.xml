@@ -11,7 +11,8 @@
     <application
         android:uiOptions="splitActionBarWhenNarrow"      	 	
              android:label="@string/app_name" android:orientation="horizontal"
-        android:icon="@drawable/chefbar" >
+        android:icon="@drawable/chefbar"
+        android:theme="@android:style/Theme.Holo.Light" >
         <activity
                       
                    android:name=".RestonetActivity" 

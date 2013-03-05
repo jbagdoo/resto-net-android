@@ -1,7 +1,7 @@
 
 package ca.usimage.resto;
 
-import java.net.URL;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class AndroidSaxParser extends BaseParser {
 		final Entry currentEntry = new Entry();
 		RootElement root = new RootElement(CONTREVENANTS);
 		final List<Entry> entries = new ArrayList<Entry>();
-//		Element channel = root.getChild(CHANNEL);
+		
 		Element contrevenant = root.getChild(CONTREVENANT);
 		contrevenant.setEndElementListener(new EndElementListener(){
 			public void end() {
@@ -74,16 +74,7 @@ public class AndroidSaxParser extends BaseParser {
 				currentEntry.setMontant(body);
 			}
 		});
-//		contrevenant.getChild(DESCRIPTION).setEndTextElementListener(new EndTextElementListener(){
-//			public void end(String body) {
-//				currentMessage.setDescription(body);
-//			}
-//		});
-//		contrevenant.getChild(PUB_DATE).setEndTextElementListener(new EndTextElementListener(){
-//			public void end(String body) {
-//				currentMessage.setDate(body);
-//			}
-//		});
+
 		try {
 			Xml.parse(this.getInputStream(), Xml.Encoding.ISO_8859_1, root.getContentHandler());
 		} catch (Exception e) {

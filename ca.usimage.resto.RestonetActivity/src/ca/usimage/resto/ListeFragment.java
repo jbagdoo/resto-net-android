@@ -75,13 +75,14 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		  setRetainInstance(true);
+		if (savedInstanceState == null) {
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
 	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
 	    // default loader on startup is RECENT_LOADER
 	    LoaderManager lm = getLoaderManager();
-        if (lm.getLoader(RESTO_RECENT_LOADER) != null) {
-            lm.initLoader(RESTO_RECENT_LOADER, null, this);
-        }
+//        if (lm.getLoader(RESTO_RECENT_LOADER) != null) {
+//            lm.initLoader(RESTO_RECENT_LOADER, null, this);
+//        }
 
 	    if (adapter == null) {
 	    adapter = new SimpleCursorAdapter(
@@ -91,7 +92,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	    setListAdapter(adapter);
 	    }
 	  //  this.setSelection(savedInstanceState.getInt("POS"));
-	   
+		}
 	}
 	
 	
@@ -126,6 +127,8 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 	    adapter.swapCursor(cursor);
+	    // position cursor at top of list
+//	    this.setSelection(0);
 	}
 
 	
