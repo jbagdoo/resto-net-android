@@ -21,5 +21,8 @@
 	  <string name="tab_alpha">Ordre alphabetique</string>
 	  <string name="tab_fortes">Les plus fortes amendes</string>
 	  <string name="action_label_search">Recherche</string>
+	  <string name="dialog">Téléchargement des données de la Ville de Montréal</string>
+	  <string name="dialog_ok">Continuer</string>
+	  <string name="dialog_cancel">Annuler</string>
 
 </resources>

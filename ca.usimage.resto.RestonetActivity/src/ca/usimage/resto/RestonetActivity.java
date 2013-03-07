@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -151,16 +152,10 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     	 final ActionBar ab = getActionBar();
 		switch (item.getItemId()) {
 		case R.id.itemMAJ:
-			   if (haveInternet(this)){
-			  dialog.show();
-		      GetCityData task = new GetCityData();
-				task.execute(new String[] { "" });
-			
-			   } else {
-				   Toast toast = Toast.makeText(getApplicationContext(), "Veuillez activer un accès à internet", Toast.LENGTH_LONG);
-				   toast.show();
-			   }		return true;
-			   
+			  
+				   showDialog();
+				   return true;
+
 		case R.id.itemRECH:
             	onSearchRequested(); 
             	//force alpha order tab to be selected after a search
@@ -306,5 +301,30 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	    outState.putInt("tabState", getActionBar().getSelectedTab().getPosition());
 	}
     
+	void showDialog() {
+	    DialogFragment dataDialog = GetDataDialog.newInstance(
+	            R.string.dialog);
+	    dataDialog.show(getFragmentManager(), "dialog");
+	}
+
+	public void doPositiveClick() {
+		 if (haveInternet(this)){
+			 dialog.show();
+		      GetCityData task = new GetCityData();
+					task.execute(new String[] { "" });
+				
+				   } else {
+					   Toast toast = Toast.makeText(getApplicationContext(), "Veuillez activer un accès à internet", Toast.LENGTH_LONG);
+					   toast.show();
+				   }		
+	    Log.i("FragmentAlertDialog", "Positive click!");
+	}
+
+	public void doNegativeClick() {
+	    // Do stuff here.
+	    Log.i("FragmentAlertDialog", "Negative click!");
+	}
+	
+	
  }
     

@@ -18,7 +18,10 @@ public final class R {
         public static final int logo=0x7f020004;
         public static final int ratlogo=0x7f020005;
         public static final int ratlogo2=0x7f020006;
-        public static final int search=0x7f020007;
+        public static final int restonet2=0x7f020007;
+        public static final int restonet3=0x7f020008;
+        public static final int restonet4=0x7f020009;
+        public static final int search=0x7f02000a;
     }
     public static final class id {
         public static final int Montant=0x7f070014;
@@ -67,6 +70,9 @@ public final class R {
         public static final int date_jugementLabel=0x7f05000c;
         public static final int descriptionLabel=0x7f05000b;
         public static final int detailTitre=0x7f050004;
+        public static final int dialog=0x7f050013;
+        public static final int dialog_cancel=0x7f050015;
+        public static final int dialog_ok=0x7f050014;
         public static final int hello=0x7f050000;
         public static final int montantLabel=0x7f05000d;
         public static final int nomLabel=0x7f050005;

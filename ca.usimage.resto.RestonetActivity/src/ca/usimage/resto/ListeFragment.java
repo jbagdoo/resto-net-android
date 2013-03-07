@@ -128,7 +128,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 	    adapter.swapCursor(cursor);
 	    // position cursor at top of list
-//	    this.setSelection(0);
+//	     this.setSelection(0);
 	}
 
 	
