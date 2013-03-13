@@ -80,17 +80,17 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
 	    // default loader on startup is RECENT_LOADER
 	    LoaderManager lm = getLoaderManager();
-//        if (lm.getLoader(RESTO_RECENT_LOADER) != null) {
-//            lm.initLoader(RESTO_RECENT_LOADER, null, this);
-//        }
+        if (lm.getLoader(RESTO_RECENT_LOADER) != null) {
+            lm.initLoader(RESTO_RECENT_LOADER, null, this);
+        }
 
-	    if (adapter == null) {
+//	    if (adapter == null) {
 	    adapter = new SimpleCursorAdapter(
 	            getActivity().getApplicationContext(), R.layout.row,
 	            null, uiBindFrom, uiBindTo,
 	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	    setListAdapter(adapter);
-	    }
+//	    }
 	  //  this.setSelection(savedInstanceState.getInt("POS"));
 		}
 	}

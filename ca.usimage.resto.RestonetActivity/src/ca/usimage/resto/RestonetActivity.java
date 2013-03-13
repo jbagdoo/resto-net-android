@@ -62,7 +62,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
       // set up tabs nav
 		 
 	
-	   
+		  ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+	        ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
         
          
      
@@ -72,6 +73,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    		 ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
+         ab.setSelectedNavigationItem(tab_pos);
    	
    		
    		 
@@ -80,9 +82,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
    	}
   	
-        ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-        ab.setSelectedNavigationItem(tab_pos);
+      
+    
  	
 	  	dialog = new ProgressDialog(RestonetActivity.this);
         dialog.setCancelable(true);
@@ -120,14 +121,14 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	}
 	
 	public void afficheDetailFragment (long rowId, Boolean changeTab){
-
+		Log.e("Restonet","rowid= "+rowId);
 //	
 //		//detecter si fragment Detailfragment se trouve dans cette activité		
 	DetailFragment  frg = 
 				(DetailFragment)getFragmentManager().findFragmentById(R.id.detailFragment);
 		if(frg ==null || !frg.isInLayout()){//pas de fragment DetailFragment ici
 			if (changeTab) {
-	//			frg.effacerFragment();
+				
 			} else {
 			Intent intention = new Intent(getApplicationContext(), DetailActivity.class);
 			intention.putExtra("rowid", rowId);
