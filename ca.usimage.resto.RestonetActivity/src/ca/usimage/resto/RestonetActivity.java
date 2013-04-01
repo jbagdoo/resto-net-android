@@ -7,6 +7,8 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
@@ -37,6 +39,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 	private int tab_pos;
+			
 	
 
 	private List<Entry> entries;
@@ -48,8 +51,20 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-  ;
-    	setContentView(R.layout.liste);
+  
+    	setContentView(R.layout.main);
+    	
+    	  FragmentManager fragmentManager = getFragmentManager();
+          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+          //add a fragment
+         ListeFragment listeFrg = new ListeFragment();
+         // fragment must be tagged to prevent fragment leakage
+         if (null == fragmentManager.findFragmentByTag("TAG")) {
+          fragmentTransaction.add(R.id.listeFragment, listeFrg, "TAG");
+         }
+          fragmentTransaction.commit();
+    	
     	 final ActionBar ab = getActionBar();
    
      
@@ -67,17 +82,17 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         
          
      
-   	
+	      
   	 	if (savedInstanceState != null){
    		 tab_pos = savedInstanceState.getInt("tabState");
-   		 ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
+   		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
          ab.setSelectedNavigationItem(tab_pos);
    	
-   		
-   		 
-   	} else { ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
+  	 	} else {
+//  	 		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(new TabListener<ListeFragment>(this,"recente",ListeFragment.class)));
+    ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
     ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
     ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
    	}
@@ -96,6 +111,13 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
    }
     
+    @Override  
+    public void onRestart() {
+    	  super.onRestart();
+    	Log.e("RestonetActivity", "onRestart called");
+	}
+    
+    	
     
     
     @Override
@@ -261,40 +283,51 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     		Log.e("Restonet",t.getMessage(),t);
     	}
     }
+   	
+//    
+   	
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		
+
 		  // position cursor at top of list if user retaps a tab
 		 ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
 		 listeFrg.setSelection(0);	
-		
+
 	}
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
-        ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
-        
-        int position = tab.getPosition();
-        Log.e ("resto", "pos= "+position);
-        switch (position) {
-    	case 0:
-    	
-    		 listeFrg.afficheList(RESTO_RECENT_LOADER, null);
-    			break;
-    	case 1: 
-    		 listeFrg.afficheList(RESTO_ALPHA_LOADER, null);
-    		 break;
-    	case 2:
-    		 listeFrg.afficheList(RESTO_HIGH_LOADER, null);
-    		 break;
-        }
-       
-		
-		
+	
+//	
+      ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
+     
+   if (listeFrg != null){
+	   
+      int position = tab.getPosition();
+      Log.e ("resto", "pos= "+position);
+      switch (position) {
+  	case 0:
+  	
+  		 listeFrg.afficheList(RESTO_RECENT_LOADER, null);
+  			break;
+  	case 1: 
+  		 listeFrg.afficheList(RESTO_ALPHA_LOADER, null);
+  		 break;
+  	case 2:
+  		 listeFrg.afficheList(RESTO_HIGH_LOADER, null);
+  		 break;
+  
+      }	   
+	   
+   }
+
+
 	}
+	
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
 	}
+
+    
+    
 	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {

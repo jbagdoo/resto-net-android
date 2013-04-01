@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-<fragment
+<frameLayout
     android:id="@+id/listeFragment"
     android:name="ca.usimage.resto.ListeFragment"
     android:layout_width="286dp"
     android:layout_height="match_parent" >
 
-</fragment>
+</frameLayout>
 <fragment
     
     android:name="ca.usimage.resto.DetailFragment"
