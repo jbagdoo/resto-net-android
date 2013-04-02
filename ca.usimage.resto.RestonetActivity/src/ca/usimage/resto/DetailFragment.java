@@ -26,6 +26,13 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 	
 		
 		View view=inflater.inflate(R.layout.detailfragment, container, false); 
+		
+	    Bundle arguments = new Bundle();
+	   
+	    arguments = this.getArguments();
+	  
+	   
+		afficheDetails(arguments.getLong("rowid"));
 		return view; 
 		}
 

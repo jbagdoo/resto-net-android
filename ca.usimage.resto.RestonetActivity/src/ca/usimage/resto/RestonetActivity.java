@@ -146,9 +146,20 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		Log.e("Restonet","rowid= "+rowId);
 //	
 //		//detecter si fragment Detailfragment se trouve dans cette activité		
-	DetailFragment  frg = 
-				(DetailFragment)getFragmentManager().findFragmentById(R.id.detailFragment);
-		if(frg ==null || !frg.isInLayout()){//pas de fragment DetailFragment ici
+		  FragmentManager fragmentManager = getFragmentManager();
+          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+          DetailFragment detailFrg = new DetailFragment();
+         
+        	   
+        	    Bundle arguments = new Bundle();
+        	    arguments.putLong("rowid", rowId);
+        	  
+        	    detailFrg.setArguments(arguments);
+        	  
+          
+       
+	
+		if(null == fragmentManager.findFragmentById(R.id.detailFragment)|| !detailFrg.isInLayout()){//pas de fragment DetailFragment ici
 			if (changeTab) {
 				
 			} else {
@@ -157,7 +168,10 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 			startActivity(intention);
 		}
 		}else{//fragment est dans cette activité
-			frg.afficheDetails(rowId);
+			 
+			 fragmentTransaction.add(R.id.detailFragment, detailFrg, "DETAIL");
+			 fragmentTransaction.commit();
+
 	
 		}					
 
