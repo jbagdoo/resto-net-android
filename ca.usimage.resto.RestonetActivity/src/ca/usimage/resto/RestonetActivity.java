@@ -40,7 +40,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 	private int tab_pos;
 			
-	
+    ListeFragment listeFrg = new ListeFragment();
+    AlphaListeFragment alphaFrg = new AlphaListeFragment();
 
 	private List<Entry> entries;
 	 ArrayList<String> etablissements = new ArrayList<String>();
@@ -54,17 +55,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   
     	setContentView(R.layout.main);
     	
-    	  FragmentManager fragmentManager = getFragmentManager();
-          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-          //add a fragment
-         ListeFragment listeFrg = new ListeFragment();
-         // fragment must be tagged to prevent fragment leakage
-         if (null == fragmentManager.findFragmentByTag("TAG")) {
-          fragmentTransaction.add(R.id.listeFragment, listeFrg, "TAG");
-         }
-          fragmentTransaction.commit();
-    	
+   
+        
     	 final ActionBar ab = getActionBar();
    
      
@@ -89,6 +81,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
          ab.setSelectedNavigationItem(tab_pos);
+         Log.e("OnCreate RestonetActivity","saveInstance not null");
    	
   	 	} else {
 //  	 		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(new TabListener<ListeFragment>(this,"recente",ListeFragment.class)));
@@ -130,8 +123,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
           String query = intent.getStringExtra(SearchManager.QUERY);
           Log.e("restonet",query);
- 		 ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
-			 listeFrg.afficheList(RESTO_SEARCH_LOADER, query);
+ //		 AlphaListeFragment alphaFrg = (AlphaListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
+			 alphaFrg.afficheList(RESTO_SEARCH_LOADER, query);
         }
     }
 
@@ -301,36 +294,86 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 //    
    	
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-
+	     int position = tab.getPosition();
 		  // position cursor at top of list if user retaps a tab
-		 ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
-		 listeFrg.setSelection(0);	
+	      switch (position) {
+	  	case 0:
+	  		 listeFrg.setSelection(0);
+	
+	  			break;
+	  	case 1: 
+			 alphaFrg.setSelection(0);
+			 break;
+	  	case 2:
+
+	  		 
+	  		 break;
+	  
+	      }	   
+	
+
 
 	}
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
 	
-//	
-      ListeFragment listeFrg = (ListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
-     
-   if (listeFrg != null){
+		  FragmentManager fragmentManager = getFragmentManager();
+          //add a fragment
+
+         int position = tab.getPosition();
+ 
+
+  
 	   
-      int position = tab.getPosition();
+      int loaderID = 0;
+     
+      String fragmentTag;
       Log.e ("resto", "pos= "+position);
       switch (position) {
   	case 0:
-  	
-  		 listeFrg.afficheList(RESTO_RECENT_LOADER, null);
+  	 
+  	     loaderID=RESTO_RECENT_LOADER;
+  	  
+  	     if (null == fragmentManager.findFragmentByTag("RECENT")) {
+           ft.replace(R.id.listeFragment, listeFrg, "RECENT");
+//           ft.commit();
+           Log.e("ontabselected","added listefrag");
+          
+       //   }else {
+      //   	 ft =  listeFrg.getFragmentManager().beginTransaction();
+      //   	 ft.attach(listeFrg);
+          }
+//         fragmentTag = "RECENT";
+//         ft.replace(R.id.listeFragment, listeFrg );
   			break;
   	case 1: 
-  		 listeFrg.afficheList(RESTO_ALPHA_LOADER, null);
+  		loaderID=RESTO_ALPHA_LOADER;
+	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
+	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+	     }
   		 break;
   	case 2:
-  		 listeFrg.afficheList(RESTO_HIGH_LOADER, null);
+  		 loaderID=RESTO_HIGH_LOADER;
+  		 
   		 break;
   
       }	   
-	   
-   }
+// listeFrg.getFragmentManager();
+//	    Bundle arguments = new Bundle();
+// 	    arguments.putInt("loaderID", loaderID);
+// 	  
+// 	    listeFrg.setArguments(arguments);
+//         // fragment must be tagged to prevent fragment leakage
+//         if (null == fragmentManager.findFragmentByTag("TAG")) {
+//          fragmentTransaction.add(R.id.listeFragment, listeFrg, "TAG");
+//          fragmentTransaction.commit();
+//          Log.e("ontabselected","added listefrag");
+//         
+//         }else {
+//        	 fragmentTransaction =  listeFrg.getFragmentManager().beginTransaction();
+//        	 fragmentTransaction.attach(listeFrg);
+//        	 
+//
+//         }
 
 
 	}
