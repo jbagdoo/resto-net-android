@@ -16,9 +16,11 @@ import android.app.LoaderManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 
 
+import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.ListView;
@@ -32,12 +34,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		Log.e ("onAttach", "ListeFragment Attached ");
-//		   Bundle arguments = new Bundle();
-//		   
-//		    arguments = this.getArguments();
-//		  
-//		   
-//			afficheList(arguments.getInt("loaderID"),null);
+
 		try {
 			listeSelectListener = (ListItemSelectListener) activity;
 		
@@ -77,23 +74,26 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	}
 	
 	
+
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		
-		super.onActivityCreated(savedInstanceState);
-		Log.e ("Resto", "ListeFragment Created= ");
-		  setRetainInstance(true);
+		super.onCreate(savedInstanceState);
+		Log.e ("ListeFragment", "ListeFragment Created= ");
+//		  setRetainInstance(true);
 			
 		 
 
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
 	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
 	    adapter = new SimpleCursorAdapter(
-	            getActivity().getApplicationContext(), R.layout.row,
+	            getActivity(), R.layout.row,
 	            null, uiBindFrom, uiBindTo,
 	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	    setListAdapter(adapter);
-	    // default loader on startup is RECENT_LOADER
+	    
+		
+		
 	
 
 
@@ -104,7 +104,7 @@ public void onResume()
 {
     super.onResume();
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
-   
+  
     LoaderManager lm = getLoaderManager();
 
     lm.initLoader(RESTO_RECENT_LOADER, null, this);

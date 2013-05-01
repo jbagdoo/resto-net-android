@@ -54,27 +54,14 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         super.onCreate(savedInstanceState);
   
     	setContentView(R.layout.main);
-    	
-   
-        
-    	 final ActionBar ab = getActionBar();
-   
-     
-      // set defaults for logo & home up
-//      ab.setDisplayHomeAsUpEnabled(showHomeUp);
-     ab.setDisplayUseLogoEnabled(useLogo);
-
-		
+      	 final ActionBar ab = getActionBar();
+        ab.setDisplayUseLogoEnabled(useLogo);
 		 ab.setDisplayShowHomeEnabled(true);
       // set up tabs nav
-		 
-	
+
 		  ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	        ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-        
-         
-     
-	      
+       
   	 	if (savedInstanceState != null){
    		 tab_pos = savedInstanceState.getInt("tabState");
    		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
@@ -104,11 +91,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
    }
     
-    @Override  
-    public void onRestart() {
-    	  super.onRestart();
-    	Log.e("RestonetActivity", "onRestart called");
-	}
+   
     
     	
     
@@ -153,14 +136,12 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
        
 	
 		if(null == fragmentManager.findFragmentById(R.id.detailFragment)|| !detailFrg.isInLayout()){//pas de fragment DetailFragment ici
-			if (changeTab) {
-				
-			} else {
+
 			Intent intention = new Intent(getApplicationContext(), DetailActivity.class);
 			intention.putExtra("rowid", rowId);
 			startActivity(intention);
 		}
-		}else{//fragment est dans cette activité
+		else{//fragment est dans cette activité
 			 
 			 fragmentTransaction.add(R.id.detailFragment, detailFrg, "DETAIL");
 			 fragmentTransaction.commit();
@@ -295,14 +276,33 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    	
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 	     int position = tab.getPosition();
+	     Log.e ("ontabreselected", "pos= "+position);
+		  FragmentManager fragmentManager = getFragmentManager();
+		  
+	 	   
 		  // position cursor at top of list if user retaps a tab
 	      switch (position) {
 	  	case 0:
+             if (null ==  fragmentManager.findFragmentByTag("RECENT")) {
+            	
+	  	       ft.replace(R.id.listeFragment, listeFrg, "RECENT");
+	  	     }
+	  	       else{
+	  	    	   ListeFragment listeFrg = (ListeFragment)
+	  	    			   getFragmentManager().findFragmentByTag("RECENT");
 	  		 listeFrg.setSelection(0);
-	
+	  	     }	
 	  			break;
 	  	case 1: 
-			 alphaFrg.setSelection(0);
+		     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
+		    	 
+		         ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+		     } else {    
+	  	    	   AlphaListeFragment alphaFrg = (AlphaListeFragment)
+	  	    			   getFragmentManager().findFragmentByTag("ALPHA");
+		    	 alphaFrg.setSelection(0);
+		    	
+		     }
 			 break;
 	  	case 2:
 
@@ -319,15 +319,14 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		  FragmentManager fragmentManager = getFragmentManager();
           //add a fragment
 
+		
+	 	  
          int position = tab.getPosition();
  
-
-  
-	   
       int loaderID = 0;
      
       String fragmentTag;
-      Log.e ("resto", "pos= "+position);
+      Log.e ("ontabselected", "pos= "+position);
       switch (position) {
   	case 0:
   	 
@@ -335,8 +334,9 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   	  
   	     if (null == fragmentManager.findFragmentByTag("RECENT")) {
            ft.replace(R.id.listeFragment, listeFrg, "RECENT");
+        
 //           ft.commit();
-           Log.e("ontabselected","added listefrag");
+           Log.e("ontabselected","replaced listefrag");
           
        //   }else {
       //   	 ft =  listeFrg.getFragmentManager().beginTransaction();
@@ -349,6 +349,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   		loaderID=RESTO_ALPHA_LOADER;
 	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
 	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+	  
+	           Log.e("ontabselected","replaced alphafrag");
 	     }
   		 break;
   	case 2:

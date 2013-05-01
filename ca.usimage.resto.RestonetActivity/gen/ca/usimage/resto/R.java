@@ -10,6 +10,21 @@ package ca.usimage.resto;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int holoBlue=0x7f05000c;
+        public static final int sysBlack=0x7f050000;
+        public static final int sysBlue=0x7f050001;
+        public static final int sysCyan=0x7f050002;
+        public static final int sysDkGray=0x7f050003;
+        public static final int sysGray=0x7f050004;
+        public static final int sysGreen=0x7f050005;
+        public static final int sysLtGray=0x7f050006;
+        public static final int sysMagenta=0x7f050007;
+        public static final int sysRed=0x7f050008;
+        public static final int sysTransparent=0x7f050009;
+        public static final int sysWhite=0x7f05000a;
+        public static final int sysYellow=0x7f05000b;
+    }
     public static final class drawable {
         public static final int chef=0x7f020000;
         public static final int chefbar=0x7f020001;
@@ -24,30 +39,30 @@ public final class R {
         public static final int search=0x7f02000a;
     }
     public static final class id {
-        public static final int Montant=0x7f070014;
-        public static final int TextView01=0x7f07000e;
-        public static final int TextView02=0x7f07000a;
-        public static final int TextView03=0x7f070010;
-        public static final int TextView04=0x7f070008;
-        public static final int TextView08=0x7f070005;
-        public static final int TextView10=0x7f070003;
-        public static final int TextView12=0x7f070001;
-        public static final int TextViewAdresse=0x7f070006;
-        public static final int TextViewCategorie=0x7f070009;
-        public static final int TextViewDate_Infraction=0x7f07000b;
-        public static final int TextViewDate_Jugement=0x7f07000d;
-        public static final int TextViewDescription=0x7f070011;
-        public static final int TextViewEtablissement=0x7f070002;
-        public static final int TextViewMontant=0x7f07000f;
-        public static final int TextViewProprietaire=0x7f070004;
-        public static final int TextViewVille=0x7f070007;
-        public static final int detailFragment=0x7f070000;
-        public static final int dollar=0x7f070015;
-        public static final int itemMAJ=0x7f070016;
-        public static final int itemRECH=0x7f070017;
-        public static final int itemTextView=0x7f070013;
-        public static final int listeFragment=0x7f070012;
-        public static final int textNom=0x7f07000c;
+        public static final int Montant=0x7f080015;
+        public static final int TextView01=0x7f08000e;
+        public static final int TextView02=0x7f08000a;
+        public static final int TextView03=0x7f080011;
+        public static final int TextView04=0x7f080008;
+        public static final int TextView08=0x7f080005;
+        public static final int TextView10=0x7f080003;
+        public static final int TextView12=0x7f080001;
+        public static final int TextViewAdresse=0x7f080006;
+        public static final int TextViewCategorie=0x7f080009;
+        public static final int TextViewDate_Infraction=0x7f08000b;
+        public static final int TextViewDate_Jugement=0x7f08000d;
+        public static final int TextViewDescription=0x7f080012;
+        public static final int TextViewEtablissement=0x7f080002;
+        public static final int TextViewMontant=0x7f08000f;
+        public static final int TextViewProprietaire=0x7f080004;
+        public static final int TextViewVille=0x7f080007;
+        public static final int detailFragment=0x7f080000;
+        public static final int dollar=0x7f080010;
+        public static final int itemMAJ=0x7f080016;
+        public static final int itemRECH=0x7f080017;
+        public static final int itemTextView=0x7f080014;
+        public static final int listeFragment=0x7f080013;
+        public static final int textNom=0x7f08000c;
     }
     public static final class layout {
         public static final int detail=0x7f030000;
@@ -59,31 +74,31 @@ public final class R {
         public static final int search=0x7f030006;
     }
     public static final class menu {
-        public static final int menu=0x7f060000;
+        public static final int menu=0x7f070000;
     }
     public static final class string {
-        public static final int action_label_search=0x7f050012;
-        public static final int adresseLabel=0x7f050007;
-        public static final int app_name=0x7f050001;
-        public static final int categorieLabel=0x7f05000a;
-        public static final int date_infractionLabel=0x7f050009;
-        public static final int date_jugementLabel=0x7f05000c;
-        public static final int descriptionLabel=0x7f05000b;
-        public static final int detailTitre=0x7f050004;
-        public static final int dialog=0x7f050013;
-        public static final int dialog_cancel=0x7f050015;
-        public static final int dialog_ok=0x7f050014;
-        public static final int hello=0x7f050000;
-        public static final int montantLabel=0x7f05000d;
-        public static final int nomLabel=0x7f050005;
-        public static final int proprietaireLabel=0x7f050006;
-        public static final int searchhint=0x7f050003;
-        public static final int searchlabel=0x7f050002;
-        public static final int tab_alpha=0x7f050010;
-        public static final int tab_fortes=0x7f050011;
-        public static final int tab_plus=0x7f05000f;
-        public static final int tab_recente=0x7f05000e;
-        public static final int villeLabel=0x7f050008;
+        public static final int action_label_search=0x7f060012;
+        public static final int adresseLabel=0x7f060007;
+        public static final int app_name=0x7f060001;
+        public static final int categorieLabel=0x7f06000a;
+        public static final int date_infractionLabel=0x7f060009;
+        public static final int date_jugementLabel=0x7f06000c;
+        public static final int descriptionLabel=0x7f06000b;
+        public static final int detailTitre=0x7f060004;
+        public static final int dialog=0x7f060013;
+        public static final int dialog_cancel=0x7f060015;
+        public static final int dialog_ok=0x7f060014;
+        public static final int hello=0x7f060000;
+        public static final int montantLabel=0x7f06000d;
+        public static final int nomLabel=0x7f060005;
+        public static final int proprietaireLabel=0x7f060006;
+        public static final int searchhint=0x7f060003;
+        public static final int searchlabel=0x7f060002;
+        public static final int tab_alpha=0x7f060010;
+        public static final int tab_fortes=0x7f060011;
+        public static final int tab_plus=0x7f06000f;
+        public static final int tab_recente=0x7f06000e;
+        public static final int villeLabel=0x7f060008;
     }
     public static final class xml {
         public static final int searchable=0x7f040000;
