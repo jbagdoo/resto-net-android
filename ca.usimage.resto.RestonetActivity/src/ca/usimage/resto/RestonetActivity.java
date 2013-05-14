@@ -7,7 +7,6 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -39,9 +38,11 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 	private int tab_pos;
+	private String query;
 			
     ListeFragment listeFrg = new ListeFragment();
     AlphaListeFragment alphaFrg = new AlphaListeFragment();
+    RechercheListeFragment rechFrg = new RechercheListeFragment();
 
 	private List<Entry> entries;
 	 ArrayList<String> etablissements = new ArrayList<String>();
@@ -60,14 +61,17 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
       // set up tabs nav
 
 		  ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-	        ab.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+	   //     ab.setDisplayOptions(0, ActionBar.);
        
   	 	if (savedInstanceState != null){
    		 tab_pos = savedInstanceState.getInt("tabState");
+   		 query = savedInstanceState.getString("searchQuery");
    		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
+//         if (query == ""){
          ab.setSelectedNavigationItem(tab_pos);
+//         } 
          Log.e("OnCreate RestonetActivity","saveInstance not null");
    	
   	 	} else {
@@ -87,15 +91,9 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // reset the bar to the default value of 0
         dialog.setProgress(0);
-   
-
+ 
    }
-    
    
-    
-    	
-    
-    
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
@@ -104,11 +102,13 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-          String query = intent.getStringExtra(SearchManager.QUERY);
+          query = intent.getStringExtra(SearchManager.QUERY);
           Log.e("restonet",query);
- //		 AlphaListeFragment alphaFrg = (AlphaListeFragment)getFragmentManager().findFragmentById(R.id.listeFragment);
-			 alphaFrg.afficheList(RESTO_SEARCH_LOADER, query);
+	  	    	   RechercheListeFragment rechFrg = (RechercheListeFragment)
+	  	    			   getFragmentManager().findFragmentByTag("RECH");
+      	 rechFrg.afficheList(RESTO_SEARCH_LOADER, query);
         }
+        
     }
 
 
@@ -169,9 +169,26 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 		case R.id.itemRECH:
             	onSearchRequested(); 
+            
+  	  	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();
+ 	  	     if (null == getFragmentManager().findFragmentByTag("RECH")) {
+ 	             ft.replace(R.id.listeFragment, rechFrg, "RECH");
+ 	  	   	     ft.commit();
+ 	  	     }
             	//force alpha order tab to be selected after a search
-            	ab.setSelectedNavigationItem(1);
-            	return true;
+//            	ab.setSelectedNavigationItem(1);
+//          	  FragmentManager fragmentManager = getFragmentManager();
+//        	  FragmentTransaction ft = fragmentManager.beginTransaction();
+//            	  
+//                if (null == fragmentManager.findFragmentByTag("RECH")) {
+//      		    	 
+//      		         ft.replace(R.id.listeFragment, rechFrg, "RECH");
+//                }
+//                	
+//                ft.hide(rechFrg);
+//                ft.commit();
+                return true;
+                	
 
 		}
 
@@ -334,48 +351,36 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   	  
   	     if (null == fragmentManager.findFragmentByTag("RECENT")) {
            ft.replace(R.id.listeFragment, listeFrg, "RECENT");
-        
-//           ft.commit();
-           Log.e("ontabselected","replaced listefrag");
-          
-       //   }else {
-      //   	 ft =  listeFrg.getFragmentManager().beginTransaction();
-      //   	 ft.attach(listeFrg);
           }
-//         fragmentTag = "RECENT";
-//         ft.replace(R.id.listeFragment, listeFrg );
+
   			break;
   	case 1: 
   		loaderID=RESTO_ALPHA_LOADER;
 	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
 	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
-	  
-	           Log.e("ontabselected","replaced alphafrag");
+//	     }	      else {    
+//	    	 Log.e("onteabselected","alpha not null");
+//	    	   AlphaListeFragment alphaFrg = (AlphaListeFragment)
+//  	    			   getFragmentManager().findFragmentByTag("ALPHA");
+//	    	 alphaFrg.afficheList(RESTO_ALPHA_LOADER, query);
 	     }
   		 break;
   	case 2:
   		 loaderID=RESTO_HIGH_LOADER;
   		 
   		 break;
-  
+ 	case 4:
+ 	  	 
+ 	     loaderID=RESTO_SEARCH_LOADER;
+ 	  
+ 	     if (null == fragmentManager.findFragmentByTag("RECH")) {
+          ft.replace(R.id.listeFragment, rechFrg, "RECH");
+         }
+
+ 			break;
       }	   
-// listeFrg.getFragmentManager();
-//	    Bundle arguments = new Bundle();
-// 	    arguments.putInt("loaderID", loaderID);
-// 	  
-// 	    listeFrg.setArguments(arguments);
-//         // fragment must be tagged to prevent fragment leakage
-//         if (null == fragmentManager.findFragmentByTag("TAG")) {
-//          fragmentTransaction.add(R.id.listeFragment, listeFrg, "TAG");
-//          fragmentTransaction.commit();
-//          Log.e("ontabselected","added listefrag");
-//         
-//         }else {
-//        	 fragmentTransaction =  listeFrg.getFragmentManager().beginTransaction();
-//        	 fragmentTransaction.attach(listeFrg);
-//        	 
-//
-//         }
+      
+
 
 
 	}
@@ -392,6 +397,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	protected void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
 	    outState.putInt("tabState", getActionBar().getSelectedTab().getPosition());
+	    outState.putString("searchQuery", query);
 	}
     
 	void showDialog() {

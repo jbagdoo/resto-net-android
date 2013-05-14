@@ -92,11 +92,6 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	    setListAdapter(adapter);
 	    
-		
-		
-	
-
-
 		}
 
     @Override
