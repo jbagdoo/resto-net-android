@@ -38,7 +38,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 	private int tab_pos;
-	private String query;
+	private String query = "";
 			
     ListeFragment listeFrg = new ListeFragment();
     AlphaListeFragment alphaFrg = new AlphaListeFragment();
@@ -62,17 +62,34 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 		  ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	   //     ab.setDisplayOptions(0, ActionBar.);
-       
+		  FragmentManager fragmentManager = getFragmentManager();
+		  
+		
+		  
   	 	if (savedInstanceState != null){
+ 		
    		 tab_pos = savedInstanceState.getInt("tabState");
    		 query = savedInstanceState.getString("searchQuery");
    		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
 //         if (query == ""){
+         if (null == fragmentManager.findFragmentByTag("RECH"))  {
+	 	 
          ab.setSelectedNavigationItem(tab_pos);
-//         } 
+         } else {
          Log.e("OnCreate RestonetActivity","saveInstance not null");
+  
+		  Log.e("onCreated", "Rech frag not null");
+	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();	   
+  	    Bundle arguments = new Bundle();
+  	    arguments.putString("searchQuery", query);
+  	  
+  	    rechFrg.setArguments(arguments);
+       
+		   ft.replace(R.id.listeFragment, rechFrg, "RECH");  
+      }
+      
    	
   	 	} else {
 //  	 		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(new TabListener<ListeFragment>(this,"recente",ListeFragment.class)));
@@ -104,9 +121,20 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
           query = intent.getStringExtra(SearchManager.QUERY);
           Log.e("restonet",query);
+  	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();
+	  	     if (null == getFragmentManager().findFragmentByTag("RECH")) {
+	  	    	 Log.e("onoptionitemselected", "RECH frag null");
+	  	      Bundle arguments = new Bundle();
+	   	    arguments.putString("searchQuery", query);
+	   	  
+	   	    rechFrg.setArguments(arguments);
+	             ft.replace(R.id.listeFragment, rechFrg, "RECH");
+	  	   	     ft.commit();
+	  	     }else{
 	  	    	   RechercheListeFragment rechFrg = (RechercheListeFragment)
 	  	    			   getFragmentManager().findFragmentByTag("RECH");
       	 rechFrg.afficheList(RESTO_SEARCH_LOADER, query);
+	  	     }
         }
         
     }
@@ -160,7 +188,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	}
     
     public boolean onOptionsItemSelected(MenuItem item) {
-    	 final ActionBar ab = getActionBar();
+    	 
 		switch (item.getItemId()) {
 		case R.id.itemMAJ:
 			  
@@ -170,23 +198,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		case R.id.itemRECH:
             	onSearchRequested(); 
             
-  	  	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();
- 	  	     if (null == getFragmentManager().findFragmentByTag("RECH")) {
- 	             ft.replace(R.id.listeFragment, rechFrg, "RECH");
- 	  	   	     ft.commit();
- 	  	     }
-            	//force alpha order tab to be selected after a search
-//            	ab.setSelectedNavigationItem(1);
-//          	  FragmentManager fragmentManager = getFragmentManager();
-//        	  FragmentTransaction ft = fragmentManager.beginTransaction();
-//            	  
-//                if (null == fragmentManager.findFragmentByTag("RECH")) {
-//      		    	 
-//      		         ft.replace(R.id.listeFragment, rechFrg, "RECH");
-//                }
-//                	
-//                ft.hide(rechFrg);
-//                ft.commit();
                 return true;
                 	
 
@@ -296,7 +307,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	     Log.e ("ontabreselected", "pos= "+position);
 		  FragmentManager fragmentManager = getFragmentManager();
 		  
-	 	   
+	
 		  // position cursor at top of list if user retaps a tab
 	      switch (position) {
 	  	case 0:
@@ -327,6 +338,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	  		 break;
 	  
 	      }	   
+	    	  
+	    	  
 	
 
 
@@ -344,6 +357,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
      
       String fragmentTag;
       Log.e ("ontabselected", "pos= "+position);
+
       switch (position) {
   	case 0:
   	 
@@ -358,11 +372,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   		loaderID=RESTO_ALPHA_LOADER;
 	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
 	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
-//	     }	      else {    
-//	    	 Log.e("onteabselected","alpha not null");
-//	    	   AlphaListeFragment alphaFrg = (AlphaListeFragment)
-//  	    			   getFragmentManager().findFragmentByTag("ALPHA");
-//	    	 alphaFrg.afficheList(RESTO_ALPHA_LOADER, query);
 	     }
   		 break;
   	case 2:
@@ -370,16 +379,11 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   		 
   		 break;
  	case 4:
- 	  	 
- 	     loaderID=RESTO_SEARCH_LOADER;
- 	  
- 	     if (null == fragmentManager.findFragmentByTag("RECH")) {
-          ft.replace(R.id.listeFragment, rechFrg, "RECH");
-         }
+
 
  			break;
-      }	   
-      
+      }	
+
 
 
 
@@ -396,7 +400,13 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
-	    outState.putInt("tabState", getActionBar().getSelectedTab().getPosition());
+	    // getACtionBarr returns null for RECH fragment
+		  FragmentManager fragmentManager = getFragmentManager();
+	    if (null == fragmentManager.findFragmentByTag("RECH"))  {
+	    	 outState.putInt("tabState", getActionBar().getSelectedTab().getPosition());
+	    }else{
+	    outState.putInt("tabState", 0);
+	    }
 	    outState.putString("searchQuery", query);
 	}
     
