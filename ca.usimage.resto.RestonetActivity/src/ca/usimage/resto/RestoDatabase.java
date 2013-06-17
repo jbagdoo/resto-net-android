@@ -15,6 +15,8 @@ public class RestoDatabase
     public static final String COL_ETAB = "etablissement";
     public static final String COL_PROPRIO = "proprietaire";
     public static final String COL_MONTANT = "montant";
+    public static final String COL_LAT = "latitude";
+    public static final String COL_LONG = "longitude";    
 
     public RestoDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -23,7 +25,7 @@ public class RestoDatabase
     public void onCreate(SQLiteDatabase db) {
         String createQuery = "CREATE TABLE resto" +
                 "(_id integer primary key autoincrement," +
-                "id TEXT, proprietaire TEXT,  categorie TEXT , etablissement TEXT,  adresse TEXT, ville TEXT, description TEXT, date_infraction timestamp, date_jugement timestamp, montant INTEGER  );";
+                "id TEXT, proprietaire TEXT,  categorie TEXT , etablissement TEXT,  adresse TEXT, ville TEXT, description TEXT, date_infraction timestamp, date_jugement timestamp, montant INTEGER, latitude INTEGER, longitude INTEGER  );";
     
              db.execSQL(createQuery);
     }

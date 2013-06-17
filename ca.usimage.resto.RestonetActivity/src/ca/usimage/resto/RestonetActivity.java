@@ -1,7 +1,11 @@
 package ca.usimage.resto;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import com.google.android.gms.maps.MapFragment;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -14,6 +18,9 @@ import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -26,8 +33,6 @@ import android.widget.Toast;
 
 
 
-
-
 public class RestonetActivity extends Activity implements ListItemSelectListener, ActionBar.TabListener{
 	
 	
@@ -37,18 +42,27 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_ALPHA_LOADER = 0x02;
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
+	private  static final int RESTO_PLUS_LOADER = 0x05;
+	
 	private int tab_pos;
 	private String query = "";
 			
     ListeFragment listeFrg = new ListeFragment();
     AlphaListeFragment alphaFrg = new AlphaListeFragment();
     RechercheListeFragment rechFrg = new RechercheListeFragment();
+    PlusListeFragment plusFrg = new PlusListeFragment();
+    MapFragment mapFrg = new CarteFragment();
 
 	private List<Entry> entries;
 	 ArrayList<String> etablissements = new ArrayList<String>();
 	 ProgressDialog dialog;
 	
-//	
+//	  @Override
+//	    protected void onCreate(Bundle savedInstanceState) {
+//	        super.onCreate(savedInstanceState);
+//	        setContentView(R.layout.main);
+//	    }
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +87,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
-//         if (query == ""){
+         ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),3,false);
+
          if (null == fragmentManager.findFragmentByTag("RECH"))  {
 	 	 
          ab.setSelectedNavigationItem(tab_pos);
@@ -88,14 +103,18 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   	    rechFrg.setArguments(arguments);
        
 		   ft.replace(R.id.listeFragment, rechFrg, "RECH");  
+		   ft.commit();
+		   
+		   
       }
       
    	
-  	 	} else {
-//  	 		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(new TabListener<ListeFragment>(this,"recente",ListeFragment.class)));
+  	 	} else {	 		
     ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
     ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
     ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
+    ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),3,false);
+	 
    	}
   	
       
@@ -199,6 +218,22 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
             	onSearchRequested(); 
             
                 return true;
+                
+		case R.id.itemMAP:
+			  FragmentManager fragmentManager = getFragmentManager();
+			 
+		     if (null == fragmentManager.findFragmentByTag("MAP")) {
+		    	  FragmentTransaction fragmentTransaction =
+				           fragmentManager.beginTransaction();
+		     
+		     fragmentTransaction.replace(R.id.listeFragment, mapFrg, "MAP");
+		    
+//			   MapFragment mMapFragment = MapFragment.newInstance();
+
+//			   fragmentTransaction.add(R.id.listeFragment, mMapFragment);
+			   fragmentTransaction.commit();
+		     }
+			 return true;
                 	
 
 		}
@@ -233,7 +268,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    
 
 	private class GetCityData extends AsyncTask<String, Integer, String> {
-
+	    
 		@Override
 		protected String doInBackground(String... urls) {
 			// get data from web xml file and store in entries list
@@ -247,10 +282,68 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 			  getContentResolver().delete(RestoProvider.CONTENT_URI, null, null);
 			  
 			    ContentValues ajout_resto = new ContentValues();
+			    
+		
+			    Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.CANADA_FRENCH);
+		        String adresse;
+
 
 	            int i=0;
+	            List<Address> adresse_list;
+	            Address location;
+	            Double latitude, longitude;
+			    	   latitude = 45.5086699;
+			    	   longitude = -73.5539925;
+
 		    	for (Entry msg : entries){
-	    	      	
+//  get latitude and longitude from address using google geocoder
+		    		             if (geocoder.isPresent()) {
+		    		            	 adresse = msg.getAdresse() +"," + msg.getVille() + ", QC CANADA";
+//	    	      	             Log.e("geocode",adresse);
+	    	      	           
+	    	     		        try{
+	    	     			         adresse_list  = geocoder.getFromLocationName(adresse, 1);
+
+	    	     			       if (adresse_list != null && adresse_list.size() > 0) {
+//	    	     			         Log.e("adresse size ","= "+adresse_list.size());
+	    	     			         location = adresse_list.get(0);
+	    	     			       
+	    	     			        latitude = location.getLatitude();
+	    	     			        longitude = location.getLongitude();
+
+	    	     			       }
+	    	     			         else {  // if adresse is null, postal code is probably bad, remove it and try again
+	    	     			        	 
+	    	     			        	 adresse = msg.getAdresse() +"," + msg.getVille().substring(0, msg.getVille().length()-6) + ", QC CANADA"; 
+	    	     			        	try{
+	   	    	     			         adresse_list  = geocoder.getFromLocationName(adresse, 1);
+
+	   	    	     			       if (adresse_list != null && adresse_list.size() > 0) {
+//	   	    	     			         Log.e("adresse size ","= "+adresse_list.size());
+	   	    	     			         location = adresse_list.get(0);
+	 	    	     			        latitude = location.getLatitude();
+		    	     			        longitude = location.getLongitude();
+	   	    	     			     
+//	   	    	     			        Log.e("Geocode","POINT ="+location.getLatitude()+location.getLongitude());
+
+	   	    	     			       } 
+	   	    	     			    	   
+	    	     			        	 }
+		    	     			        catch(IOException e) {
+		    	     			         Log.e("IOException", e.getMessage()); 
+		    	     			         
+		    	     			        }
+	    	     			         } 	     			      
+	    	     			         
+	    	     			   //	    	     			       }
+	    	     			        }
+	    	     			        catch(IOException e) {
+	    	     			         Log.e("IOException", e.getMessage()); 
+	    	     			         
+	    	     			        }
+	    	     		    
+		    		             }
+//		    		  }
 		    	      			 ajout_resto.put("etablissement", msg.getEtablissement());
 		    	      			 ajout_resto.put("proprietaire", msg.getProprietaire());
 		    	      			 ajout_resto.put("ville", msg.getVille());
@@ -261,6 +354,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		    	      			 ajout_resto.put("date_jugement", msg.getDate_jugement());
 		    	      			 ajout_resto.put("description", msg.getDescription());
 		    	      			 ajout_resto.put("id", msg.getId());
+		    	      			 ajout_resto.put("latitude", latitude);
+		    	      			 ajout_resto.put("longitude", longitude);
 		    	      			 // insert each row into sql database
 		    	      		     getContentResolver().insert(RestoProvider.CONTENT_URI, ajout_resto);
 		    	              	    		
@@ -337,9 +432,20 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	  		 
 	  		 break;
 	  
-	      }	   
+	         
+  	case 3: 
+	     if (null == fragmentManager.findFragmentByTag("PLUS")) {
+	    	 
+	         ft.replace(R.id.listeFragment, plusFrg, "PLUS");
+	     } else {    
+ 	    	   PlusListeFragment plusFrg = (PlusListeFragment)
+ 	    			   getFragmentManager().findFragmentByTag("PLUS");
+	    	 plusFrg.setSelection(0);
+	    	
+	     }
+		 break;
 	    	  
-	    	  
+	      }
 	
 
 
@@ -378,8 +484,10 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   		 loaderID=RESTO_HIGH_LOADER;
   		 
   		 break;
- 	case 4:
-
+ 	case 3:
+	     if (null == fragmentManager.findFragmentByTag("PLUS")) {
+	           ft.replace(R.id.listeFragment, plusFrg,"PLUS");
+	     }
 
  			break;
       }	

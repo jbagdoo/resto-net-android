@@ -3,4 +3,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 <item android:enabled="true" android:id="@+id/itemMAJ" android:visible="true"  android:icon="@drawable/download" android:title="Mise à jour" android:showAsAction="always" android:checkable="false"></item>
 <item android:enabled="true" android:id="@+id/itemRECH" android:visible="true"  android:icon="@drawable/search" android:title="Recherche" android:showAsAction="always" android:checkable="false"></item>
+<item android:enabled="true" android:id="@+id/itemMAP" android:visible="true"  android:icon="@drawable/map" android:title="Carte" android:showAsAction="always" android:checkable="false"></item>
 </menu>
