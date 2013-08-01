@@ -2,10 +2,13 @@ package ca.usimage.resto;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.Marker;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -33,9 +36,9 @@ import android.widget.Toast;
 
 
 
-public class RestonetActivity extends Activity implements ListItemSelectListener, ActionBar.TabListener{
+public class RestonetActivity extends Activity implements ListItemSelectListener, ListItemMapListener, OnInfoWindowClickListener, ActionBar.TabListener{
 	
-	
+	 HashMap<String, Integer> extraMarkerInfo = new HashMap<String, Integer>();
     private boolean useLogo = false;
     private boolean showHomeUp = true;
     private static final int RESTO_RECENT_LOADER = 0x01;
@@ -165,6 +168,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	
 	}
 	
+	
 	public void afficheDetailFragment (long rowId, Boolean changeTab){
 		Log.e("Restonet","rowid= "+rowId);
 //	
@@ -198,7 +202,30 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 	}	
 	
-    
+	
+	public void afficheCarteFragment (long rowId){
+	
+		
+		  FragmentManager fragmentManager = getFragmentManager();
+			 
+		     if (null == fragmentManager.findFragmentByTag("MAP")) {
+		    	  FragmentTransaction fragmentTransaction =
+				           fragmentManager.beginTransaction();
+		    	    Bundle arguments = new Bundle();
+	        	    arguments.putLong("rowid", rowId);
+	        	  
+	        	    mapFrg.setArguments(arguments);
+		     
+		     fragmentTransaction.replace(R.id.listeFragment, mapFrg, "MAP");
+		    
+
+			   fragmentTransaction.commit();
+		     }
+		
+				
+
+	}	
+	
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -541,6 +568,27 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	    // Do stuff here.
 	    Log.i("FragmentAlertDialog", "Negative click!");
 	}
+
+	@Override
+	public void onInfoWindowClick(Marker arg0) {
+		
+		Log.e("onInfoWindowClick", "marker= "+ arg0.getTitle());
+		int rowid = Integer.parseInt(arg0.getSnippet());
+		afficheDetailFragment(rowid, false);
+		
+		
+		
+	}
+
+	@Override
+	public void onItemMapSelected(long rowId) {
+		
+		afficheCarteFragment(rowId);
+		
+		
+	}
+	
+	
 	
 	
  }

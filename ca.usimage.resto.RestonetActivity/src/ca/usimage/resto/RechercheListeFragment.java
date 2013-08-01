@@ -72,7 +72,8 @@ public class RechercheListeFragment extends ListFragment implements LoaderManage
 		
 		super.onActivityCreated(savedInstanceState);
 		Log.e ("Resto", "RechercheListeFragment Created= ");
-//		  setRetainInstance(true);
+		 this.getListView().setItemsCanFocus(false);
+		//		  setRetainInstance(true);
 		  Bundle arguments = new Bundle();
 		   
 		    arguments = this.getArguments();
@@ -85,7 +86,7 @@ public class RechercheListeFragment extends ListFragment implements LoaderManage
 	            null, uiBindFrom, uiBindTo,
 	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	    setListAdapter(adapter);
-        
+	    
 
 		}
 
