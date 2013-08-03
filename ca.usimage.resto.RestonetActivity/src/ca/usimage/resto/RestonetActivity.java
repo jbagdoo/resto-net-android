@@ -254,9 +254,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		     
 		     fragmentTransaction.replace(R.id.listeFragment, mapFrg, "MAP");
 		    
-//			   MapFragment mMapFragment = MapFragment.newInstance();
-
-//			   fragmentTransaction.add(R.id.listeFragment, mMapFragment);
 			   fragmentTransaction.commit();
 		     }
 			 return true;
@@ -560,18 +557,16 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 					   Toast toast = Toast.makeText(getApplicationContext(), "Veuillez activer un accès à internet", Toast.LENGTH_LONG);
 					   toast.show();
 				   }		
-	    Log.i("FragmentAlertDialog", "Positive click!");
+	  
 	}
 
 	public void doNegativeClick() {
-	    // Do stuff here.
-	    Log.i("FragmentAlertDialog", "Negative click!");
+	  
 	}
 
 	@Override
 	public void onInfoWindowClick(Marker arg0) {
-		
-		Log.e("onInfoWindowClick", "marker= "+ arg0.getTitle());
+		// when marker infowindow is clicked, show resto details
 		int rowid = Integer.parseInt(arg0.getSnippet());
 		afficheDetailFragment(rowid, false);
 		
@@ -581,6 +576,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 	@Override
 	public void onItemMapSelected(long rowId) {
+		// displays map when resto map button is clicked with resto  at center
 		
 		afficheCarteFragment(rowId);
 		

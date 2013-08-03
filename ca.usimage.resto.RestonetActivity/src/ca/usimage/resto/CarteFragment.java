@@ -64,9 +64,11 @@ public void onActivityCreated(Bundle savedInstanceState) {
 		   
 	    arguments = this.getArguments();
 	  
-	   
+	    if (arguments != null) {
 		ROWID = arguments.getLong("rowid");
-	
+	    } else{
+	    	ROWID = 99999;
+	    }
 		googleMap = this.getMap();
 		googleMap.setMyLocationEnabled(true);
 		
@@ -158,7 +160,10 @@ private void drawMarker(LatLng point, String nom, int resto_row_id){
     // Adding marker on the Google Map
     Marker marker =  googleMap.addMarker(markerOptions);
     
-    
+    // force show infowindow on selected resto
+    if (resto_row_id == ROWID) {
+     marker.showInfoWindow();
+    }
    
     // store id from sqldb into marker extrainfo hashmap which has maker ID as a key
     // this will be used to get resto detail info when marker is clicked
@@ -195,10 +200,17 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
         
         id = arg1.getInt(arg1.getColumnIndex("_id"));
         
+        if (ROWID == 99999) {
+        	// default LAT LNG for Montreal
+        	LAT = 45.500;
+            LNG = -73.600;
+            zoom=13;
+        } else
         if (id == ROWID) {
         	LAT = lat;
         	LNG = lng;
-        } 
+        	zoom=14;
+        }
 
         // Get the zoom level
    //     zoom = arg1.getFloat(arg1.getColumnIndex(LocationsDB.FIELD_ZOOM));
@@ -214,11 +226,11 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
     }
 	
     if(locationCount>0){
-        // Moving CameraPosition to last clicked position
+        // once all items have been scanned and positioned, zoom on current selected item (at ROWID)
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(LAT,LNG)));
 
-        // Setting the zoom level in the map on last position  is clicked
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+    
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoom));
     }
 	
 }
