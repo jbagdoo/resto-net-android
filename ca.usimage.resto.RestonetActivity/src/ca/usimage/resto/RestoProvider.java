@@ -20,10 +20,13 @@ public class RestoProvider extends ContentProvider {
     private static final String AUTHORITY = "ca.usimage.resto.RestoProvider";
     public static final int RESTOS = 100;
     public static final int RESTO_GROUPBY = 110;
+    public static final int RESTO_GROUPBY_PLUS = 111;
     private static final String RESTOS_BASE_PATH = "restos";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
             + "/" + RESTOS_BASE_PATH);
     public static final Uri CONTENT_URI_GROUPBY = Uri.parse("content://" + AUTHORITY
+            + "/" + RESTOS_BASE_PATH + "/GROUPBY");
+    public static final Uri CONTENT_URI_GROUPBY_PLUS = Uri.parse("content://" + AUTHORITY
             + "/" + RESTOS_BASE_PATH + "/GROUPBY");
     public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE
             + "/mt-resto";
@@ -35,12 +38,13 @@ public class RestoProvider extends ContentProvider {
     static {
         sURIMatcher.addURI(AUTHORITY, RESTOS_BASE_PATH, RESTOS);
         sURIMatcher.addURI(AUTHORITY, RESTOS_BASE_PATH + "/GROUPBY", RESTO_GROUPBY);
+        sURIMatcher.addURI(AUTHORITY, RESTOS_BASE_PATH + "/GROUPBY", RESTO_GROUPBY_PLUS);
     }
     
     @Override
     public boolean onCreate() {
         mDB = new RestoDatabase(getContext());
-        Log.e("RestoProvider", "DB created");
+
         return true;
     }
     
@@ -55,6 +59,9 @@ public class RestoProvider extends ContentProvider {
         case RESTO_GROUPBY:
              groupBy = "etablissement";
             break;
+        case RESTO_GROUPBY_PLUS:
+            groupBy = "etablissement, adresse";
+           break;
         case RESTOS:
             // no filter
             break;

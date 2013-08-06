@@ -17,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -38,6 +39,7 @@ public class CarteFragment extends MapFragment implements LoaderManager.LoaderCa
 	 
 	
 	private static final int MAP_LOADER = 0x06;
+    double LAT = 0,LNG=0;
 	
 	@Override
 	public void onAttach(Activity activity) {
@@ -70,6 +72,11 @@ public void onActivityCreated(Bundle savedInstanceState) {
 	    	ROWID = 99999;
 	    }
 		googleMap = this.getMap();
+		// default map location to show overall view of Montreal
+		LAT = 45.500;
+        LNG = -73.600;
+		googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(LAT,LNG)));
+		googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
 		googleMap.setMyLocationEnabled(true);
 		
 		googleMap.setOnInfoWindowClickListener(onInfoWindowClickListener);
@@ -154,8 +161,8 @@ private void drawMarker(LatLng point, String nom, int resto_row_id){
     
     markerOptions.snippet(Integer.toString(resto_row_id));
    
-   
-//    markerOptions.icon()
+    markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.measle));
+    
     
     // Adding marker on the Google Map
     Marker marker =  googleMap.addMarker(markerOptions);
@@ -174,8 +181,8 @@ private void drawMarker(LatLng point, String nom, int resto_row_id){
 public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
 	
     int locationCount = 0;
-    double LAT = 0,lat=0;
-    double LNG = 0,lng=0;
+    double lat=0;
+    double lng=0;
     float zoom=0;
     int id=0;
     String nom;
@@ -204,7 +211,7 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
         	// default LAT LNG for Montreal
         	LAT = 45.500;
             LNG = -73.600;
-            zoom=13;
+            zoom=10;
         } else
         if (id == ROWID) {
         	LAT = lat;

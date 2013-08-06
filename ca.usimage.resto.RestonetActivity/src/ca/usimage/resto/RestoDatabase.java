@@ -16,7 +16,9 @@ public class RestoDatabase
     public static final String COL_PROPRIO = "proprietaire";
     public static final String COL_MONTANT = "montant";
     public static final String COL_LAT = "latitude";
-    public static final String COL_LONG = "longitude";    
+    public static final String COL_LONG = "longitude";
+    public static final String COL_ADR = "adresse";
+    public static final String COL_COUNT = "count(*)";
 
     public RestoDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

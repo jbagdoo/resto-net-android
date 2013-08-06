@@ -78,10 +78,10 @@ public class PlusListeFragment extends ListFragment implements LoaderManager.Loa
 
 		 
 
-	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
-	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
+	    String[] uiBindFrom = { RestoDatabase.COL_ETAB,  RestoDatabase.COL_ADR, RestoDatabase.COL_COUNT };
+	    int[] uiBindTo = { R.id.TextView01, R.id.Adresse, R.id.Count };
 	    adapter = new SimpleCursorAdapter(
-	            getActivity(), R.layout.row,
+	            getActivity(), R.layout.row_plus,
 	            null, uiBindFrom, uiBindTo,
 	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	    setListAdapter(adapter);
@@ -102,31 +102,15 @@ public void onResume()
 	
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
+		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT, RestoDatabase.COL_ADR, "count(*)" };
 	    switch (id){
-	    	case RESTO_RECENT_LOADER:
-	    		Log.e("onCreateLoader", "recent loader");
-        	    return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, null, null, "date_infraction DESC");
-	    		
-	    	case RESTO_ALPHA_LOADER:
-	    		Log.e("onCreateLoader", "alpha loader");
-	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI_GROUPBY, projection, null, null,"etablissement ASC");
-	    		    
-	    	case RESTO_HIGH_LOADER:
-	    		Log.e("onCreateLoader", "high loader");
-	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, null, null, "montant DESC");
-	    		
-	    	case RESTO_SEARCH_LOADER:
-	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, "etablissement like \"%" + args.getString("search_query") + "%\"", null, "etablissement ASC");	
+	
 	    		
 	    	case RESTO_PLUS_LOADER:
 	    		Log.e("onCreateLoader", "plus loader");
+	    		
 	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, null, null, "montant ASC");
+	    	            RestoProvider.CONTENT_URI_GROUPBY_PLUS, projection, null, null, "count(*) DESC");
 	    		//  select etablissement, adresse, count(*)  from resto group by etablissement, adresse order by count(*) desc;
 	    	default: return null;
 	    	
