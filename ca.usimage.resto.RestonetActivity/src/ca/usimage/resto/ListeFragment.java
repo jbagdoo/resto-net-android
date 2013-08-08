@@ -35,7 +35,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		Log.e ("onAttach", "ListeFragment Attached ");
+	
 
 		try {
 			listeSelectListener = (ListItemSelectListener) activity;
@@ -57,12 +57,12 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-		Log.e ("Resto", "pos="+position+" Rowid= "+id);
+	
 		listeSelectListener.onItemSelected(position, id);
    	
 	}
 	
-	private MyCursorAdapter adapter;  // extends simplecursoradaptor
+	public MyCursorAdapter adapter;  // extends simplecursoradaptor
 
 	
 	private static final int RESTO_RECENT_LOADER = 0x01;
@@ -143,16 +143,8 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		Log.e ("ListeFragment", "ListeFragment Created= ");
-//		  setRetainInstance(true);
-			
-		
 
-		
-	
-		
-		
-		
+
 		
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
 	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
@@ -174,41 +166,15 @@ public void onResume()
     super.onResume();
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
   
-    LoaderManager lm = getLoaderManager();
-
-    lm.initLoader(RESTO_RECENT_LOADER, null, this);
-    Log.e("ListFragment","onResume");
+  
 }
 	
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
-	    switch (id){
-	    	case RESTO_RECENT_LOADER:
-	    		Log.e("onCreateLoader", "recent loader");
-        	    return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, null, null, "date_infraction DESC");
-	    		
-	    	case RESTO_ALPHA_LOADER:
-	    		Log.e("onCreateLoader", "alpha loader");
-	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI_GROUPBY, projection, null, null,"etablissement ASC");
-	    		    
-	    	case RESTO_HIGH_LOADER:
-	    		Log.e("onCreateLoader", "high loader");
-	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, null, null, "montant DESC");
-	    		
-	    	case RESTO_SEARCH_LOADER:
-	    		return new CursorLoader(getActivity(),
-	    	            RestoProvider.CONTENT_URI, projection, "etablissement like \"%" + args.getString("search_query") + "%\"", null, "etablissement ASC");	
-	    		
-	    		
-	    		//  select etablissement, adresse, count(*)  from resto group by etablissement, adresse order by count(*) desc;
-	    	default: return null;
+      return null;
 	    	
 	    
-	    }
+	   
 	
 	}
 

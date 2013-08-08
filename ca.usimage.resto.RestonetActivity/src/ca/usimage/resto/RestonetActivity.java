@@ -49,7 +49,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private int tab_pos;
 	private String query = "";
 			
-    ListeFragment listeFrg = new ListeFragment();
+    RecentFragment listeFrg = new RecentFragment();
     AlphaListeFragment alphaFrg = new AlphaListeFragment();
     RechercheListeFragment rechFrg = new RechercheListeFragment();
     PlusListeFragment plusFrg = new PlusListeFragment();
@@ -434,7 +434,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	  	       ft.replace(R.id.listeFragment, listeFrg, "RECENT");
 	  	     }
 	  	       else{
-	  	    	   ListeFragment listeFrg = (ListeFragment)
+	  	    	   RecentFragment listeFrg = (RecentFragment)
 	  	    			   getFragmentManager().findFragmentByTag("RECENT");
 	  		 listeFrg.setSelection(0);
 	  	     }	

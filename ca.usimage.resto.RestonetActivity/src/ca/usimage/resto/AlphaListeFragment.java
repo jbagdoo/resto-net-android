@@ -25,40 +25,8 @@ import android.widget.ListView;
 
 
 
-public class AlphaListeFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>  {
-	private ListItemSelectListener listeSelectListener;
+public class AlphaListeFragment extends ListeFragment  {
 
-	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-		Log.e ("onAttach", "AlphaListeFragment Attached ");
-//		   Bundle arguments = new Bundle();
-//		   
-//		    arguments = this.getArguments();
-//		  
-//		   
-//			afficheList(arguments.getInt("loaderID"),null);
-		try {
-			listeSelectListener = (ListItemSelectListener) activity;
-		
-		} catch (ClassCastException e) {
-			throw new ClassCastException(activity.toString()
-					+ " doit implementer ListItemSelectListener");
-		}
-	}
-
-//	public void onSaveInstanceState (Bundle outState) { 
-//		super.onSaveInstanceState(outState); 
-//		int scroll = this.getSelectedItemPosition(); 
-//		outState.putInt("POS", scroll); } 
-	
-	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-		super.onListItemClick(l, v, position, id);
-		Log.e ("Resto", "pos="+position+" Rowid= "+id);
-		listeSelectListener.onItemSelected(position, id);
-   	
-	}
 
 	
 	private static final int RESTO_RECENT_LOADER = 0x01;
@@ -66,38 +34,7 @@ public class AlphaListeFragment extends ListFragment implements LoaderManager.Lo
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 
-	
-	private SimpleCursorAdapter adapter;
-	
-	public void afficheList(int loader_id, String query) {
-		Log.e ("afficheList", "loader_id= "+loader_id);
-		Bundle mBundle = new Bundle();
-		mBundle.putString("search_query", query);
-		getLoaderManager().restartLoader(loader_id, mBundle, this);
-	}
-	
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		
-		super.onActivityCreated(savedInstanceState);
-		Log.e ("Resto", "AlphaListeFragment Created= ");
-//		  setRetainInstance(true);
-			
-	
 
-	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
-	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
-	    adapter = new SimpleCursorAdapter(
-	            getActivity().getApplicationContext(), R.layout.row,
-	            null, uiBindFrom, uiBindTo,
-	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
-	    setListAdapter(adapter);
-
-
-		}
-
-	
     @Override
 public void onResume()
 {
@@ -142,16 +79,6 @@ public void onResume()
 
 	}
 	
-	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		Log.e("alpha", "cursor about to be swapped");
-	    adapter.swapCursor(cursor);
-
-	}
-
-	
-	public void onLoaderReset(Loader<Cursor> loader) {
-	    adapter.swapCursor(null);
-	}
 
 	
 	
