@@ -8,7 +8,6 @@ import android.app.ListFragment;
 
 
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.app.LoaderManager;
@@ -24,7 +23,6 @@ import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.SimpleCursorAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 
@@ -64,14 +62,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	
 	public MyCursorAdapter adapter;  // extends simplecursoradaptor
 
-	
-	private static final int RESTO_RECENT_LOADER = 0x01;
-	private static final int RESTO_ALPHA_LOADER = 0x02;
-	private static final int RESTO_HIGH_LOADER = 0x03;
-	private static final int RESTO_SEARCH_LOADER = 0x04;
 
-	
-	
 	
 	public void afficheList(int loader_id, String query) {
 		Log.e ("afficheList", "loader_id= "+loader_id);
@@ -106,7 +97,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	    @Override
 	    public void bindView(View view, Context context, Cursor cursor) {
 	        super.bindView(view, context, cursor);
-	        final Context t = context;
+	     
 	        final Cursor c = cursor;
 	        int pos;
 	        
@@ -115,13 +106,9 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	        
             ImageButton mapButton = (ImageButton)view.findViewById(R.id.ImageButton01);
 	        mapButton.setOnClickListener(new View.OnClickListener() {
-	        	 private String nom = c.getString(c.getColumnIndex(RestoDatabase.COL_ETAB));
 
 	            @Override
 	            public void onClick(View arg0) {
-
-	               Toast.makeText(t,
-	                "Resto Name: " + nom, Toast.LENGTH_SHORT).show();
 	               listeMapListener.onItemMapSelected(ID);
 
 	            }
@@ -146,8 +133,8 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 
 
 		
-	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT };
-	    int[] uiBindTo = { R.id.TextView01, R.id.Montant };
+	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT, RestoDatabase.COL_DATE_JUGE };
+	    int[] uiBindTo = { R.id.TextView01, R.id.Montant, R.id.Date};
 	    adapter = new MyCursorAdapter(
 	            getActivity(), R.layout.row,
 	            null, uiBindFrom, uiBindTo,

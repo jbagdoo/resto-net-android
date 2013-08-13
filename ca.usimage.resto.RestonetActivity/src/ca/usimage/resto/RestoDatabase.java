@@ -19,6 +19,7 @@ public class RestoDatabase
     public static final String COL_LONG = "longitude";
     public static final String COL_ADR = "adresse";
     public static final String COL_COUNT = "count(*)";
+    public static final String COL_DATE_JUGE ="date_jugement";
 
     public RestoDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

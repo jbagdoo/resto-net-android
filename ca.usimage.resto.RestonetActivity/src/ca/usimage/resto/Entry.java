@@ -85,34 +85,35 @@ public class Entry {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getDate_infraction() {
-		// convert date from text to timestamp using french locale
-		
+	
+	private String convert_date(String date) {
+	// convert date from text to timestamp using french locale	
         SimpleDateFormat simpleDateFormat =         new SimpleDateFormat("dd MMMMMMM yyyy", Locale.FRENCH); 
         java.util.Date dateObj = null;
         java.sql.Date sqlDate = null;
         try {
-        	dateObj = simpleDateFormat.parse(date_infraction);
+        	dateObj = simpleDateFormat.parse(date);
         	
-        	sqlDate = new java.sql.Date(dateObj.getTime()); 
-        	
-        //	Log.e ("Resto", "SQL date"+dateObj.toString()+"XML date"+date_infraction);
+        	sqlDate = new java.sql.Date(dateObj.getTime());         	
         	} catch (ParseException e) {
-        	// TODO Auto-generated catch block
+        
         	e.printStackTrace();
         	} catch (java.text.ParseException e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
-            date_infraction = sqlDate.toString();
-    	
-		return date_infraction;
+            date = sqlDate.toString();
+            return date;
+	}        
+	
+    public String getDate_infraction() {
+		return convert_date(date_infraction);
 	}
 	public void setDate_infraction(String date_infraction) {
 		this.date_infraction = date_infraction;
 	}
 	public String getDate_jugement() {
-		return date_jugement;
+		return convert_date(date_jugement);
 	}
 	public void setDate_jugement(String date_jugement) {
 		this.date_jugement = date_jugement;

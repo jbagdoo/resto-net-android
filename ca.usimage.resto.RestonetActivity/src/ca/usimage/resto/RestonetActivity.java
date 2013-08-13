@@ -51,6 +51,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 			
     RecentFragment listeFrg = new RecentFragment();
     AlphaListeFragment alphaFrg = new AlphaListeFragment();
+    HighListeFragment highFrg = new HighListeFragment();
     RechercheListeFragment rechFrg = new RechercheListeFragment();
     PlusListeFragment plusFrg = new PlusListeFragment();
     MapFragment mapFrg = new CarteFragment();
@@ -87,9 +88,9 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    		 tab_pos = savedInstanceState.getInt("tabState");
    		 query = savedInstanceState.getString("searchQuery");
    		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
-         ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
-         ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
-         ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),3,false);
+         ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),1,false);
+         ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),2,false);
+         ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
 
          if (null == fragmentManager.findFragmentByTag("RECH"))  {
 	 	 
@@ -113,9 +114,9 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    	
   	 	} else {	 		
     ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
-    ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),1,false);
-    ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),2,false);
-    ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),3,false);
+    ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),1,false);
+    ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),2,false);
+    ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
 	 
    	}
   	
@@ -439,24 +440,22 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	  		 listeFrg.setSelection(0);
 	  	     }	
 	  			break;
-	  	case 1: 
-		     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
+	
+	  	case 1:
+
+     if (null == fragmentManager.findFragmentByTag("HIGH")) {
 		    	 
-		         ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+		         ft.replace(R.id.listeFragment, highFrg, "HIGH");
 		     } else {    
-	  	    	   AlphaListeFragment alphaFrg = (AlphaListeFragment)
-	  	    			   getFragmentManager().findFragmentByTag("ALPHA");
-		    	 alphaFrg.setSelection(0);
+	  	    	   HighListeFragment highFrg = (HighListeFragment)
+	  	    			   getFragmentManager().findFragmentByTag("HIGH");
+		    	 highFrg.setSelection(0);
 		    	
 		     }
-			 break;
-	  	case 2:
-
-	  		 
 	  		 break;
 	  
 	         
-  	case 3: 
+  	case 2: 
 	     if (null == fragmentManager.findFragmentByTag("PLUS")) {
 	    	 
 	         ft.replace(R.id.listeFragment, plusFrg, "PLUS");
@@ -464,6 +463,18 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
  	    	   PlusListeFragment plusFrg = (PlusListeFragment)
  	    			   getFragmentManager().findFragmentByTag("PLUS");
 	    	 plusFrg.setSelection(0);
+	    	
+	     }
+		 break;
+		 
+  	case 3: 
+	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
+	    	 
+	         ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+	     } else {    
+ 	    	   AlphaListeFragment alphaFrg = (AlphaListeFragment)
+ 	    			   getFragmentManager().findFragmentByTag("ALPHA");
+	    	 alphaFrg.setSelection(0);
 	    	
 	     }
 		 break;
@@ -497,22 +508,25 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
           }
 
   			break;
-  	case 1: 
-  		loaderID=RESTO_ALPHA_LOADER;
-	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
-	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+
+  	case 1:
+  		 loaderID=RESTO_HIGH_LOADER;
+  	     if (null == fragmentManager.findFragmentByTag("HIGH")) {
+	           ft.replace(R.id.listeFragment, highFrg, "HIGH");
 	     }
   		 break;
-  	case 2:
-  		 loaderID=RESTO_HIGH_LOADER;
-  		 
-  		 break;
- 	case 3:
+ 	case 2:
 	     if (null == fragmentManager.findFragmentByTag("PLUS")) {
 	           ft.replace(R.id.listeFragment, plusFrg,"PLUS");
 	     }
 
  			break;
+  	case 3: 
+  		loaderID=RESTO_ALPHA_LOADER;
+	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
+	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+	     }
+  		 break;
       }	
 
 

@@ -1,42 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
+
     android:orientation="horizontal"
-    
-    
+    android:padding="5dip" >
     >
+ 
 
 <TextView
-	android:id="@+id/TextView01" android:layout_width="wrap_content" 
+	android:id="@+id/TextView01" 
+	 android:layout_width="wrap_content"
 	android:layout_height="40dp"
-	android:layout_weight="1"
-	android:textColor="#000000"
-	android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:paddingLeft="10dp"
+	
+android:layout_alignParentTop="true"
+    android:textColor="@color/holoBlue"
+          android:ems="10"
+        android:textSize="16sp" 
+ 
 	/>
+<TextView
+    android:id="@+id/amende"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text=" amende: "
+    android:layout_toRightOf="@+id/TextView01"
+    android:textColor="#ffff0000" />
+
 <TextView 
 	android:id="@+id/Montant" android:layout_width="wrap_content" 
 	android:layout_height="wrap_content"
 	   android:focusable="false"
-    android:focusableInTouchMode="false"
+     android:layout_toRightOf="@+id/amende"
 	android:textColor="#ffff0000"/>
 <TextView 
 	android:id="@+id/dollar" android:layout_width="wrap_content" 
 	android:layout_height="wrap_content"
-	android:text=" $ "
-	   android:focusable="false"
-    android:focusableInTouchMode="false"
+	android:text="$ "
+    android:layout_toRightOf="@+id/Montant"
 	android:textColor="#ffff0000"/>
-<ImageButton
+  <ImageButton
     android:id="@+id/ImageButton01"
-    android:layout_width="40dp" 
+    android:layout_width="40dp"
     android:layout_height="wrap_content"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
     android:src="@drawable/location"
-  
- />
+    
+     android:layout_alignParentRight="true"
+   
+     />
 
-</LinearLayout>
+    <TextView
+  android:id="@+id/DateLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="jugement rendu le "
+    android:layout_below="@+id/TextView01"
+    android:textColor="#000000" />
+    <TextView
+	android:id="@+id/Date" 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"
+	android:textColor="#000000"
+      android:layout_toRightOf="@+id/DateLabel"
+      android:layout_alignParentBottom="true"
+ 
+	/>
+  
+  
+
+
+</RelativeLayout>
+
