@@ -33,7 +33,7 @@ public class PlusListeFragment extends ListeFragment  {
 		super.onCreate(savedInstanceState);
 
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB,  RestoDatabase.COL_ADR, RestoDatabase.COL_COUNT };
-	    int[] uiBindTo = { R.id.TextView01, R.id.Adresse, R.id.Count };
+	    int[] uiBindTo = { R.id.Etablissement, R.id.Adresse, R.id.Count };
 	    adapter = new MyCursorAdapter(
 	            getActivity(), R.layout.row_plus,
 	            null, uiBindFrom, uiBindTo,

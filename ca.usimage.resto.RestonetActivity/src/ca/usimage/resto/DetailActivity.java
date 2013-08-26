@@ -33,9 +33,9 @@ public class DetailActivity extends Activity   {
 	        	  
 	        	    detailFrg.setArguments(arguments);
 		         // fragment must be tagged to prevent fragment leakage
-		         if (null == fragmentManager.findFragmentByTag("Detail")) {
+		         if (null == fragmentManager.findFragmentByTag("DETAIL")) {
 		        	 Log.e("DetailActivity", "adding fragment");
-		          fragmentTransaction.add(R.id.detailFragment, detailFrg, "Detail");
+		          fragmentTransaction.add(R.id.detailFragment, detailFrg, "DETAIL");
 		          fragmentTransaction.commit();
 
 		         }

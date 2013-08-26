@@ -24,5 +24,8 @@
 	  <string name="dialog">Téléchargement des données de la Ville de Montréal</string>
 	  <string name="dialog_ok">Continuer</string>
 	  <string name="dialog_cancel">Annuler</string>
+	   <string name="no_google_play">Google Play Service doit être installé pour afficher la carte</string>
+	   <string name="no_internet">Veuillez activer un accès à internet</string>
+	   <string name="maj_donnees">Mise à jour des données en cours</string>
 
 </resources>

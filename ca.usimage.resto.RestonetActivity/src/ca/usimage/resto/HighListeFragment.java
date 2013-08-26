@@ -40,7 +40,7 @@ public void onResume()
 		
 		    		
 		    	case RESTO_HIGH_LOADER:
-		    		Log.e("onCreateLoader", "alpha loader");
+		    		Log.e("onCreateLoader", "high loader");
 		    		return new CursorLoader(getActivity(),
 		    	            RestoProvider.CONTENT_URI_GROUPBY, projection, null, null,"montant DESC");
 	

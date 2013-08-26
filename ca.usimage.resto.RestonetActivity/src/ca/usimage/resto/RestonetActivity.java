@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.Marker;
@@ -96,16 +98,15 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	 	 
          ab.setSelectedNavigationItem(tab_pos);
          } else {
-         Log.e("OnCreate RestonetActivity","saveInstance not null");
-  
-		  Log.e("onCreated", "Rech frag not null");
+
 	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();	   
   	    Bundle arguments = new Bundle();
   	    arguments.putString("searchQuery", query);
   	  
   	    rechFrg.setArguments(arguments);
-       
+          
 		   ft.replace(R.id.listeFragment, rechFrg, "RECH");  
+		   ft.addToBackStack(null);
 		   ft.commit();
 		   
 		   
@@ -125,13 +126,17 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
  	
 	  	dialog = new ProgressDialog(RestonetActivity.this);
         dialog.setCancelable(true);
-        dialog.setMessage("Mise à jour des données en cours...");
+       
+        dialog.setMessage(getString(R.string.maj_donnees));
         // set the progress to be horizontal
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // reset the bar to the default value of 0
         dialog.setProgress(0);
+        
+      
  
    }
+   
    
     @Override
     protected void onNewIntent(Intent intent) {
@@ -142,15 +147,15 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
           query = intent.getStringExtra(SearchManager.QUERY);
-          Log.e("restonet",query);
+ 
   	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();
 	  	     if (null == getFragmentManager().findFragmentByTag("RECH")) {
-	  	    	 Log.e("onoptionitemselected", "RECH frag null");
 	  	      Bundle arguments = new Bundle();
 	   	    arguments.putString("searchQuery", query);
 	   	  
 	   	    rechFrg.setArguments(arguments);
 	             ft.replace(R.id.listeFragment, rechFrg, "RECH");
+	             ft.addToBackStack(null);
 	  	   	     ft.commit();
 	  	     }else{
 	  	    	   RechercheListeFragment rechFrg = (RechercheListeFragment)
@@ -170,7 +175,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	
 	
 	public void afficheDetailFragment (long rowId, Boolean changeTab){
-		Log.e("Restonet","rowid= "+rowId);
+	
 //	
 //		//detecter si fragment Detailfragment se trouve dans cette activité		
 		  FragmentManager fragmentManager = getFragmentManager();
@@ -195,6 +200,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		else{//fragment est dans cette activité
 			 
 			 fragmentTransaction.add(R.id.detailFragment, detailFrg, "DETAIL");
+//			 fragmentTransaction.addToBackStack(null);
 			 fragmentTransaction.commit();
 
 	
@@ -202,29 +208,67 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 	}	
 	
-	
 	public void afficheCarteFragment (long rowId){
-	
 		
-		  FragmentManager fragmentManager = getFragmentManager();
-			 
-		     if (null == fragmentManager.findFragmentByTag("MAP")) {
-		    	  FragmentTransaction fragmentTransaction =
-				           fragmentManager.beginTransaction();
-		    	    Bundle arguments = new Bundle();
+    int statusCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+	    
+    if (statusCode == ConnectionResult.SUCCESS) {	
+
+			  FragmentManager fragmentManager = getFragmentManager();
+	          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+	          CarteFragment carteFrg = new CarteFragment();
+	         
+	        	   
+	        	    Bundle arguments = new Bundle();
 	        	    arguments.putLong("rowid", rowId);
 	        	  
-	        	    mapFrg.setArguments(arguments);
-		     
-		     fragmentTransaction.replace(R.id.listeFragment, mapFrg, "MAP");
-		    
+	        	    carteFrg.setArguments(arguments);
+	
+			if(null == fragmentManager.findFragmentById(R.id.carteFragment)|| !carteFrg.isInLayout()){//pas de fragment DetailFragment ici
 
-			   fragmentTransaction.commit();
-		     }
-		
+				Intent intention = new Intent(getApplicationContext(), CarteActivity.class);
 				
+				intention.putExtra("rowid", rowId);
+				startActivity(intention);
+			}
+			else{//fragment est dans cette activité
+				 
+				 fragmentTransaction.add(R.id.carteFragment, carteFrg, "Carte");
+				 fragmentTransaction.commit();
 
-	}	
+			}					
+         } else {
+          	Toast toast = Toast.makeText(getApplicationContext(), R.string.no_google_play, Toast.LENGTH_LONG);
+	   		       toast.show();
+      }
+    }	
+	
+//	public void afficheCarteFragment (long rowId){
+//	
+//	   int statusCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+//	   if (statusCode == ConnectionResult.SUCCESS) {
+//	            //OK
+//	     	  FragmentManager fragmentManager = getFragmentManager();
+//			 
+//		     if (null == fragmentManager.findFragmentByTag("MAP")) {
+//		    	  FragmentTransaction fragmentTransaction =
+//				           fragmentManager.beginTransaction();
+//		    	    Bundle arguments = new Bundle();
+//	        	    arguments.putLong("rowid", rowId);
+//	        	  
+//	        	    mapFrg.setArguments(arguments);
+//		     
+//		           fragmentTransaction.replace(R.id.listeFragment, mapFrg, "MAP");
+//		           fragmentTransaction.addToBackStack(null);
+//			       fragmentTransaction.commit();
+//		         }
+//              } else {
+//       	               Toast toast = Toast.makeText(getApplicationContext(), R.string.no_google_play, Toast.LENGTH_LONG);
+//  		               toast.show();
+//              }
+//				
+//
+//	}	
 	
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -247,19 +291,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
                 return true;
                 
 		case R.id.itemMAP:
-			  FragmentManager fragmentManager = getFragmentManager();
-			 
-		     if (null == fragmentManager.findFragmentByTag("MAP")) {
-		    	  FragmentTransaction fragmentTransaction =
-				           fragmentManager.beginTransaction();
-		     
-		     fragmentTransaction.replace(R.id.listeFragment, mapFrg, "MAP");
-		    
-			   fragmentTransaction.commit();
-		     }
+			afficheCarteFragment(99999);
 			 return true;
-                	
-
 		}
 
 		return false;
@@ -323,13 +356,11 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 //  get latitude and longitude from address using google geocoder
 		    		             if (geocoder.isPresent()) {
 		    		            	 adresse = msg.getAdresse() +"," + msg.getVille() + ", QC CANADA";
-//	    	      	             Log.e("geocode",adresse);
 	    	      	           
 	    	     		        try{
 	    	     			         adresse_list  = geocoder.getFromLocationName(adresse, 1);
 
 	    	     			       if (adresse_list != null && adresse_list.size() > 0) {
-//	    	     			         Log.e("adresse size ","= "+adresse_list.size());
 	    	     			         location = adresse_list.get(0);
 	    	     			       
 	    	     			        latitude = location.getLatitude();
@@ -343,12 +374,9 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	   	    	     			         adresse_list  = geocoder.getFromLocationName(adresse, 1);
 
 	   	    	     			       if (adresse_list != null && adresse_list.size() > 0) {
-//	   	    	     			         Log.e("adresse size ","= "+adresse_list.size());
 	   	    	     			         location = adresse_list.get(0);
 	 	    	     			        latitude = location.getLatitude();
 		    	     			        longitude = location.getLongitude();
-	   	    	     			     
-//	   	    	     			        Log.e("Geocode","POINT ="+location.getLatitude()+location.getLongitude());
 
 	   	    	     			       } 
 	   	    	     			    	   
@@ -423,21 +451,23 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
    	
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 	     int position = tab.getPosition();
-	     Log.e ("ontabreselected", "pos= "+position);
 		  FragmentManager fragmentManager = getFragmentManager();
-		  
 	
+Log.e("tabreselected pos="," "+position);
 		  // position cursor at top of list if user retaps a tab
 	      switch (position) {
 	  	case 0:
              if (null ==  fragmentManager.findFragmentByTag("RECENT")) {
             	
 	  	       ft.replace(R.id.listeFragment, listeFrg, "RECENT");
+	  	        
 	  	     }
 	  	       else{
 	  	    	   RecentFragment listeFrg = (RecentFragment)
 	  	    			   getFragmentManager().findFragmentByTag("RECENT");
-	  		 listeFrg.setSelection(0);
+	  	  	   if (listeFrg.isVisible()) {
+	  		       listeFrg.setSelection(0);
+	  	  	   }
 	  	     }	
 	  			break;
 	
@@ -446,11 +476,15 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
      if (null == fragmentManager.findFragmentByTag("HIGH")) {
 		    	 
 		         ft.replace(R.id.listeFragment, highFrg, "HIGH");
+		       
+		         
+		         
 		     } else {    
 	  	    	   HighListeFragment highFrg = (HighListeFragment)
 	  	    			   getFragmentManager().findFragmentByTag("HIGH");
+	  	  	   if (highFrg.isVisible()) {
 		    	 highFrg.setSelection(0);
-		    	
+	  	  	   }
 		     }
 	  		 break;
 	  
@@ -459,10 +493,13 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	     if (null == fragmentManager.findFragmentByTag("PLUS")) {
 	    	 
 	         ft.replace(R.id.listeFragment, plusFrg, "PLUS");
+	         
 	     } else {    
  	    	   PlusListeFragment plusFrg = (PlusListeFragment)
  	    			   getFragmentManager().findFragmentByTag("PLUS");
-	    	 plusFrg.setSelection(0);
+ 	    	   if (plusFrg.isVisible()) {
+	         	 plusFrg.setSelection(0);
+ 	    	   }
 	    	
 	     }
 		 break;
@@ -471,11 +508,13 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
 	    	 
 	         ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+	        
 	     } else {    
  	    	   AlphaListeFragment alphaFrg = (AlphaListeFragment)
  	    			   getFragmentManager().findFragmentByTag("ALPHA");
+ 	   	   if (alphaFrg.isVisible()) {
 	    	 alphaFrg.setSelection(0);
-	    	
+ 	   	   }
 	     }
 		 break;
 	    	  
@@ -493,38 +532,37 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	 	  
          int position = tab.getPosition();
  
-      int loaderID = 0;
-     
-      String fragmentTag;
-      Log.e ("ontabselected", "pos= "+position);
-
+  
       switch (position) {
   	case 0:
   	 
-  	     loaderID=RESTO_RECENT_LOADER;
   	  
-  	     if (null == fragmentManager.findFragmentByTag("RECENT")) {
+  	     if (null == fragmentManager.findFragmentByTag("RECENT")||(!listeFrg.isVisible())) {
            ft.replace(R.id.listeFragment, listeFrg, "RECENT");
+         
           }
 
   			break;
 
   	case 1:
-  		 loaderID=RESTO_HIGH_LOADER;
-  	     if (null == fragmentManager.findFragmentByTag("HIGH")) {
+  		 
+  	     if (null == fragmentManager.findFragmentByTag("HIGH") || (!highFrg.isVisible())) {
 	           ft.replace(R.id.listeFragment, highFrg, "HIGH");
+	        
 	     }
   		 break;
  	case 2:
-	     if (null == fragmentManager.findFragmentByTag("PLUS")) {
-	           ft.replace(R.id.listeFragment, plusFrg,"PLUS");
+ 		 
+	     if ((null == fragmentManager.findFragmentByTag("PLUS")) || (!plusFrg.isVisible())) {
+	           ft.replace(R.id.listeFragment, plusFrg,"PLUS");    
 	     }
 
  			break;
   	case 3: 
-  		loaderID=RESTO_ALPHA_LOADER;
-	     if (null == fragmentManager.findFragmentByTag("ALPHA")) {
+  
+	     if (null == fragmentManager.findFragmentByTag("ALPHA")  || (!alphaFrg.isVisible())) {
 	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
+	         
 	     }
   		 break;
       }	
@@ -568,7 +606,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 					task.execute(new String[] { "" });
 				
 				   } else {
-					   Toast toast = Toast.makeText(getApplicationContext(), "Veuillez activer un accès à internet", Toast.LENGTH_LONG);
+					   Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_LONG);
 					   toast.show();
 				   }		
 	  

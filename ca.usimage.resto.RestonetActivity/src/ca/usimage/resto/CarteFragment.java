@@ -44,7 +44,7 @@ public class CarteFragment extends MapFragment implements LoaderManager.LoaderCa
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-
+		Log.e("Carte"," On Attach");
 			try {
 				 onInfoWindowClickListener = ( OnInfoWindowClickListener) activity;
 			
@@ -60,17 +60,15 @@ public class CarteFragment extends MapFragment implements LoaderManager.LoaderCa
 	@Override
 public void onActivityCreated(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
-		
+		super.onActivityCreated(savedInstanceState);
+	Log.e("Carte"," On Activity Created");	
 		Bundle arguments = new Bundle();
 		   
 	    arguments = this.getArguments();
 	  
-	    if (arguments != null) {
+	   
 		ROWID = arguments.getLong("rowid");
-	    } else{
-	    	ROWID = 99999;
-	    }
+	   
 		googleMap = this.getMap();
 		// default map location to show overall view of Montreal
 		LAT = 45.500;
@@ -128,6 +126,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 public void onResume()
 {
     super.onResume();
+    Log.e("Carte"," On resume");
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
   
     LoaderManager lm = getLoaderManager();
@@ -186,7 +185,7 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
     float zoom=0;
     int id=0;
     String nom;
-
+    Log.e("Carte"," On Load Finished");
     // Number of locations available in the SQLite database table
     locationCount = arg1.getCount();
 

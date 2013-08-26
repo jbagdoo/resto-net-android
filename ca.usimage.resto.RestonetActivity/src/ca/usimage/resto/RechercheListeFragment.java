@@ -22,9 +22,8 @@ public class RechercheListeFragment extends ListeFragment  {
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 
 	
-	@Override
+
 	public void afficheList(int loader_id, String query) {
-		Log.e ("afficheList", "loader_id= "+loader_id);
 		Bundle mBundle = new Bundle();
 		mBundle.putString("search_query", query);
 		getLoaderManager().restartLoader(loader_id, mBundle, this);

@@ -58,12 +58,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 
 
 	
-	public void afficheList(int loader_id, String query) {
-		Log.e ("afficheList", "loader_id= "+loader_id);
-		Bundle mBundle = new Bundle();
-		mBundle.putString("search_query", query);
-		getLoaderManager().restartLoader(loader_id, mBundle, this);
-	}
+
 	
 	private class OnItemClickListener implements OnClickListener{       
 	    private int mPosition;
@@ -128,7 +123,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 
 		
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT, RestoDatabase.COL_DATE_JUGE };
-	    int[] uiBindTo = { R.id.TextView01, R.id.Montant, R.id.Date};
+	    int[] uiBindTo = { R.id.Etablissement, R.id.Montant, R.id.Date};
 	    adapter = new MyCursorAdapter(
 	            getActivity(), R.layout.row,
 	            null, uiBindFrom, uiBindTo,
