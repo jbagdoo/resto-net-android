@@ -198,13 +198,13 @@ containing a value of this type.
         public static final int search=0x7f020025;
     }
     public static final class id {
-        public static final int Adresse=0x7f060024;
-        public static final int Count=0x7f060023;
-        public static final int Date=0x7f060021;
-        public static final int DateLabel=0x7f060020;
-        public static final int Etablissement=0x7f06001d;
+        public static final int Adresse=0x7f060022;
+        public static final int Count=0x7f060021;
+        public static final int Date=0x7f060024;
+        public static final int DateLabel=0x7f060023;
+        public static final int Etablissement=0x7f06001f;
         public static final int ImageButton01=0x7f06000d;
-        public static final int Montant=0x7f06001f;
+        public static final int Montant=0x7f06001e;
         public static final int TextView01=0x7f060015;
         public static final int TextView02=0x7f060011;
         public static final int TextView03=0x7f060018;
@@ -221,20 +221,21 @@ containing a value of this type.
         public static final int TextViewMontant=0x7f060016;
         public static final int TextViewProprietaire=0x7f06000a;
         public static final int TextViewVille=0x7f06000e;
-        public static final int amende=0x7f06001e;
+        public static final int amende=0x7f06001d;
         public static final int carteFragment=0x7f060005;
-        public static final int count_txt=0x7f060022;
+        public static final int count_txt=0x7f060020;
         public static final int detailFragment=0x7f060006;
         public static final int dollar=0x7f060017;
         public static final int hybrid=0x7f060004;
-        public static final int itemMAJ=0x7f060025;
-        public static final int itemMAP=0x7f060027;
-        public static final int itemRECH=0x7f060026;
+        public static final int itemMAJ=0x7f060026;
+        public static final int itemMAP=0x7f060028;
+        public static final int itemRECH=0x7f060027;
         public static final int itemTextView=0x7f06001c;
         public static final int listeFragment=0x7f06001b;
         public static final int nom=0x7f06001a;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
+        public static final int rechFragment=0x7f060025;
         public static final int satellite=0x7f060002;
         public static final int terrain=0x7f060003;
         public static final int textNom=0x7f060013;
@@ -248,10 +249,11 @@ containing a value of this type.
         public static final int liste=0x7f030005;
         public static final int main=0x7f030006;
         public static final int menu_list_item=0x7f030007;
-        public static final int row=0x7f030008;
-        public static final int row_plus=0x7f030009;
-        public static final int rowold=0x7f03000a;
-        public static final int search=0x7f03000b;
+        public static final int recherche=0x7f030008;
+        public static final int row=0x7f030009;
+        public static final int row_plus=0x7f03000a;
+        public static final int rownew=0x7f03000b;
+        public static final int search=0x7f03000c;
     }
     public static final class menu {
         public static final int menu=0x7f080000;

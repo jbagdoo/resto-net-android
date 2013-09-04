@@ -36,7 +36,7 @@ public void onResume()
 {
     super.onResume();
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
-  
+  Log.e("Recent","onResume");
     LoaderManager lm = getLoaderManager();
 
     lm.initLoader(RESTO_RECENT_LOADER, null, this);

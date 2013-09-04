@@ -87,8 +87,20 @@ public class RestoProvider extends ContentProvider {
         switch (uriType) {
         
         case RESTOS:
-            rowsAffected = sqlDB.delete(RestoDatabase.TABLE_RESTO,
-                    selection, selectionArgs);
+    
+            sqlDB.beginTransaction();
+     	   try {
+     		  
+     			  sqlDB.execSQL("DROP TABLE IF EXISTS " + "Resto");
+     			
+     		
+//     	        rowsAffected = sqlDB.delete(RestoDatabase.TABLE_RESTO,
+//                        selection, selectionArgs);
+     	     sqlDB.setTransactionSuccessful();
+     	   } finally {
+     	     sqlDB.endTransaction();
+     	   
+     	   }        
             break;
      
         default:
@@ -99,7 +111,7 @@ public class RestoProvider extends ContentProvider {
     }
 
    
-    
+
     
 	@Override
 	public String getType(Uri uri) {

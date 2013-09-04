@@ -215,7 +215,7 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
         if (id == ROWID) {
         	LAT = lat;
         	LNG = lng;
-        	zoom=14;
+        	zoom=16;
         }
 
         // Get the zoom level
@@ -233,6 +233,7 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
 	
     if(locationCount>0){
         // once all items have been scanned and positioned, zoom on current selected item (at ROWID)
+    	Log.e("LAT="+LAT+" ROWID="+ROWID,"LNG"+LNG);
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(LAT,LNG)));
 
     

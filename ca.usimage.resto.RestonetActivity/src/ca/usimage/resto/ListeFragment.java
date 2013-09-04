@@ -91,6 +91,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	        int pos;
 	        
 	        pos = c.getPosition();
+//	        Log.e("bindView="," "+pos);
 	        final Long ID =  getItemId(pos);
 	        
             ImageButton mapButton = (ImageButton)view.findViewById(R.id.ImageButton01);
@@ -120,17 +121,18 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 		
 		super.onCreate(savedInstanceState);
 
-
+		
+	 		
 		
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT, RestoDatabase.COL_DATE_JUGE };
 	    int[] uiBindTo = { R.id.Etablissement, R.id.Montant, R.id.Date};
 	    adapter = new MyCursorAdapter(
-	            getActivity(), R.layout.row,
+	            getActivity(), R.layout.rownew,
 	            null, uiBindFrom, uiBindTo,
 	            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	    setListAdapter(adapter);
-	    
 		}
+		
 	
 	
 

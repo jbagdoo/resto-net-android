@@ -23,6 +23,7 @@ import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.ConnectivityManager;
@@ -47,7 +48,9 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 	private  static final int RESTO_PLUS_LOADER = 0x05;
-	
+	private RestoDatabase mDB;
+	private SQLiteDatabase sqlDB;
+
 	private int tab_pos;
 	private String query = "";
 			
@@ -62,12 +65,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	 ArrayList<String> etablissements = new ArrayList<String>();
 	 ProgressDialog dialog;
 	
-//	  @Override
-//	    protected void onCreate(Bundle savedInstanceState) {
-//	        super.onCreate(savedInstanceState);
-//	        setContentView(R.layout.main);
-//	    }
-	
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,7 +93,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
 
          if (null == fragmentManager.findFragmentByTag("RECH"))  {
-	 	 
+	 	 Log.e("on create","set selection");
          ab.setSelectedNavigationItem(tab_pos);
          } else {
 
@@ -125,7 +123,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     
  	
 	  	dialog = new ProgressDialog(RestonetActivity.this);
-        dialog.setCancelable(true);
+        dialog.setCancelable(false);
        
         dialog.setMessage(getString(R.string.maj_donnees));
         // set the progress to be horizontal
@@ -336,8 +334,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 			  dialog.setMax(entries.size());
 		
 			  // erase table resto before inserting new data... null selection deletes all rows
-			  getContentResolver().delete(RestoProvider.CONTENT_URI, null, null);
-			  
+		
+//	
 			    ContentValues ajout_resto = new ContentValues();
 			    
 		
@@ -367,7 +365,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	    	     			        longitude = location.getLongitude();
 
 	    	     			       }
-	    	     			         else {  // if adresse is null, postal code is probably bad, remove it and try again
+	    	     			         else {  // if adresse is null, postal code is probably bad, remove postal code and try again
 	    	     			        	 
 	    	     			        	 adresse = msg.getAdresse() +"," + msg.getVille().substring(0, msg.getVille().length()-6) + ", QC CANADA"; 
 	    	     			        	try{
@@ -378,11 +376,13 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	 	    	     			        latitude = location.getLatitude();
 		    	     			        longitude = location.getLongitude();
 
-	   	    	     			       } 
+	   	    	     			       } else {
+	   	    	     			    	   Log.e(" "+msg.getEtablissement()," null geocode");
+	   	    	     			       }
 	   	    	     			    	   
 	    	     			        	 }
 		    	     			        catch(IOException e) {
-		    	     			         Log.e("IOException", e.getMessage()); 
+		    	     			         Log.e("Geocoder IOException i="+i+" "+msg.getEtablissement(), e.getMessage()); 
 		    	     			         
 		    	     			        }
 	    	     			         } 	     			      
@@ -390,7 +390,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	    	     			   //	    	     			       }
 	    	     			        }
 	    	     			        catch(IOException e) {
-	    	     			         Log.e("IOException", e.getMessage()); 
+	    	     			         Log.e("Gecoder IOException i="+i+" "+msg.getEtablissement(), e.getMessage()); 
 	    	     			         
 	    	     			        }
 	    	     		    
@@ -428,19 +428,24 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		 }
 		@Override
 		protected void onPostExecute(String result) {
-
-	    dialog.dismiss();
+			if(dialog!=null)
+				{
+					 dialog.dismiss();
+				}
+	   
 
 		}
 	}
 
        
    	private void getData() {
+   		
     	try{
  
 	    	
 	    	RestoParser parser = RestoParserFactory.getParser();
 	    	entries = parser.parse();
+	
 		
     	} catch (Throwable t){
     		Log.e("Restonet",t.getMessage(),t);
@@ -532,7 +537,7 @@ Log.e("tabreselected pos="," "+position);
 	 	  
          int position = tab.getPosition();
  
-  
+         Log.e("tab selected pos="," "+position);
       switch (position) {
   	case 0:
   	 
@@ -600,8 +605,21 @@ Log.e("tabreselected pos="," "+position);
 	}
 
 	public void doPositiveClick() {
-		 if (haveInternet(this)){
+	
+		// first check if internet connection is available
+		
+		if (haveInternet(this)){
 			 dialog.show();
+			 
+			 mDB = new RestoDatabase(getBaseContext());
+			 
+			 sqlDB = mDB.getWritableDatabase();
+// before downloading city data, delete the existing sqlite database by forcing a call to onUpgrade by incrementing
+// the database's version
+			 
+			 int version = sqlDB.getVersion();
+			 mDB.onUpgrade(sqlDB, version, version+1);
+			  
 		      GetCityData task = new GetCityData();
 					task.execute(new String[] { "" });
 				
@@ -636,6 +654,14 @@ Log.e("tabreselected pos="," "+position);
 	}
 	
 	
+	public void onDestroy(){
+		super.onDestroy();
+		if(dialog!=null)
+		{
+		dialog.cancel();
+		}
+
+		}
 	
 	
  }
