@@ -86,29 +86,16 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   	 	if (savedInstanceState != null){
  		
    		 tab_pos = savedInstanceState.getInt("tabState");
-   		 query = savedInstanceState.getString("searchQuery");
+
    		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),2,false);
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
 
-         if (null == fragmentManager.findFragmentByTag("RECH"))  {
+
 	 	 Log.e("on create","set selection");
          ab.setSelectedNavigationItem(tab_pos);
-         } else {
 
-	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();	   
-  	    Bundle arguments = new Bundle();
-  	    arguments.putString("searchQuery", query);
-  	  
-  	    rechFrg.setArguments(arguments);
-          
-		   ft.replace(R.id.listeFragment, rechFrg, "RECH");  
-		   ft.addToBackStack(null);
-		   ft.commit();
-		   
-		   
-      }
       
    	
   	 	} else {	 		
@@ -143,23 +130,30 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     }
 
     private void handleIntent(Intent intent) {
+    	
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
           query = intent.getStringExtra(SearchManager.QUERY);
- 
-  	   	  FragmentTransaction ft = getFragmentManager().beginTransaction();
-	  	     if (null == getFragmentManager().findFragmentByTag("RECH")) {
+    	  FragmentManager fragmentManager = getFragmentManager();
+          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+  	  
+//	  	     if (null == getFragmentManager().findFragmentByTag("RECH")) {
 	  	      Bundle arguments = new Bundle();
 	   	    arguments.putString("searchQuery", query);
 	   	  
-	   	    rechFrg.setArguments(arguments);
-	             ft.replace(R.id.listeFragment, rechFrg, "RECH");
-	             ft.addToBackStack(null);
-	  	   	     ft.commit();
-	  	     }else{
-	  	    	   RechercheListeFragment rechFrg = (RechercheListeFragment)
-	  	    			   getFragmentManager().findFragmentByTag("RECH");
-      	 rechFrg.afficheList(RESTO_SEARCH_LOADER, query);
-	  	     }
+	   		if(null == fragmentManager.findFragmentById(R.id.rechFragment)|| !rechFrg.isInLayout()){//pas de fragment RechFragment ici
+
+				Intent intention = new Intent(getApplicationContext(), RechActivity.class);
+				
+				intention.putExtra("query", query);
+				startActivity(intention);
+			}
+			else{//fragment est dans cette activité
+				 
+				 fragmentTransaction.add(R.id.rechFragment, rechFrg, "RECH");
+				 fragmentTransaction.commit();
+
+			}	
+	   	    
         }
         
     }
@@ -172,7 +166,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	}
 	
 	
-	public void afficheDetailFragment (long rowId, Boolean changeTab){
+	public  void afficheDetailFragment (long rowId, Boolean changeTab){
 	
 //	
 //		//detecter si fragment Detailfragment se trouve dans cette activité		
@@ -241,32 +235,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
       }
     }	
 	
-//	public void afficheCarteFragment (long rowId){
-//	
-//	   int statusCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-//	   if (statusCode == ConnectionResult.SUCCESS) {
-//	            //OK
-//	     	  FragmentManager fragmentManager = getFragmentManager();
-//			 
-//		     if (null == fragmentManager.findFragmentByTag("MAP")) {
-//		    	  FragmentTransaction fragmentTransaction =
-//				           fragmentManager.beginTransaction();
-//		    	    Bundle arguments = new Bundle();
-//	        	    arguments.putLong("rowid", rowId);
-//	        	  
-//	        	    mapFrg.setArguments(arguments);
-//		     
-//		           fragmentTransaction.replace(R.id.listeFragment, mapFrg, "MAP");
-//		           fragmentTransaction.addToBackStack(null);
-//			       fragmentTransaction.commit();
-//		         }
-//              } else {
-//       	               Toast toast = Toast.makeText(getApplicationContext(), R.string.no_google_play, Toast.LENGTH_LONG);
-//  		               toast.show();
-//              }
-//				
-//
-//	}	
+
 	
     @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -504,6 +473,7 @@ Log.e("tabreselected pos="," "+position);
  	    			   getFragmentManager().findFragmentByTag("PLUS");
  	    	   if (plusFrg.isVisible()) {
 	         	 plusFrg.setSelection(0);
+	         	
  	    	   }
 	    	
 	     }
@@ -542,7 +512,7 @@ Log.e("tabreselected pos="," "+position);
   	case 0:
   	 
   	  
-  	     if (null == fragmentManager.findFragmentByTag("RECENT")||(!listeFrg.isVisible())) {
+  	     if (null == fragmentManager.findFragmentByTag("RECENT")) {
            ft.replace(R.id.listeFragment, listeFrg, "RECENT");
          
           }
@@ -551,21 +521,21 @@ Log.e("tabreselected pos="," "+position);
 
   	case 1:
   		 
-  	     if (null == fragmentManager.findFragmentByTag("HIGH") || (!highFrg.isVisible())) {
+  	     if (null == fragmentManager.findFragmentByTag("HIGH") ) {
 	           ft.replace(R.id.listeFragment, highFrg, "HIGH");
 	        
 	     }
   		 break;
  	case 2:
  		 
-	     if ((null == fragmentManager.findFragmentByTag("PLUS")) || (!plusFrg.isVisible())) {
+	     if ((null == fragmentManager.findFragmentByTag("PLUS"))) {
 	           ft.replace(R.id.listeFragment, plusFrg,"PLUS");    
 	     }
 
  			break;
   	case 3: 
   
-	     if (null == fragmentManager.findFragmentByTag("ALPHA")  || (!alphaFrg.isVisible())) {
+	     if (null == fragmentManager.findFragmentByTag("ALPHA") ) {
 	           ft.replace(R.id.listeFragment, alphaFrg, "ALPHA");
 	         
 	     }
@@ -589,13 +559,13 @@ Log.e("tabreselected pos="," "+position);
 	protected void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
 	    // getACtionBarr returns null for RECH fragment
-		  FragmentManager fragmentManager = getFragmentManager();
-	    if (null == fragmentManager.findFragmentByTag("RECH"))  {
+//		  FragmentManager fragmentManager = getFragmentManager();
+//	    if (null == fragmentManager.findFragmentByTag("RECH"))  {
 	    	 outState.putInt("tabState", getActionBar().getSelectedTab().getPosition());
-	    }else{
-	    outState.putInt("tabState", 0);
-	    }
-	    outState.putString("searchQuery", query);
+//	    }else{
+//	    outState.putInt("tabState", 0);
+//	    }
+//	    outState.putString("searchQuery", query);
 	}
     
 	void showDialog() {

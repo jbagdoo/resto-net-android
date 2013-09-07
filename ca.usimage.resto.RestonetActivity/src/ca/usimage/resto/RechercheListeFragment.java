@@ -40,7 +40,7 @@ public class RechercheListeFragment extends ListeFragment  {
 		  Bundle arguments = new Bundle();
 		   
 		    arguments = this.getArguments();
-		 query = arguments.getString("searchQuery");
+		 query = arguments.getString("query");
 
 	}
 

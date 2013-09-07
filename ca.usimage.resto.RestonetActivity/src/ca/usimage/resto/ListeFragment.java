@@ -120,7 +120,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-
+		
 		
 	 		
 		
@@ -142,7 +142,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 public void onResume()
 {
     super.onResume();
-    // call initLoader on Resume avoids a bug which calls onLoadFinished twice
+  
   
   
 }
