@@ -22,14 +22,6 @@ public class RechercheListeFragment extends ListeFragment  {
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 
 	
-
-	public void afficheList(int loader_id, String query) {
-		Bundle mBundle = new Bundle();
-		mBundle.putString("search_query", query);
-		getLoaderManager().restartLoader(loader_id, mBundle, this);
-	}
-	
-	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		
@@ -60,8 +52,11 @@ public void onResume()
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB, RestoDatabase.COL_DATE_JUGE, RestoDatabase.COL_MONTANT };
-
-			
+          String adresse_clause = "";
+                // adrsesse_clause is only added for plusFragment
+			    if (null != args.get("adresse")) {
+			    	adresse_clause = " and adresse = \"" + args.get("adresse") + "\"";
+			    }
 	
 	    	    switch (id){
 		 
@@ -69,7 +64,7 @@ public void onResume()
 		    	case RESTO_SEARCH_LOADER:
 		    		Log.e("onCreateLoader", "search loader");
 		    		return new CursorLoader(getActivity(),
-		    	            RestoProvider.CONTENT_URI, projection, "etablissement like \"%" + args.getString("search_query") + "%\"", null, "etablissement ASC");	
+		    	            RestoProvider.CONTENT_URI, projection, "etablissement like \"%" + args.getString("search_query") + "%\"" + adresse_clause, null, "etablissement ASC");	
 		    				    	
 		    	default: return null;
 

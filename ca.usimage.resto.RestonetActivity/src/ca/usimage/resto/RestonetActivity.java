@@ -23,6 +23,7 @@ import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
@@ -75,40 +76,30 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
       	 final ActionBar ab = getActionBar();
         ab.setDisplayUseLogoEnabled(useLogo);
 		 ab.setDisplayShowHomeEnabled(true);
-      // set up tabs nav
 
 		  ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-	   //     ab.setDisplayOptions(0, ActionBar.);
-		  FragmentManager fragmentManager = getFragmentManager();
-		  
-		
-		  
+				  
   	 	if (savedInstanceState != null){
  		
    		 tab_pos = savedInstanceState.getInt("tabState");
 
-   		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
+   	     ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,false);
          ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),1,false);
          ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),2,false);
          ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
 
-
-	 	 Log.e("on create","set selection");
          ab.setSelectedNavigationItem(tab_pos);
 
       
    	
   	 	} else {	 		
-    ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
-    ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),1,false);
-    ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),2,false);
-    ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
+  	 		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
+  	 		ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),1,false);
+  	 		ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),2,false);
+  	 		ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
 	 
-   	}
-  	
-      
-    
- 	
+               }
+
 	  	dialog = new ProgressDialog(RestonetActivity.this);
         dialog.setCancelable(false);
        
@@ -117,9 +108,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // reset the bar to the default value of 0
         dialog.setProgress(0);
-        
-      
- 
+
    }
    
    
@@ -160,9 +149,24 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 
 	public void onItemSelected(int s, long rowId) {
-	
-		afficheDetailFragment(rowId, false);
-	
+		  Cursor c;
+		  FragmentManager fragmentManager = getFragmentManager();
+		//  only for plusFragment, we want to show all items with equal name and adresse and call the search fragment
+		// otherwise just show detail fragment using rowid  
+		 if ((null != fragmentManager.findFragmentByTag("PLUS"))) {
+			
+			    c = plusFrg.adapter.getCursor();
+			    String addr = c.getString(c.getColumnIndex("adresse"));
+			    String nom = c.getString(c.getColumnIndex("etablissement"));
+				Intent intention = new Intent(getApplicationContext(), RechActivity.class);
+				
+				intention.putExtra("query", nom);
+				intention.putExtra("adresse", addr);
+				startActivity(intention);
+	          
+	     }else {
+        		afficheDetailFragment(rowId, false);
+	           }
 	}
 	
 	
@@ -427,7 +431,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	     int position = tab.getPosition();
 		  FragmentManager fragmentManager = getFragmentManager();
 	
-Log.e("tabreselected pos="," "+position);
 		  // position cursor at top of list if user retaps a tab
 	      switch (position) {
 	  	case 0:
@@ -441,6 +444,9 @@ Log.e("tabreselected pos="," "+position);
 	  	    			   getFragmentManager().findFragmentByTag("RECENT");
 	  	  	   if (listeFrg.isVisible()) {
 	  		       listeFrg.setSelection(0);
+	  		       
+	  		      
+	  		       
 	  	  	   }
 	  	     }	
 	  			break;
@@ -558,14 +564,9 @@ Log.e("tabreselected pos="," "+position);
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 	    super.onSaveInstanceState(outState);
-	    // getACtionBarr returns null for RECH fragment
-//		  FragmentManager fragmentManager = getFragmentManager();
-//	    if (null == fragmentManager.findFragmentByTag("RECH"))  {
+             // save selected tab before orientation changes
 	    	 outState.putInt("tabState", getActionBar().getSelectedTab().getPosition());
-//	    }else{
-//	    outState.putInt("tabState", 0);
-//	    }
-//	    outState.putString("searchQuery", query);
+
 	}
     
 	void showDialog() {

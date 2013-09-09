@@ -93,6 +93,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	        pos = c.getPosition();
 //	        Log.e("bindView="," "+pos);
 	        final Long ID =  getItemId(pos);
+	       
 	        
             ImageButton mapButton = (ImageButton)view.findViewById(R.id.ImageButton01);
 	        mapButton.setOnClickListener(new View.OnClickListener() {

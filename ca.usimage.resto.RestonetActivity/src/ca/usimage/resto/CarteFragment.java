@@ -74,7 +74,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 		LAT = 45.500;
         LNG = -73.600;
 		googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(LAT,LNG)));
-		googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+		googleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
 		googleMap.setMyLocationEnabled(true);
 		
 		googleMap.setOnInfoWindowClickListener(onInfoWindowClickListener);
