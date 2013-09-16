@@ -18,11 +18,14 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.LoaderManager;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
@@ -108,6 +111,8 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // reset the bar to the default value of 0
         dialog.setProgress(0);
+        
+        
 
    }
    
@@ -151,17 +156,22 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	public void onItemSelected(int s, long rowId) {
 		  Cursor c;
 		  FragmentManager fragmentManager = getFragmentManager();
+	 	   PlusListeFragment plusfrg = (PlusListeFragment)
+	    			   fragmentManager.findFragmentByTag("PLUS");
 		//  only for plusFragment, we want to show all items with equal name and adresse and call the search fragment
 		// otherwise just show detail fragment using rowid  
 		 if ((null != fragmentManager.findFragmentByTag("PLUS"))) {
-			
-			    c = plusFrg.adapter.getCursor();
+		
+			    c = plusfrg.adapter.getCursor();
+			    c.moveToPosition(s);
+			  
 			    String addr = c.getString(c.getColumnIndex("adresse"));
 			    String nom = c.getString(c.getColumnIndex("etablissement"));
 				Intent intention = new Intent(getApplicationContext(), RechActivity.class);
 				
 				intention.putExtra("query", nom);
 				intention.putExtra("adresse", addr);
+			
 				startActivity(intention);
 	          
 	     }else {
@@ -196,7 +206,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		else{//fragment est dans cette activité
 			 
 			 fragmentTransaction.add(R.id.detailFragment, detailFrg, "DETAIL");
-//			 fragmentTransaction.addToBackStack(null);
 			 fragmentTransaction.commit();
 
 	
@@ -286,8 +295,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
             return false;
         }
         if (info.isRoaming()) {
-            // here is the roaming option you can change it if you want to
-            // disable internet while roaming, just return false
+
             return false;
         }
         return true;
@@ -634,6 +642,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 		}
 	
-	
+
  }
     

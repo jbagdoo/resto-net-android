@@ -22,8 +22,7 @@ public class PlusListeFragment extends ListeFragment  {
 	private  static final int RESTO_PLUS_LOADER = 0x05;
 
 	
-	
-	
+
 	
 
 
@@ -31,7 +30,9 @@ public class PlusListeFragment extends ListeFragment  {
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+	
 
+		
 	    String[] uiBindFrom = { RestoDatabase.COL_ETAB,  RestoDatabase.COL_ADR, RestoDatabase.COL_COUNT };
 	    int[] uiBindTo = { R.id.Etablissement, R.id.Adresse, R.id.Count };
 	    adapter = new MyCursorAdapter(
@@ -47,11 +48,11 @@ public void onResume()
 {
     super.onResume();
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
-  
+    Log.e("Plus","onResume");
     LoaderManager lm = getLoaderManager();
 
     lm.initLoader(RESTO_PLUS_LOADER, null, this);
-    Log.e("PlusFragment","onResume");
+  
 }
 	
 	

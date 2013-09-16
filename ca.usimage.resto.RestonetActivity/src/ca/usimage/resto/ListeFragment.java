@@ -10,6 +10,7 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Loader;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.app.LoaderManager;
 import android.view.View.OnClickListener;
 
@@ -114,6 +115,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 		@Override
 		public void onClick(View v) {
 			
+
 		}   
 	}
 
@@ -160,6 +162,7 @@ public void onResume()
 
 	
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+		
 	    adapter.swapCursor(cursor);
 	}
 

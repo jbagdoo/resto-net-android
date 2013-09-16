@@ -1,11 +1,9 @@
 package ca.usimage.resto;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 import android.net.ParseException;
-import android.util.Log;
 
 
 
