@@ -22,6 +22,7 @@ import android.view.View;
 
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.ListView;
 
@@ -94,7 +95,23 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	        pos = c.getPosition();
 //	        Log.e("bindView="," "+pos);
 	        final Long ID =  getItemId(pos);
+	        
+	        String prop =c.getString(c.getColumnIndex(RestoDatabase.COL_PROPRIO));
 	       
+	        ImageView exploitant = (ImageView) view.findViewById(R.id.Exploitant);
+	        if (prop.indexOf("(Fermé)") > 0){
+	        	exploitant.setVisibility(View.VISIBLE);
+	        	exploitant.setImageResource(R.drawable.ferme);
+	        	
+	        }
+	        else if (prop.indexOf("changement d") > 0){
+	        	exploitant.setVisibility(View.VISIBLE);
+	        	exploitant.setImageResource(R.drawable.exploitant);
+	        }
+	        
+	        else {
+	        	exploitant.setVisibility(View.INVISIBLE);
+	        }
 	        
             ImageButton mapButton = (ImageButton)view.findViewById(R.id.ImageButton01);
 	        mapButton.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +144,7 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 		
 	 		
 		
-	    String[] uiBindFrom = { RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT, RestoDatabase.COL_DATE_JUGE };
+	    String[] uiBindFrom = { RestoDatabase.COL_ETAB,RestoDatabase.COL_MONTANT, RestoDatabase.COL_DATE_JUGE };
 	    int[] uiBindTo = { R.id.Etablissement, R.id.Montant, R.id.Date};
 	    adapter = new MyCursorAdapter(
 	            getActivity(), R.layout.rownew,

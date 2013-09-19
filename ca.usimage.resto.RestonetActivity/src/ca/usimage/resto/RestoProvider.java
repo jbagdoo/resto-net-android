@@ -130,17 +130,7 @@ public class RestoProvider extends ContentProvider {
 	        case RESTOS:
 	        	
 	        	break;
-	            // get database to insert records
-
-	            // insert record in user table and get the row number of recently inserted record
-	         
-//	            if (rowId > 0) {
-//	                Uri rowUri = ContentUris.appendId(MyUsers.User.CONTENT_URI.buildUpon(), rowId).build();
-//	                getContext().getContentResolver().notifyChange(rowUri, null);
-//	                return rowUri;
-//	            }
-	           
-	        
+	       
 	           
 	     
 	        default:

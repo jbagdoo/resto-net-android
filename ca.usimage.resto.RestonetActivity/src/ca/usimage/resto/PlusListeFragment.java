@@ -57,7 +57,7 @@ public void onResume()
 	
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT, RestoDatabase.COL_ADR, "count(*)" };
+		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_PROPRIO,RestoDatabase.COL_ETAB, RestoDatabase.COL_MONTANT, RestoDatabase.COL_ADR, "count(*)" };
 	    switch (id){
 	
 	    		

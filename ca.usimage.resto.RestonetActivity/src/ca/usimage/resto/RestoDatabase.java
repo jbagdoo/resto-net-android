@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class RestoDatabase 
- extends SQLiteOpenHelper {
+public class RestoDatabase  extends SQLiteOpenHelper {
+	 private static String DB_PATH = "/data/data/ca.usimage.resto/databases/";
     private static final String DEBUG_TAG = "RestoDatabase";
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "Resto";
@@ -20,6 +20,7 @@ public class RestoDatabase
     public static final String COL_ADR = "adresse";
     public static final String COL_COUNT = "count(*)";
     public static final String COL_DATE_JUGE ="date_jugement";
+    
 
     public RestoDatabase(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
