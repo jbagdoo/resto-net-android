@@ -4,167 +4,192 @@
     android:layout_height="match_parent"
     android:paddingLeft="10dp" >
 
-<TableLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="horizontal"
+    android:padding="5dip" >
+        
+
 
     <TextView
         android:id="@+id/TextView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+       
         android:text="@string/nomLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
+        android:textSize="22sp" 
+         android:layout_alignParentTop="true"/>
 
     <TextView
         android:id="@+id/TextViewEtablissement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="26sp" />
+      
+        android:textSize="26sp"
+         android:layout_below="@+id/TextView12" />
 
     <TextView
         android:id="@+id/TextView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+       
         android:text="@string/proprietaireLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+         android:layout_below="@+id/TextViewEtablissement" />
 
     <TextView
         android:id="@+id/TextViewProprietaire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="26sp" />
+        android:textSize="26sp" 
+         android:layout_below="@+id/TextView10"/>
 
     <TextView
         android:id="@+id/TextView08"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+       
         android:text="@string/adresseLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+         android:layout_below="@+id/TextViewProprietaire" />
 
-<TableRow >
+
     <TextView
         android:id="@+id/TextViewAdresse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="26sp" />
-<ImageButton
-    android:id="@+id/ImageButton01"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/location"
- />
+       
+        android:textSize="26sp"
+         android:layout_below="@+id/TextView08" />
+
   
 
-</TableRow>
+
     <TextView
         android:id="@+id/TextViewVille"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="26sp" />
+       
+        android:textSize="26sp" 
+         android:layout_below="@+id/TextViewAdresse"/>
 
     <TextView
         android:id="@+id/TextView04"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+       
         android:text="@string/categorieLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
+        android:textSize="22sp" 
+         android:layout_below="@+id/TextViewVille"/>
 
     <TextView
         android:id="@+id/TextViewCategorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="26sp" />
+   
+        android:textSize="26sp"
+         android:layout_below="@+id/TextView04"
+         />
 
     <TextView
         android:id="@+id/TextView02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+       
         android:text="@string/date_infractionLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+         android:layout_below="@+id/TextViewCategorie" />
 
     <TextView
         android:id="@+id/TextViewDate_Infraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="26sp" />
+       
+        android:textSize="22sp" 
+        android:layout_below="@+id/TextViewCategorie"
+       android:layout_toRightOf="@+id/TextView02"
+   
+         android:layout_alignParentRight="true" />
 
     <TextView
-        android:id="@+id/textNom"
+        android:id="@+id/TextViewJuge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+      
         android:text="@string/date_jugementLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
+        android:textSize="22sp" 
+         android:layout_below="@+id/TextView02"/>
 
     <TextView
         android:id="@+id/TextViewDate_Jugement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="26sp" />
+ 
+        android:textSize="22sp" 
+         android:layout_below="@+id/TextView02"
+         android:layout_toRightOf="@+id/TextViewJuge"
+        
+             android:layout_alignParentRight="true" />
 
     <TextView
         android:id="@+id/TextView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+        
         android:text="@string/montantLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
-<TableRow >
+        android:textSize="22sp"  android:layout_below="@+id/TextViewJuge"/>
+
     <TextView
         android:id="@+id/TextViewMontant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
      
     
-        android:textSize="26sp" />
+        android:textSize="22sp" 
+         android:layout_below="@+id/TextViewJuge"
+         android:layout_toRightOf="@+id/TextView01"/>
 
     <TextView
         android:id="@+id/dollar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+       
         android:text=" $"
-        android:textSize="26sp" />
+        android:textSize="22sp"
+         android:layout_below="@+id/TextViewJuge"
+        android:layout_toRightOf="@+id/TextViewMontant"
+    />
 
-</TableRow>
+
     <TextView
         android:id="@+id/TextView03"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
+    
         android:text="@string/descriptionLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:layout_below="@+id/TextView01"  />
 
-<ScrollView 
-        android:layout_width="match_parent">
+
 <TextView 
     android:layout_width="match_parent"
     android:id="@+id/TextViewDescription"
     android:layout_height="wrap_content"
     android:textSize="26sp"
-  
+   android:layout_alignParentBottom="true"
+   android:layout_below="@+id/TextView03"
     />
-</ScrollView>
+
  
-</TableLayout>
+</RelativeLayout>
 </ScrollView>

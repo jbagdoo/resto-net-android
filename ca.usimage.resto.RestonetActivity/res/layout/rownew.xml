@@ -23,29 +23,31 @@ android:layout_alignParentTop="true"
     android:id="@+id/amende"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text=" amende: "
-    android:layout_toRightOf="@+id/Etablissement"
-    android:textColor="#ffff0000" />
+    android:text=" AMENDE: "
+    android:layout_toLeftOf="@+id/Montant"
+    android:textColor="#000000" />
 
 <TextView 
 	android:id="@+id/Montant" android:layout_width="wrap_content" 
 	android:layout_height="wrap_content"
 	   android:focusable="false"
-     android:layout_toRightOf="@+id/amende"
+     android:layout_toLeftOf="@+id/dollar"
 	android:textColor="#ffff0000"/>
 <TextView 
 	android:id="@+id/dollar" android:layout_width="wrap_content" 
 	android:layout_height="wrap_content"
 	android:text="$ "
-    android:layout_toRightOf="@+id/Montant"
-	android:textColor="#ffff0000"/>
+   
+	android:textColor="#ffff0000"
+	android:layout_alignParentRight="true"/>
   <ImageButton
     android:id="@+id/ImageButton01"
     android:layout_width="40dp"
     android:layout_height="wrap_content"
     android:src="@drawable/location"
-    
-     android:layout_alignParentRight="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+     android:layout_below="@+id/dollar"
    
      />
 
@@ -55,6 +57,7 @@ android:layout_alignParentTop="true"
     android:layout_height="wrap_content"
     android:text="jugement rendu le "
     android:layout_below="@+id/Etablissement"
+     android:layout_alignParentBottom="true"
     android:textColor="#000000" />
     <TextView
 	android:id="@+id/Date" 

@@ -6,8 +6,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import android.os.AsyncTask;
-
 public abstract class BaseParser  implements RestoParser {
 
 	// names of the XML tags

@@ -99,7 +99,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
   	 		ab.addTab(ab.newTab().setText(R.string.tab_recente).setTabListener(this),0,true);
   	 		ab.addTab(ab.newTab().setText(R.string.tab_fortes).setTabListener(this),1,false);
   	 		ab.addTab(ab.newTab().setText(R.string.tab_plus).setTabListener(this),2,false);
-  	 		ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
+	 		ab.addTab(ab.newTab().setText(R.string.tab_alpha).setTabListener(this),3,false);
 	 
                }
 

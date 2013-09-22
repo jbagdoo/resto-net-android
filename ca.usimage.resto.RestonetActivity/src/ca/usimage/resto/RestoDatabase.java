@@ -27,7 +27,7 @@ public class RestoDatabase  extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-    	Log.e("RestoDatabase","onCreate called");
+
         String createQuery = "CREATE TABLE resto" +
                 "(_id integer primary key autoincrement," +
                 "id TEXT, proprietaire TEXT,  categorie TEXT , etablissement TEXT,  adresse TEXT, ville TEXT, description TEXT, date_infraction timestamp, date_jugement timestamp, montant INTEGER, latitude DOUBLE, longitude DOUBLE  );";
@@ -36,8 +36,7 @@ public class RestoDatabase  extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.e(DEBUG_TAG, "Upgrading database. Existing contents will be lost. ["
-                + oldVersion + "]->[" + newVersion + "]");
+    
         db.execSQL("DROP TABLE IF EXISTS resto");
         onCreate(db);
     }

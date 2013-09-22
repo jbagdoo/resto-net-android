@@ -101,12 +101,12 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 	        ImageView exploitant = (ImageView) view.findViewById(R.id.Exploitant);
 	        if (prop.indexOf("(Fermé)") > 0){
 	        	exploitant.setVisibility(View.VISIBLE);
-	        	exploitant.setImageResource(R.drawable.ferme);
+	        	exploitant.setImageResource(R.drawable.closed);
 	        	
 	        }
 	        else if (prop.indexOf("changement d") > 0){
 	        	exploitant.setVisibility(View.VISIBLE);
-	        	exploitant.setImageResource(R.drawable.exploitant);
+	        	exploitant.setImageResource(R.drawable.new_owner);
 	        }
 	        
 	        else {
