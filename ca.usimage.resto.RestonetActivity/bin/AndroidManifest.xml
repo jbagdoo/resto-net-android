@@ -24,7 +24,9 @@
              android:label="@string/app_name" android:orientation="horizontal"
         android:icon="@drawable/restonet4"
         android:theme="@android:style/Theme.Holo.Light" >
-        
+        <service
+           android:name="MAJ">
+        </service> 
         <activity
                       
                    android:name=".RestonetActivity" 

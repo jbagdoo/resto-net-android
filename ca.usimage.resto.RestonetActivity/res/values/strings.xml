@@ -27,5 +27,6 @@
 	   <string name="no_google_play">Google Play Service doit être installé pour afficher la carte</string>
 	   <string name="no_internet">Veuillez activer un accès à internet</string>
 	   <string name="maj_donnees">Mise à jour des données en cours</string>
+	    <string name="maj_deja">Une mise à jour est déjà en cours</string>
 
 </resources>

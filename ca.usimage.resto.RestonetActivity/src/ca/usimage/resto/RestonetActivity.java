@@ -15,6 +15,8 @@ import com.google.android.gms.maps.model.Marker;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -65,7 +67,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     PlusListeFragment plusFrg = new PlusListeFragment();
     MapFragment mapFrg = new CarteFragment();
 
-	private List<Entry> entries;
+
 	 ArrayList<String> etablissements = new ArrayList<String>();
 	 ProgressDialog dialog;
 	
@@ -303,135 +305,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
     
    
 
-	private class GetCityData extends AsyncTask<String, Integer, String> {
-	    
-		@Override
-		protected String doInBackground(String... urls) {
-			// get data from web xml file and store in entries list
-		
-			getData();
-			
-			// prepare to store data into sqlite database
-			  dialog.setMax(entries.size());
-		
-			  // erase table resto before inserting new data... null selection deletes all rows
-		
-//	
-			    ContentValues ajout_resto = new ContentValues();
-			    
-		
-			    Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.CANADA_FRENCH);
-		        String adresse;
-
-
-	            int i=0;
-	            List<Address> adresse_list;
-	            Address location;
-	            Double latitude, longitude;
-			    	   latitude = 45.5086699;
-			    	   longitude = -73.5539925;
-
-		    	for (Entry msg : entries){
-//  get latitude and longitude from address using google geocoder
-		    		             if (geocoder.isPresent()) {
-		    		            	 adresse = msg.getAdresse() +"," + msg.getVille() + ", QC CANADA";
-	    	      	           
-	    	     		        try{
-	    	     			         adresse_list  = geocoder.getFromLocationName(adresse, 1);
-
-	    	     			       if (adresse_list != null && adresse_list.size() > 0) {
-	    	     			         location = adresse_list.get(0);
-	    	     			       
-	    	     			        latitude = location.getLatitude();
-	    	     			        longitude = location.getLongitude();
-
-	    	     			       }
-	    	     			         else {  // if adresse is null, postal code is probably bad, remove postal code and try again
-	    	     			        	 
-	    	     			        	 adresse = msg.getAdresse() +"," + msg.getVille().substring(0, msg.getVille().length()-6) + ", QC CANADA"; 
-	    	     			        	try{
-	   	    	     			         adresse_list  = geocoder.getFromLocationName(adresse, 1);
-
-	   	    	     			       if (adresse_list != null && adresse_list.size() > 0) {
-	   	    	     			         location = adresse_list.get(0);
-	 	    	     			        latitude = location.getLatitude();
-		    	     			        longitude = location.getLongitude();
-
-	   	    	     			       } else {
-	   	    	     			    	   Log.e(" "+msg.getEtablissement()," null geocode");
-	   	    	     			       }
-	   	    	     			    	   
-	    	     			        	 }
-		    	     			        catch(IOException e) {
-		    	     			         Log.e("Geocoder IOException i="+i+" "+msg.getEtablissement(), e.getMessage()); 
-		    	     			         
-		    	     			        }
-	    	     			         } 	     			      
-	    	     			         
-	    	     			   //	    	     			       }
-	    	     			        }
-	    	     			        catch(IOException e) {
-	    	     			         Log.e("Gecoder IOException i="+i+" "+msg.getEtablissement(), e.getMessage()); 
-	    	     			         
-	    	     			        }
-	    	     		    
-		    		             }
-//		    		  }
-		    	      			 ajout_resto.put("etablissement", msg.getEtablissement());
-		    	      			 ajout_resto.put("proprietaire", msg.getProprietaire());
-		    	      			 ajout_resto.put("ville", msg.getVille());
-		    	      			 ajout_resto.put("montant", msg.getMontant());
-		    	      			 ajout_resto.put("adresse", msg.getAdresse());
-		    	      			 ajout_resto.put("categorie", msg.getCategorie());
-		    	      			 ajout_resto.put("date_infraction", msg.getDate_infraction());
-		    	      			 ajout_resto.put("date_jugement", msg.getDate_jugement());
-		    	      			 ajout_resto.put("description", msg.getDescription());
-		    	      			 ajout_resto.put("id", msg.getId());
-		    	      			 ajout_resto.put("latitude", latitude);
-		    	      			 ajout_resto.put("longitude", longitude);
-		    	      			 // insert each row into sql database
-		    	      		     getContentResolver().insert(RestoProvider.CONTENT_URI, ajout_resto);
-		    	              	    		
-		    	i++;
-		    		 
-		    		 publishProgress(i);	    		
-
-		    	}
-
- 		
-			return "";
-		}
-		 @Override
-	        protected void onProgressUpdate(Integer...progress) {
-
-	        	dialog.setProgress(progress[0]);
-		        
-		 }
-		@Override
-		protected void onPostExecute(String result) {
-			if(dialog!=null)
-				{
-					 dialog.dismiss();
-				}
-	   
-
-		}
-	}
-
-       
-   	private void getData() {
-   		
-    	try{
- 
-	    	
-	    	RestoParser parser = RestoParserFactory.getParser();
-	    	entries = parser.parse();
-	
-		
-    	} catch (Throwable t){
-    		Log.e("Restonet",t.getMessage(),t);
-    	}
-    }
    	
 //    
    	
@@ -582,13 +455,28 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	            R.string.dialog);
 	    dataDialog.show(getFragmentManager(), "dialog");
 	}
+	
+	private boolean isMyServiceRunning() {
+		
+	  
+		
+	    ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+	    
+	    for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+	        if (MAJ.class.getName().equals(service.service.getClassName())) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
 
 	public void doPositiveClick() {
 	
 		// first check if internet connection is available
 		
 		if (haveInternet(this)){
-			 dialog.show();
+		 
+			if (!isMyServiceRunning()) {
 			 
 			 mDB = new RestoDatabase(getBaseContext());
 			 
@@ -598,9 +486,15 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 			 
 			 int version = sqlDB.getVersion();
 			 mDB.onUpgrade(sqlDB, version, version+1);
-			  
-		      GetCityData task = new GetCityData();
-					task.execute(new String[] { "" });
+			 startService(new Intent(this, MAJ.class));
+
+//		      GetCityData task = new GetCityData();
+//					task.execute(new String[] { "" });
+			} else
+			{
+				   Toast toast = Toast.makeText(getApplicationContext(), R.string.maj_deja, Toast.LENGTH_LONG);
+				   toast.show();
+			   }		
 				
 				   } else {
 					   Toast toast = Toast.makeText(getApplicationContext(), R.string.no_internet, Toast.LENGTH_LONG);

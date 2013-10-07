@@ -194,12 +194,9 @@ containing a value of this type.
         public static final int map=0x7f020021;
         public static final int measle=0x7f020022;
         public static final int new_owner=0x7f020023;
-        public static final int ratlogo=0x7f020024;
-        public static final int ratlogo2=0x7f020025;
-        public static final int restonet2=0x7f020026;
-        public static final int restonet3=0x7f020027;
-        public static final int restonet4=0x7f020028;
-        public static final int search=0x7f020029;
+        public static final int restonet4=0x7f020024;
+        public static final int restonet_s=0x7f020025;
+        public static final int search=0x7f020026;
     }
     public static final class id {
         public static final int Adresse=0x7f060021;
@@ -351,6 +348,7 @@ containing a value of this type.
         public static final int location_client_ulr_inactive_age_under_13=0x7f070012;
         public static final int location_client_ulr_inactive_age_unknown=0x7f070013;
         public static final int location_client_ulr_inactive_unknown_restriction=0x7f070014;
+        public static final int maj_deja=0x7f07002e;
         public static final int maj_donnees=0x7f07002d;
         public static final int montantLabel=0x7f070022;
         public static final int no_google_play=0x7f07002b;
