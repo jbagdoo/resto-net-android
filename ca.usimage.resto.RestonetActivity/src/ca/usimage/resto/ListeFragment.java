@@ -53,6 +53,8 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 		}
 	}
 
+	
+	
 
 
 	
@@ -179,7 +181,7 @@ public void onResume()
 
 	
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-		
+
 	    adapter.swapCursor(cursor);
 	}
 

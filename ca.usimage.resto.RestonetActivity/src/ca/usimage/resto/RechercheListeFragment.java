@@ -3,14 +3,23 @@ package ca.usimage.resto;
 
 
 
+import ca.usimage.resto.R.id;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.LoaderManager;
 
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 
@@ -22,13 +31,16 @@ public class RechercheListeFragment extends ListeFragment  {
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 	private String query, addr;
 	
+	private ListItemSelectListener listeSelectListener;
+	private ListItemMapListener listeMapListener;
+	private Context context;
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 	
 		super.onActivityCreated(savedInstanceState);
-		Log.e ("Resto", "RechercheListeFragment Created= ");
-		 this.getListView().setItemsCanFocus(false);
-		//		  setRetainInstance(true);
+	
+	
 		  Bundle arguments = new Bundle();
 		   
 		    arguments = this.getArguments();
@@ -75,8 +87,25 @@ public void onResume()
 
 	}
 	
-
-
+//	@Override
+//	public View onCreateView(LayoutInflater inflater,
+//	        ViewGroup container, Bundle savedInstanceState) {
+//	
+//	    ImageView image = (ImageView) container.findViewById(R.id.noresult);
+//		return image;
+//	    
+//	}
+@Override
+	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+     if ( cursor.getCount() >0) {
+	    adapter.swapCursor(cursor);
+     } else {
+        	ViewGroup container = (ViewGroup) this.getView().getParent();  
+			LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+    	    View v = inflater.inflate(R.layout.noresult, container, false);
+    	    container.addView(v);
+     }
+	}
 	
 	
 }

@@ -11,7 +11,7 @@
 <TextView
 	android:id="@+id/Etablissement" 
 	 android:layout_width="wrap_content"
-	android:layout_height="40dp"
+	android:layout_height="40sp"
 	
 android:layout_alignParentTop="true"
     android:textColor="@color/holoBlue"
@@ -42,7 +42,7 @@ android:layout_alignParentTop="true"
 	android:layout_alignParentRight="true"/>
   <ImageButton
     android:id="@+id/ImageButton01"
-    android:layout_width="40dp"
+    android:layout_width="40sp"
     android:layout_height="wrap_content"
     android:src="@drawable/location"
     android:layout_alignParentRight="true"
@@ -70,8 +70,8 @@ android:layout_alignParentTop="true"
     
          <ImageView 
         android:id="@+id/Exploitant" 
-        android:layout_width="40dp" 
-	    android:layout_height="40dp"
+        android:layout_width="40sp" 
+	    android:layout_height="40sp"
 	    android:layout_toLeftOf="@+id/ImageButton01"
 	  android:layout_below="@+id/amende"
 	

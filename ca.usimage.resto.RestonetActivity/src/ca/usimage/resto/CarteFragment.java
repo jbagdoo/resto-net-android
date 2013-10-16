@@ -215,7 +215,7 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
         if (id == ROWID) {
         	LAT = lat;
         	LNG = lng;
-        	zoom=16;
+        	zoom=14;
         }
 
         // Get the zoom level

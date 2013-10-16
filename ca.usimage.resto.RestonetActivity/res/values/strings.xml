@@ -28,5 +28,6 @@
 	   <string name="no_internet">Veuillez activer un accès à internet</string>
 	   <string name="maj_donnees">Mise à jour des données en cours</string>
 	    <string name="maj_deja">Une mise à jour est déjà en cours</string>
+	     <string name="no_result">Aucune infraction pour cet établissement!</string>
 
 </resources>
