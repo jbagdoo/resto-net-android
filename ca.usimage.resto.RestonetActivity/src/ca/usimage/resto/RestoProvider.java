@@ -1,5 +1,7 @@
 package ca.usimage.resto;
 
+import java.io.IOException;
+
 import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -44,6 +46,25 @@ public class RestoProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mDB = new RestoDatabase(getContext());
+        try {
+        	 
+        	mDB.createDataBase();
+ 
+ 	} catch (IOException ioe) {
+ 
+ 		throw new Error("Unable to create database");
+ 
+ 	}
+ 
+ 	try {
+ 
+ 		mDB.openDataBase();
+ 
+ 	}catch(SQLException sqle){
+ 
+ 		throw sqle;
+ 
+ 	}
 
         return true;
     }

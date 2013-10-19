@@ -185,7 +185,7 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
     float zoom=0;
     int id=0;
     String nom;
-    Log.e("Carte"," On Load Finished");
+ 
     // Number of locations available in the SQLite database table
     locationCount = arg1.getCount();
 
@@ -233,7 +233,7 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
 	
     if(locationCount>0){
         // once all items have been scanned and positioned, zoom on current selected item (at ROWID)
-    	Log.e("LAT="+LAT+" ROWID="+ROWID,"LNG"+LNG);
+ 
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(LAT,LNG)));
 
     
