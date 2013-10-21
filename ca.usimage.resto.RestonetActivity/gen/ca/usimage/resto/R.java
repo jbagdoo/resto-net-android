@@ -200,76 +200,83 @@ containing a value of this type.
         public static final int search=0x7f020027;
     }
     public static final class id {
-        public static final int Adresse=0x7f060024;
-        public static final int Chef=0x7f06001d;
-        public static final int Count=0x7f060022;
-        public static final int Date=0x7f060029;
-        public static final int DateLabel=0x7f060028;
-        public static final int Etablissement=0x7f060020;
-        public static final int Exploitant=0x7f060025;
-        public static final int ImageButton01=0x7f060023;
-        public static final int Montant=0x7f060027;
-        public static final int TextView01=0x7f060014;
-        public static final int TextView02=0x7f060010;
-        public static final int TextView03=0x7f060017;
-        public static final int TextView04=0x7f06000e;
-        public static final int TextView08=0x7f06000b;
-        public static final int TextView10=0x7f060009;
-        public static final int TextView12=0x7f060007;
-        public static final int TextViewAdresse=0x7f06000c;
-        public static final int TextViewCategorie=0x7f06000f;
-        public static final int TextViewDate_Infraction=0x7f060011;
-        public static final int TextViewDate_Jugement=0x7f060013;
-        public static final int TextViewDescription=0x7f060018;
-        public static final int TextViewEtablissement=0x7f060008;
-        public static final int TextViewJuge=0x7f060012;
-        public static final int TextViewMontant=0x7f060015;
-        public static final int TextViewProprietaire=0x7f06000a;
-        public static final int TextViewVille=0x7f06000d;
-        public static final int amende=0x7f060026;
-        public static final int carteFragment=0x7f060005;
-        public static final int count_txt=0x7f060021;
-        public static final int detailFragment=0x7f060006;
-        public static final int dollar=0x7f060016;
+        public static final int Adresse=0x7f060026;
+        public static final int Chef=0x7f06001f;
+        public static final int Count=0x7f060024;
+        public static final int Date=0x7f06002b;
+        public static final int DateLabel=0x7f06002a;
+        public static final int Etablissement=0x7f060022;
+        public static final int Exploitant=0x7f060027;
+        public static final int ImageButton01=0x7f060025;
+        public static final int Montant=0x7f060029;
+        public static final int TextView01=0x7f060016;
+        public static final int TextView02=0x7f060012;
+        public static final int TextView03=0x7f060019;
+        public static final int TextView04=0x7f060010;
+        public static final int TextView08=0x7f06000d;
+        public static final int TextView10=0x7f06000b;
+        public static final int TextView12=0x7f060009;
+        public static final int TextViewAdresse=0x7f06000e;
+        public static final int TextViewCategorie=0x7f060011;
+        public static final int TextViewDate_Infraction=0x7f060013;
+        public static final int TextViewDate_Jugement=0x7f060015;
+        public static final int TextViewDescription=0x7f06001a;
+        public static final int TextViewEtablissement=0x7f06000a;
+        public static final int TextViewJuge=0x7f060014;
+        public static final int TextViewMontant=0x7f060017;
+        public static final int TextViewProprietaire=0x7f06000c;
+        public static final int TextViewVille=0x7f06000f;
+        public static final int about_credits=0x7f060005;
+        public static final int about_legal=0x7f060006;
+        public static final int amende=0x7f060028;
+        public static final int carteFragment=0x7f060007;
+        public static final int count_txt=0x7f060023;
+        public static final int detailFragment=0x7f060008;
+        public static final int dollar=0x7f060018;
         public static final int hybrid=0x7f060004;
-        public static final int itemABOUT=0x7f06002d;
-        public static final int itemMAJ=0x7f06002a;
-        public static final int itemMAP=0x7f06002c;
-        public static final int itemRECH=0x7f06002b;
-        public static final int itemTextView=0x7f06001b;
-        public static final int listeFragment=0x7f06001a;
-        public static final int no_result_txt=0x7f06001e;
-        public static final int nom=0x7f060019;
+        public static final int itemABOUT=0x7f06002f;
+        public static final int itemMAJ=0x7f06002c;
+        public static final int itemMAP=0x7f06002e;
+        public static final int itemRECH=0x7f06002d;
+        public static final int itemTextView=0x7f06001d;
+        public static final int listeFragment=0x7f06001c;
+        public static final int no_result_txt=0x7f060020;
+        public static final int nom=0x7f06001b;
         public static final int none=0x7f060000;
-        public static final int noresult=0x7f06001c;
+        public static final int noresult=0x7f06001e;
         public static final int normal=0x7f060001;
-        public static final int rechFragment=0x7f06001f;
+        public static final int rechFragment=0x7f060021;
         public static final int satellite=0x7f060002;
         public static final int terrain=0x7f060003;
     }
     public static final class layout {
-        public static final int carte=0x7f030000;
-        public static final int cartefragment=0x7f030001;
-        public static final int detail=0x7f030002;
-        public static final int detailfragment=0x7f030003;
-        public static final int info_window_layout=0x7f030004;
-        public static final int liste=0x7f030005;
-        public static final int main=0x7f030006;
-        public static final int menu_list_item=0x7f030007;
-        public static final int noresult=0x7f030008;
-        public static final int recherche=0x7f030009;
-        public static final int rechfragment=0x7f03000a;
-        public static final int row_plus=0x7f03000b;
-        public static final int rownew=0x7f03000c;
-        public static final int search=0x7f03000d;
+        public static final int about=0x7f030000;
+        public static final int carte=0x7f030001;
+        public static final int cartefragment=0x7f030002;
+        public static final int detail=0x7f030003;
+        public static final int detailfragment=0x7f030004;
+        public static final int info_window_layout=0x7f030005;
+        public static final int liste=0x7f030006;
+        public static final int main=0x7f030007;
+        public static final int menu_list_item=0x7f030008;
+        public static final int noresult=0x7f030009;
+        public static final int recherche=0x7f03000a;
+        public static final int rechfragment=0x7f03000b;
+        public static final int row_plus=0x7f03000c;
+        public static final int rownew=0x7f03000d;
+        public static final int search=0x7f03000e;
     }
     public static final class menu {
         public static final int menu=0x7f080000;
     }
     public static final class string {
-        public static final int action_label_search=0x7f070027;
-        public static final int adresseLabel=0x7f07001c;
-        public static final int app_name=0x7f070016;
+        public static final int action_label_search=0x7f070029;
+        public static final int adresseLabel=0x7f07001e;
+        public static final int amende_plus_txt=0x7f070018;
+        public static final int amende_txt=0x7f070017;
+        public static final int app_credits=0x7f070035;
+        public static final int app_descrip=0x7f070034;
+        public static final int app_name=0x7f070015;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
          */
         public static final int auth_client_availability_notification_title=0x7f07000f;
@@ -279,7 +286,7 @@ containing a value of this type.
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
         public static final int auth_client_requested_by_msg=0x7f070011;
-        public static final int categorieLabel=0x7f07001f;
+        public static final int categorieLabel=0x7f070021;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -335,14 +342,16 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f07000e;
-        public static final int date_infractionLabel=0x7f07001e;
-        public static final int date_jugementLabel=0x7f070021;
-        public static final int descriptionLabel=0x7f070020;
-        public static final int detailTitre=0x7f070019;
-        public static final int dialog=0x7f070028;
-        public static final int dialog_cancel=0x7f07002a;
-        public static final int dialog_ok=0x7f070029;
-        public static final int hello=0x7f070015;
+        public static final int date_infractionLabel=0x7f070020;
+        public static final int date_jugementLabel=0x7f070023;
+        public static final int descriptionLabel=0x7f070022;
+        public static final int detailTitre=0x7f07001b;
+        public static final int dialog=0x7f07002a;
+        public static final int dialog_cancel=0x7f07002c;
+        public static final int dialog_ok=0x7f07002b;
+        public static final int hello=0x7f070036;
+        public static final int judgement=0x7f070019;
+        public static final int licence=0x7f070033;
         /**  Location client code resources (prefix with location_client) 
 
         Begin strings for location.reporting
@@ -354,21 +363,22 @@ containing a value of this type.
         public static final int location_client_ulr_inactive_age_under_13=0x7f070012;
         public static final int location_client_ulr_inactive_age_unknown=0x7f070013;
         public static final int location_client_ulr_inactive_unknown_restriction=0x7f070014;
-        public static final int maj_deja=0x7f07002e;
-        public static final int maj_donnees=0x7f07002d;
-        public static final int montantLabel=0x7f070022;
-        public static final int no_google_play=0x7f07002b;
-        public static final int no_internet=0x7f07002c;
-        public static final int no_result=0x7f07002f;
-        public static final int nomLabel=0x7f07001a;
-        public static final int proprietaireLabel=0x7f07001b;
-        public static final int searchhint=0x7f070018;
-        public static final int searchlabel=0x7f070017;
-        public static final int tab_alpha=0x7f070025;
-        public static final int tab_fortes=0x7f070026;
-        public static final int tab_plus=0x7f070024;
-        public static final int tab_recente=0x7f070023;
-        public static final int villeLabel=0x7f07001d;
+        public static final int maj_deja=0x7f070030;
+        public static final int maj_donnees=0x7f07002f;
+        public static final int montantLabel=0x7f070024;
+        public static final int no_google_play=0x7f07002d;
+        public static final int no_internet=0x7f07002e;
+        public static final int no_result=0x7f070031;
+        public static final int no_xml=0x7f070032;
+        public static final int nomLabel=0x7f07001c;
+        public static final int proprietaireLabel=0x7f07001d;
+        public static final int searchhint=0x7f07001a;
+        public static final int searchlabel=0x7f070016;
+        public static final int tab_alpha=0x7f070027;
+        public static final int tab_fortes=0x7f070028;
+        public static final int tab_plus=0x7f070026;
+        public static final int tab_recente=0x7f070025;
+        public static final int villeLabel=0x7f07001f;
     }
     public static final class xml {
         public static final int searchable=0x7f040000;

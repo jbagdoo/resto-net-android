@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, RestonetActivity!</string>
+   
     <string name="app_name">Restonet</string>
-     <string name="searchlabel">Recherche</string>
-      <string name="searchhint">Recherchez un resto</string>
-      <string name="detailTitre">Détails de l\'infraction</string>
-      <string name="nomLabel">Nom de l\'établissement:</string>
-      <string name="proprietaireLabel">Propriétaire:</string>
+     <string name="searchlabel">Find</string>
+       <string name="amende_txt">" FINE: "</string>
+      <string name="amende_plus_txt">" FINES"</string>
+       <string name="judgement">"Judgement date: " </string>   
+      <string name="searchhint">Find a business</string>
+      <string name="detailTitre">Infraction details</string>
+      <string name="nomLabel">Business name:</string>
+      <string name="proprietaireLabel">Owner:</string>
 	
-	  <string name="adresseLabel">Adresse:</string>
-	  <string name="villeLabel">Ville:</string>
-	  <string name="date_infractionLabel">Date de l\'infraction:</string>
-	  <string name="categorieLabel">Catégorie:</string>
-	  <string name="descriptionLabel">Description de L\'infraction:</string>
-	  <string name="date_jugementLabel">Date du jugement:</string>
-	  <string name="montantLabel">Amende:</string>
-	  <string name="tab_recente">Dernières amendes</string>
-	  <string name="tab_plus">Le plus d\'amendes</string>
-	  <string name="tab_alpha">Ordre alphabetique</string>
-	  <string name="tab_fortes">Les plus fortes amendes</string>
-	  <string name="action_label_search">Recherche</string>
-	  <string name="dialog">Téléchargement des données de la Ville de Montréal</string>
-	  <string name="dialog_ok">Continuer</string>
-	  <string name="dialog_cancel">Annuler</string>
-	   <string name="no_google_play">Google Play Service doit être installé pour afficher la carte</string>
-	   <string name="no_internet">Veuillez activer un accès à internet</string>
-	   <string name="maj_donnees">Mise à jour des données en cours</string>
-	    <string name="maj_deja">Une mise à jour est déjà en cours</string>
-	     <string name="no_result">Aucune infraction pour cet établissement!</string>
+	  <string name="adresseLabel">Address:</string>
+	  <string name="villeLabel">City:</string>
+	  <string name="date_infractionLabel">Offense date:</string>
+	  <string name="categorieLabel">Category:</string>
+	  <string name="descriptionLabel">Description:</string>
+	  <string name="date_jugementLabel">Judgement date:</string>
+	  <string name="montantLabel">Fine:</string>
+	  <string name="tab_recente">Latest fines</string>
+	  <string name="tab_plus">The most fines</string>
+	  <string name="tab_alpha">Alphabetical order</string>
+	  <string name="tab_fortes">The highest fines</string>
+	  <string name="action_label_search">Find</string>
+	  <string name="dialog">Download of the City of Montréal\'s data</string>
+	  <string name="dialog_ok">Continue</string>
+	  <string name="dialog_cancel">Cancel</string>
+	   <string name="no_google_play">Google Play Service must be installed to show map</string>
+	   <string name="no_internet">Please enable internet access</string>
+	   <string name="maj_donnees">Data update </string>
+	   <string name="maj_deja">An update is already running</string>
+	   <string name="no_result">No offenses found!</string>
+	    <string name="no_xml">City data is not available, try again later</string>
+	   <string name="licence">This product contains data licensed "as is" under the license agreement for the use of data from the City of Montreal. The granting of a license does not constitute an endorsement of the product by the City of Montreal.</string>
+	    <string name="app_descrip">Restonet is your tool for visualizing the official inspection data of food businesses which are under the responsibility of the Food Inspection Division of the City de Montreal.</string>
+	    <string name="app_credits">Android application created by Jean Bagdoo in 2013</string> 
+	     
 
 </resources>

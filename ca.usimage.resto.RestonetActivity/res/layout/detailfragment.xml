@@ -112,11 +112,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        
-        android:textSize="22sp" 
-        android:layout_below="@+id/TextViewCategorie"
-       android:layout_toRightOf="@+id/TextView02"
+        android:textSize="26sp" 
+        
+       android:layout_below="@+id/TextView02"
    
-         android:layout_alignParentRight="true" />
+       />
 
     <TextView
         android:id="@+id/TextViewJuge"
@@ -126,18 +126,18 @@
         android:text="@string/date_jugementLabel"
         android:textColor="@color/holoBlue"
         android:textSize="22sp" 
-         android:layout_below="@+id/TextView02"/>
+         android:layout_below="@+id/TextViewDate_Infraction"/>
 
     <TextView
         android:id="@+id/TextViewDate_Jugement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
  
-        android:textSize="22sp" 
-         android:layout_below="@+id/TextView02"
-         android:layout_toRightOf="@+id/TextViewJuge"
+        android:textSize="26sp" 
         
-             android:layout_alignParentRight="true" />
+         android:layout_below="@+id/TextViewJuge"
+        
+          />
 
     <TextView
         android:id="@+id/TextView01"
@@ -146,7 +146,7 @@
         
         android:text="@string/montantLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp"  android:layout_below="@+id/TextViewJuge"/>
+        android:textSize="22sp"  android:layout_below="@+id/TextViewDate_Jugement"/>
 
     <TextView
         android:id="@+id/TextViewMontant"
@@ -154,8 +154,8 @@
         android:layout_height="wrap_content"
      
     
-        android:textSize="22sp" 
-         android:layout_below="@+id/TextViewJuge"
+        android:textSize="26sp" 
+         android:layout_below="@+id/TextViewDate_Jugement"
          android:layout_toRightOf="@+id/TextView01"/>
 
     <TextView
@@ -164,8 +164,8 @@
         android:layout_height="wrap_content"
        
         android:text=" $"
-        android:textSize="22sp"
-         android:layout_below="@+id/TextViewJuge"
+        android:textSize="26sp"
+         android:layout_below="@+id/TextViewDate_Jugement"
         android:layout_toRightOf="@+id/TextViewMontant"
     />
 

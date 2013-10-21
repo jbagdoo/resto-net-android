@@ -1,10 +1,7 @@
 package ca.usimage.resto;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -17,29 +14,25 @@ import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.LoaderManager;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
-import android.content.ContentValues;
 import android.content.Context;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.location.Address;
-import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -54,8 +47,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	private static final int RESTO_HIGH_LOADER = 0x03;
 	private static final int RESTO_SEARCH_LOADER = 0x04;
 	private  static final int RESTO_PLUS_LOADER = 0x05;
-	private RestoDatabase mDB;
-	private SQLiteDatabase sqlDB;
 
 	private int tab_pos;
 	private String query = "";
@@ -275,6 +266,10 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		case R.id.itemMAP:
 			afficheCarteFragment(99999);
 			 return true;
+			 
+		case R.id.itemABOUT:
+			showAbout();
+			 return true;
 		}
 
 		return false;
@@ -478,14 +473,14 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		 
 			if (!isMyServiceRunning()) {
 			 
-			 mDB = new RestoDatabase(getBaseContext());
-			 
-			 sqlDB = mDB.getWritableDatabase();
-// before downloading city data, delete the existing sqlite database by forcing a call to onUpgrade by incrementing
-// the database's version
-			 
-			 int version = sqlDB.getVersion();
-			 mDB.onUpgrade(sqlDB, version, version+1);
+//			 mDB = new RestoDatabase(getBaseContext());
+//			 
+//			 sqlDB = mDB.getWritableDatabase();
+//// before downloading city data, delete the existing sqlite database by forcing a call to onUpgrade by incrementing
+//// the database's version
+//			 
+//			 int version = sqlDB.getVersion();
+//			 mDB.onUpgrade(sqlDB, version, version+1);
 			 startService(new Intent(this, MAJ.class));
 
 //		      GetCityData task = new GetCityData();
@@ -537,7 +532,23 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		}
 
 
-	
+	 protected void showAbout() {
+	        // Inflate the about message contents
+	        View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
+	 
+	        // When linking text, force to always use default color. This works
+	        // around a pressed color state bug.
+	        TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
+	        int defaultColor = textView.getTextColors().getDefaultColor();
+	        textView.setTextColor(defaultColor);
+	 
+	        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        builder.setIcon(R.drawable.restonet4);
+	        builder.setTitle(R.string.app_name);
+	        builder.setView(messageView);
+	        builder.create();
+	        builder.show();
+	    }
 	
 
  }

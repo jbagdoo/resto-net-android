@@ -23,7 +23,7 @@ android:layout_alignParentTop="true"
     android:id="@+id/amende"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text=" AMENDE: "
+    android:text="@string/amende_txt"
     android:layout_toLeftOf="@+id/Montant"
     android:textColor="#000000" />
 
@@ -55,7 +55,7 @@ android:layout_alignParentTop="true"
   android:id="@+id/DateLabel"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="jugement rendu le "
+    android:text="@string/judgement"
     android:layout_below="@+id/Etablissement"
      android:layout_alignParentBottom="true"
     android:textColor="#000000" />
