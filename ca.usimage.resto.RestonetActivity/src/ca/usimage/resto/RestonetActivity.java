@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.Marker;
 
@@ -506,16 +507,16 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	public void onInfoWindowClick(Marker arg0) {
 		// when marker infowindow is clicked, show resto details
 		int rowid = Integer.parseInt(arg0.getSnippet());
-		afficheDetailFragment(rowid, false);
-		
-		
-		
+		afficheDetailFragment(rowid, false);		
 	}
+	
+
+
 
 	@Override
 	public void onItemMapSelected(long rowId) {
 		// displays map when resto map button is clicked with resto  at center
-		
+		Log.e("restonetActivity", "onItemMapSelected");
 		afficheCarteFragment(rowId);
 		
 		

@@ -9,14 +9,14 @@
        <string name="judgement">"Judgement date: " </string>   
       <string name="searchhint">Find a business</string>
       <string name="detailTitre">Infraction details</string>
-      <string name="nomLabel">Business name:</string>
+      <string name="nomLabel">Establishment name:</string>
       <string name="proprietaireLabel">Owner:</string>
 	
 	  <string name="adresseLabel">Address:</string>
 	  <string name="villeLabel">City:</string>
-	  <string name="date_infractionLabel">Offense date:</string>
+	  <string name="date_infractionLabel">Infraction date:</string>
 	  <string name="categorieLabel">Category:</string>
-	  <string name="descriptionLabel">Description:</string>
+	  <string name="descriptionLabel">Infraction description:</string>
 	  <string name="date_jugementLabel">Judgement date:</string>
 	  <string name="montantLabel">Fine:</string>
 	  <string name="tab_recente">Latest fines</string>
@@ -24,17 +24,17 @@
 	  <string name="tab_alpha">Alphabetical order</string>
 	  <string name="tab_fortes">The highest fines</string>
 	  <string name="action_label_search">Find</string>
-	  <string name="dialog">Download of the City of Montréal\'s data</string>
+	  <string name="dialog">Get the lastest update of the City of Montréal\'s data</string>
 	  <string name="dialog_ok">Continue</string>
 	  <string name="dialog_cancel">Cancel</string>
 	   <string name="no_google_play">Google Play Service must be installed to show map</string>
 	   <string name="no_internet">Please enable internet access</string>
-	   <string name="maj_donnees">Data update </string>
+	   <string name="maj_donnees">Data update in progress</string>
 	   <string name="maj_deja">An update is already running</string>
-	   <string name="no_result">No offenses found!</string>
+	   <string name="no_result">No infractions found for that establishment!</string>
 	    <string name="no_xml">City data is not available, try again later</string>
 	   <string name="licence">This product contains data licensed "as is" under the license agreement for the use of data from the City of Montreal. The granting of a license does not constitute an endorsement of the product by the City of Montreal.</string>
-	    <string name="app_descrip">Restonet is your tool for visualizing the official inspection data of food businesses which are under the responsibility of the Food Inspection Division of the City de Montreal.</string>
+	    <string name="app_descrip">Restonet is your tool for visualizing the official inspection data of food establishments which are under the responsibility of the Food Inspection Division of the City of Montreal.</string>
 	    <string name="app_credits">Android application created by Jean Bagdoo in 2013</string> 
 	     
 

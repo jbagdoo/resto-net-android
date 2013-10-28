@@ -16,6 +16,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -28,13 +30,12 @@ public class CarteFragment extends MapFragment implements LoaderManager.LoaderCa
 	 HashMap<String, Integer> extraMarkerInfo = new HashMap<String, Integer>();
 	 
 	 OnInfoWindowClickListener onInfoWindowClickListener;
+	 OnMarkerClickListener onMarkerClickListener;
 	 GoogleMap googleMap;
+	 public GoogleMapOptions gmo;
 	 long ROWID;
 	 
-	  // Container Activity must implement this interface
-	    public interface OnMarkerClickListener {
-	        public void onMarkerClicked(int rowid);
-	    }
+	
 
 	 
 	
@@ -52,24 +53,50 @@ public class CarteFragment extends MapFragment implements LoaderManager.LoaderCa
 				throw new ClassCastException(activity.toString()
 						+ " doit implementer  OnInfoWindowClickListener");
 			}
+			try {
+				 onMarkerClickListener = ( OnMarkerClickListener) activity;
+			
+			} catch (ClassCastException e) {
+				throw new ClassCastException(activity.toString()
+						+ " doit implementer  OnMarkerClickListener");
+			}
 		}
 		
-
+	 @Override
+     public void onSaveInstanceState(Bundle outState) {
+		  super.onSaveInstanceState(outState);
+             GoogleMapOptions gmo = new GoogleMapOptions().camera(googleMap.getCameraPosition()).mapType(googleMap.getMapType());
+             outState.putParcelable("options", gmo);
+           
+     }
 	
 	
 	@Override
 public void onActivityCreated(Bundle savedInstanceState) {
 
 		super.onActivityCreated(savedInstanceState);
+		googleMap = this.getMap();
+		googleMap.setOnMarkerClickListener(onMarkerClickListener);
+		
+     
+       
+     
+     
+  
 	Log.e("Carte"," On Activity Created");	
 		Bundle arguments = new Bundle();
 		   
 	    arguments = this.getArguments();
 	  
-	   
+		   if(savedInstanceState != null){  
+		        
+	            gmo = savedInstanceState.getParcelable("options");
+	           
+	             }
+
 		ROWID = arguments.getLong("rowid");
 	   
-		googleMap = this.getMap();
+		
 		// default map location to show overall view of Montreal
 		LAT = 45.500;
         LNG = -73.600;
@@ -80,7 +107,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 		googleMap.setOnInfoWindowClickListener(onInfoWindowClickListener);
 		googleMap.setInfoWindowAdapter(new InfoWindowAdapter() {
 			
-			// this is needed to make a infoWindow that does not show the snippet, since the snippet holds the rowid used for details
+			// this is needed to make an infoWindow that does not show the snippet, since the snippet holds the rowid used for details
 
 		
 		    private final View v = getActivity().getLayoutInflater().inflate(R.layout.info_window_layout, null);
@@ -116,8 +143,6 @@ public void onActivityCreated(Bundle savedInstanceState) {
 			
 		}	);
 		 
-		   
-		    
 
 
 	    
@@ -126,7 +151,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 public void onResume()
 {
     super.onResume();
-    Log.e("Carte"," On resume");
+  
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
   
     LoaderManager lm = getLoaderManager();
@@ -139,7 +164,7 @@ public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 	  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_LAT, RestoDatabase.COL_LONG, RestoDatabase.COL_ETAB };
   switch (id){
   	case MAP_LOADER:
-  		Log.e("onCreateLoader", "map loader");
+ 
   	    return new CursorLoader(getActivity(),
   	            RestoProvider.CONTENT_URI, projection, null, null, null);
 
@@ -238,6 +263,11 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
 
     
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoom));
+        if (gmo != null) {
+        	//  get postion and zoom from savedinstance stored in gmo at onactivitycreated
+        	Log.e("loadfished","gmo not null");
+        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(gmo.getCamera()));
+        }
     }
 	
 }
@@ -247,9 +277,6 @@ public void onLoaderReset(Loader<Cursor> arg0) {
 	// TODO Auto-generated method stub
 	
 }
-
-
-
 
 
 

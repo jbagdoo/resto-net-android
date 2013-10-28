@@ -87,14 +87,7 @@ public void onResume()
 
 	}
 	
-//	@Override
-//	public View onCreateView(LayoutInflater inflater,
-//	        ViewGroup container, Bundle savedInstanceState) {
-//	
-//	    ImageView image = (ImageView) container.findViewById(R.id.noresult);
-//		return image;
-//	    
-//	}
+
 @Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
      if ( cursor.getCount() >0) {
