@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/noresult"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+  
+ >
+ 
+      <ImageView 
+        android:id="@+id/Chef"
+        android:layout_width="210sp" 
+	    android:layout_height="210sp"
+	    android:src="@drawable/chef"
+	    android:layout_centerInParent="true"
+	     
+ 
+        />
+
+      <TextView
+          android:id="@+id/no_result_txt"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/no_result"
+          android:textColor="@color/holoBlue"
+          android:textSize="22sp" 
+          android:layout_alignParentBottom="true"
+          android:layout_marginBottom="40dp"
+           android:gravity="center"
+          />
+ 
+</RelativeLayout>

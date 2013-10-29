@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, RestonetActivity!</string>
+    <string name="app_name">Restonet</string>
+          <string name="amende_txt">" AMENDE: "</string>
+               <string name="amende_plus_txt">" AMENDES"</string>
+      <string name="judgement">"Jugement rendu le "</string>          
+     <string name="searchlabel">Recherche</string>
+      <string name="searchhint">Recherchez un resto</string>
+      <string name="detailTitre">Détails de l\'infraction</string>
+      <string name="nomLabel">Nom de l\'établissement:</string>
+      <string name="proprietaireLabel">Propriétaire:</string>
+	
+	  <string name="adresseLabel">Adresse:</string>
+	  <string name="villeLabel">Ville:</string>
+	  <string name="date_infractionLabel">Date de l\'infraction:</string>
+	  <string name="categorieLabel">Catégorie:</string>
+	  <string name="descriptionLabel">Description de L\'infraction:</string>
+	  <string name="date_jugementLabel">Date du jugement:</string>
+	  <string name="montantLabel">Amende:</string>
+	  <string name="tab_recente">Dernières amendes</string>
+	  <string name="tab_plus">Le plus d\'amendes</string>
+	  <string name="tab_alpha">Ordre alphabetique</string>
+	  <string name="tab_fortes">Les plus fortes amendes</string>
+	  <string name="action_label_search">Recherche</string>
+	  <string name="dialog">Téléchargez les dernières mises à jours des données de la Ville de Montréal</string>
+	  <string name="dialog_ok">Continuer</string>
+	  <string name="dialog_cancel">Annuler</string>
+	   <string name="no_google_play">Google Play Service doit être installé pour afficher la carte</string>
+	   <string name="no_internet">Veuillez activer un accès à internet</string>
+	   <string name="maj_donnees">Mise à jour des données en cours</string>
+	   <string name="maj_deja">Une mise à jour est déjà en cours</string>
+	   <string name="no_result">Aucune infraction pour cet établissement!</string>
+	   	    <string name="no_xml">Les données de la ville ne sont pas disponibles, ré-essayez plus tard</string>
+	   <string name="licence">Ce produit contient des données accordées sous licence « telles quelles » aux termes de l’accord de licence d’utilisation des données de la Ville de Montréal. L’octroi de la licence ne constitue pas une approbation du produit par la Ville de Montréal.</string>
+	    <string name="app_descrip">Restonet est votre outil pour visualiser les données officielles de salubrité des établissements alimentaires qui sont sous la responsabilité de la Division de l’inspection des aliments de la Ville de Montréal.</string>
+	    <string name="app_credits">Application Android réalisée par Jean Bagdoo en 2013</string> 
+	     
+
+</resources>
