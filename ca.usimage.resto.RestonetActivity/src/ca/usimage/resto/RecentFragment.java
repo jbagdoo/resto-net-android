@@ -36,7 +36,7 @@ public void onResume()
 {
     super.onResume();
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
-  Log.e("Recent","onResume");
+
     LoaderManager lm = getLoaderManager();
 
     lm.initLoader(RESTO_RECENT_LOADER, null, this);
@@ -45,10 +45,10 @@ public void onResume()
 	
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_PROPRIO, RestoDatabase.COL_ETAB, RestoDatabase.COL_DATE_JUGE, RestoDatabase.COL_MONTANT };
+		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_PROPRIO, RestoDatabase.COL_ETAB, RestoDatabase.COL_ADR, RestoDatabase.COL_DATE_JUGE, RestoDatabase.COL_MONTANT };
 	    switch (id){
 	    	case RESTO_RECENT_LOADER:
-	    		Log.e("onCreateLoader", "recent loader");
+
         	    return new CursorLoader(getActivity(),
 	    	            RestoProvider.CONTENT_URI, projection, null, null, "date_jugement DESC");
 	default: return null;

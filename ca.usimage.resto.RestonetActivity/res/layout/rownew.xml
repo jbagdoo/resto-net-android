@@ -50,23 +50,32 @@ android:layout_alignParentTop="true"
      android:layout_below="@+id/dollar"
    
      />
-
     <TextView
+	android:id="@+id/Adresse" 
+    android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"
+	android:textColor="#000000"
+	android:layout_below="@+id/Etablissement"
+	/>
+   <TextView
   android:id="@+id/DateLabel"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/judgement"
-    android:layout_below="@+id/Etablissement"
-     android:layout_alignParentBottom="true"
+    android:layout_below="@+id/Adresse"
+	android:layout_alignParentBottom="true"
     android:textColor="#000000" />
+
     <TextView
 	android:id="@+id/Date" 
 	android:layout_width="wrap_content" 
 	android:layout_height="wrap_content"
 	android:textColor="#000000"
-      android:layout_toRightOf="@+id/DateLabel"
-      android:layout_alignParentBottom="true"
+    android:layout_toRightOf="@+id/DateLabel"
+    android:layout_alignParentBottom="true"
+     
 	/>
+   
     
          <ImageView 
         android:id="@+id/Exploitant" 

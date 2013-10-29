@@ -146,8 +146,8 @@ public class ListeFragment extends ListFragment implements LoaderManager.LoaderC
 		
 	 		
 		
-	    String[] uiBindFrom = { RestoDatabase.COL_ETAB,RestoDatabase.COL_MONTANT, RestoDatabase.COL_DATE_JUGE };
-	    int[] uiBindTo = { R.id.Etablissement, R.id.Montant, R.id.Date};
+	    String[] uiBindFrom = { RestoDatabase.COL_ETAB,RestoDatabase.COL_MONTANT, RestoDatabase.COL_ADR, RestoDatabase.COL_DATE_JUGE };
+	    int[] uiBindTo = { R.id.Etablissement, R.id.Montant,R.id.Adresse, R.id.Date};
 	    adapter = new MyCursorAdapter(
 	            getActivity(), R.layout.rownew,
 	            null, uiBindFrom, uiBindTo,

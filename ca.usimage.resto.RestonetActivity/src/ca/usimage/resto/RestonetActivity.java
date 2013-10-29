@@ -6,7 +6,6 @@ import java.util.HashMap;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.Marker;
 
@@ -24,11 +23,9 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,13 +39,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	
 	 HashMap<String, Integer> extraMarkerInfo = new HashMap<String, Integer>();
     private boolean useLogo = false;
-    private boolean showHomeUp = true;
-    private static final int RESTO_RECENT_LOADER = 0x01;
-	private static final int RESTO_ALPHA_LOADER = 0x02;
-	private static final int RESTO_HIGH_LOADER = 0x03;
-	private static final int RESTO_SEARCH_LOADER = 0x04;
-	private  static final int RESTO_PLUS_LOADER = 0x05;
-
+ 
 	private int tab_pos;
 	private String query = "";
 			
@@ -390,7 +381,6 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	 	  
          int position = tab.getPosition();
  
-         Log.e("tab selected pos="," "+position);
       switch (position) {
   	case 0:
   	 
@@ -516,7 +506,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	@Override
 	public void onItemMapSelected(long rowId) {
 		// displays map when resto map button is clicked with resto  at center
-		Log.e("restonetActivity", "onItemMapSelected");
+
 		afficheCarteFragment(rowId);
 		
 		

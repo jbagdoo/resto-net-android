@@ -48,7 +48,7 @@ public void onResume()
 {
     super.onResume();
     // call initLoader on Resume avoids a bug which calls onLoadFinished twice
-    Log.e("Plus","onResume");
+
     LoaderManager lm = getLoaderManager();
 
     lm.initLoader(RESTO_PLUS_LOADER, null, this);
@@ -62,8 +62,7 @@ public void onResume()
 	
 	    		
 	    	case RESTO_PLUS_LOADER:
-	    		Log.e("onCreateLoader", "plus loader");
-	    		
+
 	    		return new CursorLoader(getActivity(),
 	    	            RestoProvider.CONTENT_URI_GROUPBY_PLUS, projection, null, null, "count(*) DESC");
 	    		//  select etablissement, adresse, count(*)  from resto group by etablissement, adresse order by count(*) desc;

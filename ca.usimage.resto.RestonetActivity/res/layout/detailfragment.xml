@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
       
-        android:textSize="26sp"
+        android:textSize="24sp"
          android:layout_below="@+id/TextView12" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:id="@+id/TextViewProprietaire"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="26sp" 
+        android:textSize="24sp" 
          android:layout_below="@+id/TextView10"/>
 
     <TextView
@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        
-        android:textSize="26sp"
+        android:textSize="24sp"
          android:layout_below="@+id/TextView08" />
 
   
@@ -75,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        
-        android:textSize="26sp" 
+        android:textSize="24sp" 
          android:layout_below="@+id/TextViewAdresse"/>
 
     <TextView
@@ -93,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
    
-        android:textSize="26sp"
+        android:textSize="24sp"
          android:layout_below="@+id/TextView04"
          />
 
@@ -112,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
        
-        android:textSize="26sp" 
+        android:textSize="24sp" 
         
        android:layout_below="@+id/TextView02"
    
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
  
-        android:textSize="26sp" 
+        android:textSize="24sp" 
         
          android:layout_below="@+id/TextViewJuge"
         
@@ -146,15 +146,14 @@
         
         android:text="@string/montantLabel"
         android:textColor="@color/holoBlue"
-        android:textSize="22sp"  android:layout_below="@+id/TextViewDate_Jugement"/>
+        android:textSize="22sp"  android:layout_below="@+id/TextViewDate_Jugement"
+         android:paddingRight="10dp"/>
 
     <TextView
         android:id="@+id/TextViewMontant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-     
-    
-        android:textSize="26sp" 
+        android:textSize="22sp" 
          android:layout_below="@+id/TextViewDate_Jugement"
          android:layout_toRightOf="@+id/TextView01"/>
 
@@ -164,7 +163,7 @@
         android:layout_height="wrap_content"
        
         android:text=" $"
-        android:textSize="26sp"
+        android:textSize="22sp"
          android:layout_below="@+id/TextViewDate_Jugement"
         android:layout_toRightOf="@+id/TextViewMontant"
     />
@@ -185,7 +184,7 @@
     android:layout_width="match_parent"
     android:id="@+id/TextViewDescription"
     android:layout_height="wrap_content"
-    android:textSize="26sp"
+    android:textSize="24sp"
    android:layout_alignParentBottom="true"
    android:layout_below="@+id/TextView03"
     />

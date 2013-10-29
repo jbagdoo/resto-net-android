@@ -29,18 +29,18 @@ public void onResume()
     LoaderManager lm = getLoaderManager();
 
     lm.initLoader(RESTO_ALPHA_LOADER, null, this);
-    Log.e("AlphaListFragment","onResume");
+  
 }
 	
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_PROPRIO,RestoDatabase.COL_ETAB, RestoDatabase.COL_DATE_JUGE, RestoDatabase.COL_MONTANT };
+		  String[] projection = { RestoDatabase.ID, RestoDatabase.COL_PROPRIO,RestoDatabase.COL_ETAB, RestoDatabase.COL_ADR, RestoDatabase.COL_DATE_JUGE, RestoDatabase.COL_MONTANT };
 
 	
 	    	    switch (id){
 		
 		    		
 		    	case RESTO_ALPHA_LOADER:
-		    		Log.e("onCreateLoader", "alpha loader");
+		    	
 		    		return new CursorLoader(getActivity(),
 		    	            RestoProvider.CONTENT_URI_GROUPBY, projection, null, null,"etablissement ASC");
 	
