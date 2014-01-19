@@ -45,7 +45,6 @@ public class CarteFragment extends MapFragment implements LoaderManager.LoaderCa
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		Log.e("Carte"," On Attach");
 			try {
 				 onInfoWindowClickListener = ( OnInfoWindowClickListener) activity;
 			
@@ -77,13 +76,7 @@ public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		googleMap = this.getMap();
 		googleMap.setOnMarkerClickListener(onMarkerClickListener);
-		
-     
-       
-     
-     
-  
-	Log.e("Carte"," On Activity Created");	
+
 		Bundle arguments = new Bundle();
 		   
 	    arguments = this.getArguments();
@@ -119,13 +112,9 @@ public void onActivityCreated(Bundle savedInstanceState) {
 			}
 			@Override
 			public View getInfoContents(Marker arg0) {
-				// TODO Auto-generated method stub
-				
-				
-				
+
 			     // Getting view from the layout file info_window_layout
-            
- 
+
                 String nom = arg0.getTitle();
  
                 // Getting reference to the TextView to set latitude
@@ -157,7 +146,7 @@ public void onResume()
     LoaderManager lm = getLoaderManager();
 
     lm.initLoader(MAP_LOADER, null, this);
-    Log.e("CarteFragment","onResume");
+
 }
 
 public Loader<Cursor> onCreateLoader(int id, Bundle args) {
@@ -265,7 +254,6 @@ public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(zoom));
         if (gmo != null) {
         	//  get postion and zoom from savedinstance stored in gmo at onactivitycreated
-        	Log.e("loadfished","gmo not null");
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(gmo.getCamera()));
         }
     }

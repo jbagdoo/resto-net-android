@@ -40,7 +40,6 @@ public void onResume()
 		
 		    		
 		    	case RESTO_HIGH_LOADER:
-		    		Log.e("onCreateLoader", "high loader");
 		    		return new CursorLoader(getActivity(),
 		    	            RestoProvider.CONTENT_URI_GROUPBY, projection, null, null,"montant DESC");
 //		    		sqlite> select etablissement, adresse, sum(montant)  from resto group by etablissement, adresse order by sum(montant) desc;

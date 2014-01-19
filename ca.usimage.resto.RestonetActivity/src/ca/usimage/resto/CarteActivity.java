@@ -31,10 +31,7 @@ public class CarteActivity extends Activity  implements OnInfoWindowClickListene
 				
 				 rowId = intentRecu.getLongExtra("rowid", 0);
 				
-	     
-
-		          //add a fragment
-		
+	
 		         Bundle arguments = new Bundle();
 	        	    arguments.putLong("rowid", rowId);
 	        	  

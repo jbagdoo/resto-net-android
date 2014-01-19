@@ -234,10 +234,9 @@ containing a value of this type.
         public static final int detailFragment=0x7f060008;
         public static final int dollar=0x7f060018;
         public static final int hybrid=0x7f060004;
-        public static final int itemABOUT=0x7f06002f;
-        public static final int itemMAJ=0x7f06002c;
-        public static final int itemMAP=0x7f06002e;
-        public static final int itemRECH=0x7f06002d;
+        public static final int itemABOUT=0x7f06002e;
+        public static final int itemMAP=0x7f06002d;
+        public static final int itemRECH=0x7f06002c;
         public static final int itemTextView=0x7f06001d;
         public static final int listeFragment=0x7f06001c;
         public static final int no_result_txt=0x7f060020;
