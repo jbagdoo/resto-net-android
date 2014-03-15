@@ -2,7 +2,7 @@
 <resources>
 
    
-    <string name="app_name">Restonet</string>
+    <string translatable="false"  name="app_name">Restonet</string>
      <string name="searchlabel">Find</string>
        <string name="amende_txt">" FINE: "</string>
       <string name="amende_plus_txt">" FINES"</string>
@@ -36,6 +36,6 @@
 	   <string name="licence">This product contains data licensed "as is" under the license agreement for the use of data from the City of Montreal. The granting of a license does not constitute an endorsement of the product by the City of Montreal.</string>
 	    <string name="app_descrip">Restonet is your tool for visualizing the official inspection data of food establishments which are under the responsibility of the Food Inspection Division of the City of Montreal.</string>
 	    <string name="app_credits">Android application created by Jean Bagdoo in 2013</string> 
-	     
+	      <string name="no_geocode">Geocoder failed to update map, restart device and try again</string> 
 
 </resources>

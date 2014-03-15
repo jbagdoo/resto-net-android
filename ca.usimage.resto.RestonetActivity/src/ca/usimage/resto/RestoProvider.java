@@ -46,15 +46,15 @@ public class RestoProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mDB = new RestoDatabase(getContext());
-        try {
+//        try {
         	 
-        	mDB.createDataBase();
+        	mDB.createDatabase();
  
- 	} catch (IOException ioe) {
- 
- 		throw new Error("Unable to create database");
- 
- 	}
+//	} catch (IOException ioe) {
+// 
+// 		throw new Error("Unable to create database");
+// 
+// 	}
  
  	try {
  

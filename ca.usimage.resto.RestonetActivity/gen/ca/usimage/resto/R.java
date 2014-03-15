@@ -234,9 +234,10 @@ containing a value of this type.
         public static final int detailFragment=0x7f060008;
         public static final int dollar=0x7f060018;
         public static final int hybrid=0x7f060004;
-        public static final int itemABOUT=0x7f06002e;
-        public static final int itemMAP=0x7f06002d;
-        public static final int itemRECH=0x7f06002c;
+        public static final int itemABOUT=0x7f06002f;
+        public static final int itemMAJ=0x7f06002c;
+        public static final int itemMAP=0x7f06002e;
+        public static final int itemRECH=0x7f06002d;
         public static final int itemTextView=0x7f06001d;
         public static final int listeFragment=0x7f06001c;
         public static final int no_result_txt=0x7f060020;
@@ -348,7 +349,6 @@ containing a value of this type.
         public static final int dialog=0x7f07002a;
         public static final int dialog_cancel=0x7f07002c;
         public static final int dialog_ok=0x7f07002b;
-        public static final int hello=0x7f070036;
         public static final int judgement=0x7f070019;
         public static final int licence=0x7f070033;
         /**  Location client code resources (prefix with location_client) 
@@ -365,6 +365,7 @@ containing a value of this type.
         public static final int maj_deja=0x7f070030;
         public static final int maj_donnees=0x7f07002f;
         public static final int montantLabel=0x7f070024;
+        public static final int no_geocode=0x7f070036;
         public static final int no_google_play=0x7f07002d;
         public static final int no_internet=0x7f07002e;
         public static final int no_result=0x7f070031;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, RestonetActivity!</string>
+   
     <string name="app_name">Restonet</string>
           <string name="amende_txt">" AMENDE: "</string>
                <string name="amende_plus_txt">" AMENDES"</string>
@@ -36,6 +36,6 @@
 	   <string name="licence">Ce produit contient des données accordées sous licence « telles quelles » aux termes de l’accord de licence d’utilisation des données de la Ville de Montréal. L’octroi de la licence ne constitue pas une approbation du produit par la Ville de Montréal.</string>
 	    <string name="app_descrip">Restonet est votre outil pour visualiser les données officielles de salubrité des établissements alimentaires qui sont sous la responsabilité de la Division de l’inspection des aliments de la Ville de Montréal.</string>
 	    <string name="app_credits">Application Android réalisée par Jean Bagdoo en 2013</string> 
-	     
+	     <string name="no_geocode">La mise à jour de la carte a échoué, redémarrez l\'appareil et ré-essayez</string> 
 
 </resources>

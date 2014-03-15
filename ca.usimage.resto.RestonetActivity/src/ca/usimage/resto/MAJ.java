@@ -30,6 +30,7 @@ public class MAJ extends Service{
 	private Handler handler;
 
 	
+	
 	 @Override
 	  public int onStartCommand(Intent intent, int flags, int startId) {
 		 handler = new Handler();
@@ -58,6 +59,7 @@ public class MAJ extends Service{
 		@Override
 		protected String doInBackground(String... urls) {
 			// get data from web xml file and store in entries list
+			boolean geocoderOK=true;
 			NotificationManager mNotifyManager =
 			        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 			Notification.Builder mBuilder = new Notification.Builder(getApplicationContext());
@@ -75,9 +77,11 @@ public class MAJ extends Service{
 				 sqlDB = mDB.getWritableDatabase();
 	// before downloading city data, delete the existing sqlite database by forcing a call to onUpgrade by incrementing
 	// the database's version
-				 
-				 int version = sqlDB.getVersion();
-				 mDB.onUpgrade(sqlDB, version, version+1);
+	   			    sqlDB.execSQL("DROP TABLE IF EXISTS resto");
+			        mDB.onCreate(sqlDB);
+
+//				 int version = sqlDB.getVersion();
+//				 mDB.onUpgrade(sqlDB, version, version+1);
 			
 			
 			// prepare to store data into sqlite database
@@ -135,6 +139,7 @@ public class MAJ extends Service{
 	   	    	     			    	   
 	    	     			        	 }
 		    	     			        catch(IOException e) {
+		    	     			        	geocoderOK=false;
 		    	     			         Log.e("Geocoder IOException i="+i+" "+msg.getEtablissement(), e.getMessage()); 
 		    	     			         
 		    	     			        }
@@ -143,6 +148,7 @@ public class MAJ extends Service{
 	    	     			   //	    	     			       }
 	    	     			        }
 	    	     			        catch(IOException e) {
+	    	     			        	geocoderOK=false;
 	    	     			         Log.e("Gecoder IOException i="+i+" "+msg.getEtablissement(), e.getMessage()); 
 	    	     			         
 	    	     			        }
@@ -171,7 +177,15 @@ public class MAJ extends Service{
 		    	}
 		    	  mNotifyManager.cancel(0);
  		
-			
+			    if (!geocoderOK){
+					
+					handler.post(new Runnable() {
+					    public void run() {
+					    	Toast toast = Toast.makeText(getApplicationContext(), R.string.no_geocode, Toast.LENGTH_LONG);
+					        toast.show();
+					    }
+					 });
+			    }
 		} else {
 			
 			handler.post(new Runnable() {
