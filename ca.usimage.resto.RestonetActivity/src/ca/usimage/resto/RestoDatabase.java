@@ -20,8 +20,7 @@ public class RestoDatabase  extends SQLiteOpenHelper {
     private static final String DEBUG_TAG = "RestoDatabase";
     private static final int DB_VERSION = 2;
     
-    
-    
+       
     private static final String DB_NAME = "Resto";
     public static final String TABLE_RESTO = "resto";
     public static final String ID = "_id";
