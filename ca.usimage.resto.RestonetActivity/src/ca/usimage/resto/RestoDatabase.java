@@ -18,7 +18,7 @@ import android.util.Log;
 public class RestoDatabase  extends SQLiteOpenHelper {
 	 private static String DB_PATH = "/data/data/ca.usimage.resto/databases/";
     private static final String DEBUG_TAG = "RestoDatabase";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 3;
     
        
     private static final String DB_NAME = "Resto";
@@ -49,6 +49,7 @@ public class RestoDatabase  extends SQLiteOpenHelper {
             SharedPreferences prefs = PreferenceManager
                     .getDefaultSharedPreferences(myContext);
             int dbVersion = prefs.getInt(SP_KEY_DB_VER, 1);
+            Log.e("DB init", " dbversion= "+dbVersion);
             if (DB_VERSION != dbVersion) {
                 File dbFile = myContext.getDatabasePath(DB_NAME);
                 if (!dbFile.delete()) {
@@ -77,7 +78,7 @@ public class RestoDatabase  extends SQLiteOpenHelper {
     public void createDatabase() {
         String parentPath = myContext.getDatabasePath(DB_NAME).getParent();
         String path = myContext.getDatabasePath(DB_NAME).getPath();
-
+        Log.w("RestoDatabase", "createDatabase");
         File file = new File(parentPath);
         if (!file.exists()) {
             if (!file.mkdir()) {
@@ -103,7 +104,7 @@ public class RestoDatabase  extends SQLiteOpenHelper {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putInt(SP_KEY_DB_VER, DB_VERSION);
             editor.commit();
-        } catch (IOException e) {
+        } catch (IOException e) { 
             e.printStackTrace();
         } finally {
             if (is != null) {

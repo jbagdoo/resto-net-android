@@ -274,8 +274,8 @@ containing a value of this type.
         public static final int adresseLabel=0x7f07001e;
         public static final int amende_plus_txt=0x7f070018;
         public static final int amende_txt=0x7f070017;
-        public static final int app_credits=0x7f070035;
-        public static final int app_descrip=0x7f070034;
+        public static final int app_credits=0x7f070036;
+        public static final int app_descrip=0x7f070035;
         public static final int app_name=0x7f070015;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
          */
@@ -350,7 +350,7 @@ containing a value of this type.
         public static final int dialog_cancel=0x7f07002c;
         public static final int dialog_ok=0x7f07002b;
         public static final int judgement=0x7f070019;
-        public static final int licence=0x7f070033;
+        public static final int licence=0x7f070034;
         /**  Location client code resources (prefix with location_client) 
 
         Begin strings for location.reporting
@@ -365,11 +365,12 @@ containing a value of this type.
         public static final int maj_deja=0x7f070030;
         public static final int maj_donnees=0x7f07002f;
         public static final int montantLabel=0x7f070024;
-        public static final int no_geocode=0x7f070036;
+        public static final int no_geocode=0x7f070037;
         public static final int no_google_play=0x7f07002d;
         public static final int no_internet=0x7f07002e;
-        public static final int no_result=0x7f070031;
-        public static final int no_xml=0x7f070032;
+        public static final int no_map=0x7f070031;
+        public static final int no_result=0x7f070032;
+        public static final int no_xml=0x7f070033;
         public static final int nomLabel=0x7f07001c;
         public static final int proprietaireLabel=0x7f07001d;
         public static final int searchhint=0x7f07001a;

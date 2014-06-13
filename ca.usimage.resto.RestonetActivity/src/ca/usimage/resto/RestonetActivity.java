@@ -166,7 +166,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 	
 	
 	public  void afficheDetailFragment (long rowId, Boolean changeTab){
-	
+
 //	
 //		//detecter si fragment Detailfragment se trouve dans cette activité		
 		  FragmentManager fragmentManager = getFragmentManager();
@@ -195,13 +195,19 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 
 	
 		}					
-
+	 
 	}	
 	
 	public void afficheCarteFragment (long rowId){
 		
     int statusCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-	    
+	if (isMyServiceRunning()) {
+		// don't allow map to be shown while MAJ is running
+		
+		   Toast toast = Toast.makeText(getApplicationContext(), R.string.no_map, Toast.LENGTH_LONG);
+		   toast.show();
+	   }	else
+	   {    
     if (statusCode == ConnectionResult.SUCCESS) {	
 
 			  FragmentManager fragmentManager = getFragmentManager();
@@ -231,6 +237,7 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
           	Toast toast = Toast.makeText(getApplicationContext(), R.string.no_google_play, Toast.LENGTH_LONG);
 	   		       toast.show();
       }
+	  }
     }	
 	
 

@@ -31,6 +31,7 @@
 	   <string name="no_internet">Veuillez activer un accès à internet</string>
 	   <string name="maj_donnees">Mise à jour des données en cours</string>
 	   <string name="maj_deja">Une mise à jour est déjà en cours</string>
+	   <string name="no_map">Mise à jour en cours </string>
 	   <string name="no_result">Aucune infraction pour cet établissement!</string>
 	   	    <string name="no_xml">Les données de la ville ne sont pas disponibles, ré-essayez plus tard</string>
 	   <string name="licence">Ce produit contient des données accordées sous licence « telles quelles » aux termes de l’accord de licence d’utilisation des données de la Ville de Montréal. L’octroi de la licence ne constitue pas une approbation du produit par la Ville de Montréal.</string>

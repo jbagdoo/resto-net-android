@@ -31,6 +31,7 @@
 	   <string name="no_internet">Please enable internet access</string>
 	   <string name="maj_donnees">Data update in progress</string>
 	   <string name="maj_deja">An update is already running</string>
+	   <string name="no_map">Update running, please wait </string>
 	   <string name="no_result">No infractions found for that establishment!</string>
 	    <string name="no_xml">City data is not available, try again later</string>
 	   <string name="licence">This product contains data licensed "as is" under the license agreement for the use of data from the City of Montreal. The granting of a license does not constitute an endorsement of the product by the City of Montreal.</string>

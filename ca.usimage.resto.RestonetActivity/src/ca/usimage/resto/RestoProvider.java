@@ -48,7 +48,7 @@ public class RestoProvider extends ContentProvider {
         mDB = new RestoDatabase(getContext());
 //        try {
         	 
-        	mDB.createDatabase();
+        //	mDB.createDatabase();
  
 //	} catch (IOException ioe) {
 // 
