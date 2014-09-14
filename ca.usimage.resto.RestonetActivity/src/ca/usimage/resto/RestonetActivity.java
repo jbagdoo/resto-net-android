@@ -20,11 +20,15 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -269,11 +273,40 @@ public class RestonetActivity extends Activity implements ListItemSelectListener
 		case R.id.itemABOUT:
 			showAbout();
 			 return true;
+		
+	case R.id.itemQC:
+		if (!isPackageInstalled("ca.usimage.restoqc", this)){
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse("market://details?id=ca.usimage.restoqc"));
+		startActivity(intent);
+		}else
+		{
+			//if (isProcessRunning("ca.usimage.resto")) {
+				
+				Intent i = new Intent();
+				i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				i.setAction("android.intent.action.VIEW");
+				i.setComponent(ComponentName.unflattenFromString("ca.usimage.restoqc/ca.usimage.restoqc.RestonetActivity"));
+				startActivity(i);
+
 		}
+	
+		 return true;
+	}
 
 		return false;
 	}
 
+
+private boolean isPackageInstalled(String packagename, Context context) {
+    PackageManager pm = context.getPackageManager();
+    try {
+        pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
+        return true;
+    } catch (NameNotFoundException e) {
+        return false;
+    }
+}
     @Override
     public boolean onSearchRequested() {
        

@@ -2,7 +2,7 @@
 <resources>
 
    
-    <string translatable="false"  name="app_name">Restonet</string>
+    <string translatable="false"  name="app_name">Restonet MTL</string>
      <string name="searchlabel">Find</string>
        <string name="amende_txt">" FINE: "</string>
       <string name="amende_plus_txt">" FINES"</string>

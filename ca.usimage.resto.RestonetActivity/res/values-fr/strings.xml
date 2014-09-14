@@ -2,7 +2,7 @@
 <resources>
 
    
-    <string name="app_name">Restonet</string>
+    <string name="app_name">Restonet MTL</string>
           <string name="amende_txt">" AMENDE: "</string>
                <string name="amende_plus_txt">" AMENDES"</string>
       <string name="judgement">"Jugement rendu le "</string>          

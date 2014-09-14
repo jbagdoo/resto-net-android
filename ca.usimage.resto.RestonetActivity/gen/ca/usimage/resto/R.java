@@ -197,7 +197,8 @@ containing a value of this type.
         public static final int new_owner=0x7f020024;
         public static final int restonet4=0x7f020025;
         public static final int restonet_s=0x7f020026;
-        public static final int search=0x7f020027;
+        public static final int restonetqc=0x7f020027;
+        public static final int search=0x7f020028;
     }
     public static final class id {
         public static final int Adresse=0x7f060026;
@@ -237,6 +238,7 @@ containing a value of this type.
         public static final int itemABOUT=0x7f06002f;
         public static final int itemMAJ=0x7f06002c;
         public static final int itemMAP=0x7f06002e;
+        public static final int itemQC=0x7f060030;
         public static final int itemRECH=0x7f06002d;
         public static final int itemTextView=0x7f06001d;
         public static final int listeFragment=0x7f06001c;

@@ -10,13 +10,11 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Loader;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.app.LoaderManager;
 import android.view.View.OnClickListener;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 
@@ -24,7 +22,6 @@ import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.ListView;
 
 
 
