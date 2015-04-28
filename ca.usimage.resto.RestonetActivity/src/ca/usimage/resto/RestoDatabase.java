@@ -18,7 +18,7 @@ import android.util.Log;
 public class RestoDatabase  extends SQLiteOpenHelper {
 	 private static String DB_PATH = "/data/data/ca.usimage.resto/databases/";
     private static final String DEBUG_TAG = "RestoDatabase";
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 5;
     
        
     private static final String DB_NAME = "Resto";
