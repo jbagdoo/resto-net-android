@@ -201,55 +201,55 @@ containing a value of this type.
         public static final int search=0x7f020028;
     }
     public static final class id {
-        public static final int Adresse=0x7f060026;
-        public static final int Chef=0x7f06001f;
-        public static final int Count=0x7f060024;
-        public static final int Date=0x7f06002b;
-        public static final int DateLabel=0x7f06002a;
-        public static final int Etablissement=0x7f060022;
-        public static final int Exploitant=0x7f060027;
-        public static final int ImageButton01=0x7f060025;
-        public static final int Montant=0x7f060029;
-        public static final int TextView01=0x7f060016;
-        public static final int TextView02=0x7f060012;
-        public static final int TextView03=0x7f060019;
-        public static final int TextView04=0x7f060010;
-        public static final int TextView08=0x7f06000d;
-        public static final int TextView10=0x7f06000b;
-        public static final int TextView12=0x7f060009;
-        public static final int TextViewAdresse=0x7f06000e;
-        public static final int TextViewCategorie=0x7f060011;
-        public static final int TextViewDate_Infraction=0x7f060013;
-        public static final int TextViewDate_Jugement=0x7f060015;
-        public static final int TextViewDescription=0x7f06001a;
-        public static final int TextViewEtablissement=0x7f06000a;
-        public static final int TextViewJuge=0x7f060014;
-        public static final int TextViewMontant=0x7f060017;
-        public static final int TextViewProprietaire=0x7f06000c;
-        public static final int TextViewVille=0x7f06000f;
-        public static final int about_credits=0x7f060005;
-        public static final int about_legal=0x7f060006;
-        public static final int amende=0x7f060028;
-        public static final int carteFragment=0x7f060007;
-        public static final int count_txt=0x7f060023;
-        public static final int detailFragment=0x7f060008;
-        public static final int dollar=0x7f060018;
-        public static final int hybrid=0x7f060004;
-        public static final int itemABOUT=0x7f06002f;
-        public static final int itemMAJ=0x7f06002c;
-        public static final int itemMAP=0x7f06002e;
-        public static final int itemQC=0x7f060030;
-        public static final int itemRECH=0x7f06002d;
-        public static final int itemTextView=0x7f06001d;
-        public static final int listeFragment=0x7f06001c;
-        public static final int no_result_txt=0x7f060020;
-        public static final int nom=0x7f06001b;
-        public static final int none=0x7f060000;
-        public static final int noresult=0x7f06001e;
-        public static final int normal=0x7f060001;
-        public static final int rechFragment=0x7f060021;
-        public static final int satellite=0x7f060002;
-        public static final int terrain=0x7f060003;
+        public static final int Adresse=0x7f080026;
+        public static final int Chef=0x7f08001f;
+        public static final int Count=0x7f080024;
+        public static final int Date=0x7f08002b;
+        public static final int DateLabel=0x7f08002a;
+        public static final int Etablissement=0x7f080022;
+        public static final int Exploitant=0x7f080027;
+        public static final int ImageButton01=0x7f080025;
+        public static final int Montant=0x7f080029;
+        public static final int TextView01=0x7f080016;
+        public static final int TextView02=0x7f080012;
+        public static final int TextView03=0x7f080019;
+        public static final int TextView04=0x7f080010;
+        public static final int TextView08=0x7f08000d;
+        public static final int TextView10=0x7f08000b;
+        public static final int TextView12=0x7f080009;
+        public static final int TextViewAdresse=0x7f08000e;
+        public static final int TextViewCategorie=0x7f080011;
+        public static final int TextViewDate_Infraction=0x7f080013;
+        public static final int TextViewDate_Jugement=0x7f080015;
+        public static final int TextViewDescription=0x7f08001a;
+        public static final int TextViewEtablissement=0x7f08000a;
+        public static final int TextViewJuge=0x7f080014;
+        public static final int TextViewMontant=0x7f080017;
+        public static final int TextViewProprietaire=0x7f08000c;
+        public static final int TextViewVille=0x7f08000f;
+        public static final int about_credits=0x7f080005;
+        public static final int about_legal=0x7f080006;
+        public static final int amende=0x7f080028;
+        public static final int carteFragment=0x7f080007;
+        public static final int count_txt=0x7f080023;
+        public static final int detailFragment=0x7f080008;
+        public static final int dollar=0x7f080018;
+        public static final int hybrid=0x7f080000;
+        public static final int itemABOUT=0x7f08002f;
+        public static final int itemMAJ=0x7f08002c;
+        public static final int itemMAP=0x7f08002e;
+        public static final int itemQC=0x7f080030;
+        public static final int itemRECH=0x7f08002d;
+        public static final int itemTextView=0x7f08001d;
+        public static final int listeFragment=0x7f08001c;
+        public static final int no_result_txt=0x7f080020;
+        public static final int nom=0x7f08001b;
+        public static final int none=0x7f080001;
+        public static final int noresult=0x7f08001e;
+        public static final int normal=0x7f080002;
+        public static final int rechFragment=0x7f080021;
+        public static final int satellite=0x7f080003;
+        public static final int terrain=0x7f080004;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -269,90 +269,90 @@ containing a value of this type.
         public static final int search=0x7f03000e;
     }
     public static final class menu {
-        public static final int menu=0x7f080000;
+        public static final int menu=0x7f070000;
     }
     public static final class string {
-        public static final int action_label_search=0x7f070029;
-        public static final int adresseLabel=0x7f07001e;
-        public static final int amende_plus_txt=0x7f070018;
-        public static final int amende_txt=0x7f070017;
-        public static final int app_credits=0x7f070036;
-        public static final int app_descrip=0x7f070035;
-        public static final int app_name=0x7f070015;
+        public static final int action_label_search=0x7f060029;
+        public static final int adresseLabel=0x7f06001e;
+        public static final int amende_plus_txt=0x7f060018;
+        public static final int amende_txt=0x7f060017;
+        public static final int app_credits=0x7f060036;
+        public static final int app_descrip=0x7f060035;
+        public static final int app_name=0x7f060015;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=70] 
          */
-        public static final int auth_client_availability_notification_title=0x7f07000f;
+        public static final int auth_client_availability_notification_title=0x7f06000f;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=42] 
          */
-        public static final int auth_client_play_services_err_notification_msg=0x7f070010;
+        public static final int auth_client_play_services_err_notification_msg=0x7f060010;
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
-        public static final int auth_client_requested_by_msg=0x7f070011;
-        public static final int categorieLabel=0x7f070021;
+        public static final int auth_client_requested_by_msg=0x7f060011;
+        public static final int categorieLabel=0x7f060021;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_enable_button=0x7f070006;
+        public static final int common_google_play_services_enable_button=0x7f060006;
         /**  Message in confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_enable_text=0x7f070005;
+        public static final int common_google_play_services_enable_text=0x7f060005;
         /**  Title of confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_enable_title=0x7f070004;
+        public static final int common_google_play_services_enable_title=0x7f060004;
         /**  Button in confirmation dialog for installing Google Play services [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_install_button=0x7f070003;
+        public static final int common_google_play_services_install_button=0x7f060003;
         /**  (For phones) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_phone=0x7f070001;
+        public static final int common_google_play_services_install_text_phone=0x7f060001;
         /**  (For tablets) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_tablet=0x7f070002;
+        public static final int common_google_play_services_install_text_tablet=0x7f060002;
         /**  Title of confirmation dialog informing user that they need to install
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_install_title=0x7f070000;
+        public static final int common_google_play_services_install_title=0x7f060000;
         /**  Message in confirmation dialog informing user there is an unknown issue in Google Play
         services [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unknown_issue=0x7f070009;
+        public static final int common_google_play_services_unknown_issue=0x7f060009;
         /**  Message in confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unsupported_text=0x7f07000b;
+        public static final int common_google_play_services_unsupported_text=0x7f06000b;
         /**  Title of confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_unsupported_title=0x7f07000a;
+        public static final int common_google_play_services_unsupported_title=0x7f06000a;
         /**  Button in confirmation dialog for updating Google Play services [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_button=0x7f07000c;
+        public static final int common_google_play_services_update_button=0x7f06000c;
         /**  Message in confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_update_text=0x7f070008;
+        public static final int common_google_play_services_update_text=0x7f060008;
         /**  Title of confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_title=0x7f070007;
+        public static final int common_google_play_services_update_title=0x7f060007;
         /**  Sign-in button text [CHAR LIMIT=15] 
          */
-        public static final int common_signin_button_text=0x7f07000d;
+        public static final int common_signin_button_text=0x7f06000d;
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
-        public static final int common_signin_button_text_long=0x7f07000e;
-        public static final int date_infractionLabel=0x7f070020;
-        public static final int date_jugementLabel=0x7f070023;
-        public static final int descriptionLabel=0x7f070022;
-        public static final int detailTitre=0x7f07001b;
-        public static final int dialog=0x7f07002a;
-        public static final int dialog_cancel=0x7f07002c;
-        public static final int dialog_ok=0x7f07002b;
-        public static final int judgement=0x7f070019;
-        public static final int licence=0x7f070034;
+        public static final int common_signin_button_text_long=0x7f06000e;
+        public static final int date_infractionLabel=0x7f060020;
+        public static final int date_jugementLabel=0x7f060023;
+        public static final int descriptionLabel=0x7f060022;
+        public static final int detailTitre=0x7f06001b;
+        public static final int dialog=0x7f06002a;
+        public static final int dialog_cancel=0x7f06002c;
+        public static final int dialog_ok=0x7f06002b;
+        public static final int judgement=0x7f060019;
+        public static final int licence=0x7f060034;
         /**  Location client code resources (prefix with location_client) 
 
         Begin strings for location.reporting
@@ -361,27 +361,27 @@ containing a value of this type.
         Some InactiveReason names.  See more in OneUp/package/location/res/values/strings.xml
     
          */
-        public static final int location_client_ulr_inactive_age_under_13=0x7f070012;
-        public static final int location_client_ulr_inactive_age_unknown=0x7f070013;
-        public static final int location_client_ulr_inactive_unknown_restriction=0x7f070014;
-        public static final int maj_deja=0x7f070030;
-        public static final int maj_donnees=0x7f07002f;
-        public static final int montantLabel=0x7f070024;
-        public static final int no_geocode=0x7f070037;
-        public static final int no_google_play=0x7f07002d;
-        public static final int no_internet=0x7f07002e;
-        public static final int no_map=0x7f070031;
-        public static final int no_result=0x7f070032;
-        public static final int no_xml=0x7f070033;
-        public static final int nomLabel=0x7f07001c;
-        public static final int proprietaireLabel=0x7f07001d;
-        public static final int searchhint=0x7f07001a;
-        public static final int searchlabel=0x7f070016;
-        public static final int tab_alpha=0x7f070027;
-        public static final int tab_fortes=0x7f070028;
-        public static final int tab_plus=0x7f070026;
-        public static final int tab_recente=0x7f070025;
-        public static final int villeLabel=0x7f07001f;
+        public static final int location_client_ulr_inactive_age_under_13=0x7f060012;
+        public static final int location_client_ulr_inactive_age_unknown=0x7f060013;
+        public static final int location_client_ulr_inactive_unknown_restriction=0x7f060014;
+        public static final int maj_deja=0x7f060030;
+        public static final int maj_donnees=0x7f06002f;
+        public static final int montantLabel=0x7f060024;
+        public static final int no_geocode=0x7f060037;
+        public static final int no_google_play=0x7f06002d;
+        public static final int no_internet=0x7f06002e;
+        public static final int no_map=0x7f060031;
+        public static final int no_result=0x7f060032;
+        public static final int no_xml=0x7f060033;
+        public static final int nomLabel=0x7f06001c;
+        public static final int proprietaireLabel=0x7f06001d;
+        public static final int searchhint=0x7f06001a;
+        public static final int searchlabel=0x7f060016;
+        public static final int tab_alpha=0x7f060027;
+        public static final int tab_fortes=0x7f060028;
+        public static final int tab_plus=0x7f060026;
+        public static final int tab_recente=0x7f060025;
+        public static final int villeLabel=0x7f06001f;
     }
     public static final class xml {
         public static final int searchable=0x7f040000;
@@ -440,7 +440,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraBearing
+          @attr name ca.usimage.resto:cameraBearing
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
@@ -454,7 +454,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLat
+          @attr name ca.usimage.resto:cameraTargetLat
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
@@ -468,7 +468,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTargetLng
+          @attr name ca.usimage.resto:cameraTargetLng
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
@@ -482,7 +482,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraTilt
+          @attr name ca.usimage.resto:cameraTilt
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
@@ -496,7 +496,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:cameraZoom
+          @attr name ca.usimage.resto:cameraZoom
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
@@ -516,7 +516,7 @@ containing a value of this type.
 <tr><td><code>terrain</code></td><td>3</td><td></td></tr>
 <tr><td><code>hybrid</code></td><td>4</td><td></td></tr>
 </table>
-          @attr name android:mapType
+          @attr name ca.usimage.resto:mapType
         */
         public static final int MapAttrs_mapType = 0;
         /**
@@ -530,7 +530,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiCompass
+          @attr name ca.usimage.resto:uiCompass
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
@@ -544,7 +544,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiRotateGestures
+          @attr name ca.usimage.resto:uiRotateGestures
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
@@ -558,7 +558,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiScrollGestures
+          @attr name ca.usimage.resto:uiScrollGestures
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
@@ -572,7 +572,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiTiltGestures
+          @attr name ca.usimage.resto:uiTiltGestures
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
@@ -586,7 +586,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomControls
+          @attr name ca.usimage.resto:uiZoomControls
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
@@ -600,7 +600,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:uiZoomGestures
+          @attr name ca.usimage.resto:uiZoomGestures
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
@@ -614,7 +614,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:useViewLifecycle
+          @attr name ca.usimage.resto:useViewLifecycle
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
@@ -628,7 +628,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:zOrderOnTop
+          @attr name ca.usimage.resto:zOrderOnTop
         */
         public static final int MapAttrs_zOrderOnTop = 13;
     };
